@@ -12,8 +12,33 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employee_statuses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('ems_id');
+            $table->unsignedBiginteger('ems_user_id');
+            $table->timestamp('ems_start_date');
+            $table->string('ems_sk_number');
+            $table->bigInteger('ems_duration');
+            $table->bigInteger('ems_status');
+            $table->bigInteger('ems_inpassing_status');
+            $table->unsignedbiginteger('ems_position_id');
             $table->timestamps();
+
+            $table->renameColumn('updated_at', 'ems_updated_at');
+            $table->renameColumn('created_at', 'ems_created_at');
+            $table->unsignedBiginteger('ems_created_by')->unsigned()->nullable();
+            $table->unsignedBiginteger('ems_deleted_by')->unsigned()->nullable();
+            $table->unsignedBiginteger('ems_updated_by')->unsigned()->nullable();
+      
+            $table->softDeletes();
+            $table->renameColumn('deleted_at', 'ems_deleted_at');
+            $table->string('ems_sys_note')->nullable();
+
+
+            $table->foreign('ems_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ems_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ems_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('ems_user_id')->references('usr_id')->on('users')->onDelete('cascade');
+
+            
         });
     }
 

@@ -15,3 +15,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+
+Route::get('/master',function(){
+    return view('staff.profile.pembayaran');
+});
