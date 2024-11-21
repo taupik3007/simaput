@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\MajorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,3 +21,9 @@ Route::middleware([
 Route::get('/master',function(){
     return view('staff.profile.pembayaran');
 });
+
+
+
+
+
+Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');

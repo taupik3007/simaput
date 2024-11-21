@@ -12,7 +12,7 @@ class MajorController extends Controller
      */
     public function index()
     {
-        //
+        return view('staff.major.index');
     }
 
     /**

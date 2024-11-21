@@ -37,7 +37,7 @@
                                 <div class="position-relative">
                                   <a href="./main/app-chat.html" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                      <img src="./assets/images/svgs/icon-dd-chat.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                      <img src="{{asset('assets/images/svgs/icon-dd-chat.svg')}}" alt="modernize-img" class="img-fluid" width="24" height="24" />
                                     </div>
                                     <div>
                                       <h6 class="mb-1 fw-semibold fs-3">
@@ -190,8 +190,8 @@
 
             <div class="d-block d-lg-none py-4">
               <a href="./main/index.html" class="text-nowrap logo-img">
-                <img src="./assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-                <img src="./assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+                <img src="{{asset('assets/images/logos/dark-logo.svg')}}" class="dark-logo" alt="Logo-Dark" />
+                <img src="{{asset('assets/images/logos/light-logo.svg')}}" class="light-logo" alt="Logo-light" />
               </a>
             </div>
             <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -216,7 +216,7 @@
                   </li>
                   <li class="nav-item nav-icon-hover-bg rounded-circle dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop2" aria-expanded="false">
-                      <img src="./assets/images/svgs/icon-flag-en.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
+                      <img src="{{asset('assets/images/svgs/icon-flag-en.svg')}}" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                       <div class="message-body">
@@ -349,7 +349,7 @@
                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
-                          <img src="./assets/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="modernize-img" />
+                          <img src="{{asset('assets/images/profile/user-1.jpg')}}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
                         </div>
                       </div>
                     </a>
@@ -946,7 +946,7 @@
                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
-                          <img src="./assets/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="modernize-img" />
+                          <img src="{{asset('assets/images/profile/user-1.jpg')}}" class="rounded-circle" width="35" height="35" alt="modernize-img" />
                         </div>
                       </div>
                     </a>
@@ -1003,7 +1003,7 @@
                               </div>
                               <div class="col-6">
                                 <div class="m-n4 unlimited-img">
-                                  <img src="./assets/images/backgrounds/unlimited-bg.png" alt="modernize-img" class="w-100" />
+                                  <img src="{{asset('assets/images/backgrounds/unlimited-bg.png')}}" alt="modernize-img" class="w-100" />
                                 </div>
                               </div>
                             </div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('cls_level');
             $table->unsignedBigInteger('cls_major_id');
             $table->string('cls_number');
-            $table->unsignedBigInteger('cls_homeroom_id');
+            $table->unsignedBigInteger('cls_homeroom_id')->nullable();
             $table->timestamps();
             $table->renameColumn('updated_at', 'cls_updated_at');
             $table->renameColumn('created_at', 'cls_created_at');
