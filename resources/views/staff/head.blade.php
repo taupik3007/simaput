@@ -11,6 +11,5 @@
   <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" />
 
   <title>@yield('title')</title>
-  <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="{{asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css')}}" />
+
 </head>
