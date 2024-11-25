@@ -12,4 +12,5 @@
 
   <title>@yield('title')</title>
 
+  @stack('link')
 </head>

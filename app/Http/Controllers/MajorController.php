@@ -12,7 +12,9 @@ class MajorController extends Controller
      */
     public function index()
     {
-        return view('staff.major.index');
+        $major = major::select('mjr_name','mjr_prefix')->get();
+        // dd($major);
+        return view('staff.major.index',compact(['major']));
     }
 
     /**
@@ -20,7 +22,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff.major.create');
     }
 
     /**

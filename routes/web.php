@@ -27,3 +27,6 @@ Route::get('/master',function(){
 
 
 Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');
+Route::get('/staff/major/create',[MajorController::class, 'create'])->name('staff.major/create');
+Route::post('/staff/major/create',[MajorController::class, 'store'])->name('staff.major/store');
+

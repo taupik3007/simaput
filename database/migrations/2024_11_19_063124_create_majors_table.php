@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('majors', function (Blueprint $table) {
             $table->bigIncrements('mjr_id');
             $table->string('mjr_name');
+            $table->string('mjr_prefix');
             $table->timestamps();
             $table->renameColumn('updated_at', 'mjr_updated_at');
             $table->renameColumn('created_at', 'mjr_created_at');
