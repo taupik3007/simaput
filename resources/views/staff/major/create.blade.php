@@ -24,6 +24,9 @@
                     <input type="text" name="mjr_name" class="form-control" id="exampleInputText1" placeholder="" required oninvalid="this.setCustomValidity('Nama Jurusan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
+                  @error('mjr_name')
+                    <div>error</div>
+                  @enderror
                 </div>
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Singkatan</label>
@@ -31,6 +34,9 @@
                     <input type="text" name="mjr_prefix" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
+                  @error('mjr_prefix')
+                    <div>error</div>
+                  @enderror
                 </div>
                 
                 <div class="row">

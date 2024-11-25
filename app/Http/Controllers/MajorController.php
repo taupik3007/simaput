@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\major;
 use Illuminate\Http\Request;
+Use Alert;
+
 
 class MajorController extends Controller
 {
@@ -30,7 +32,27 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'mjr_name'      =>  'required',
+            'mjr_prefix'    =>  'required'
+        ],[
+            'required'      => 'harus di isi'
+        ]);
+
+        $majorCheck = Major::where('mjr_name',$request->mjr_name)->orWhere('mjr_prefix',$request->mjr_prefix)->first();
+        // dd($majorCheck);
+        if($majorCheck){
+            Alert::error('Gagal Menambah Jurusan', 'Jurusan atau Singkatan Sudah Terdaftar');
+            return redirect('/staff/major');
+        }
+            $majroCreate = Major::create([
+                'mjr_name'      =>  $request->mjr_name,
+                'mjr_prefix'    =>  $request->mjr_prefix
+                // 'mjr_created_by'=> Auth::user()->usr_id
+            ]);
+            Alert::success('Berhasil Menambah Jurusan', 'Jurusan Berhasil Ditambah');
+            return redirect('/major');
     }
 
     /**

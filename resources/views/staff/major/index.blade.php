@@ -35,8 +35,9 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
+                            @foreach ($major as $no=>$major)
                             <tr>
-                                @foreach ($major as $no=>$major)
+                                
                                 <td>{{$no+1}}</td>
                                 <td>{{$major->mjr_name}}</td>
                                 <td>{{$major->mjr_prefix}}</td>
@@ -46,8 +47,9 @@
                                 </td>
 
 
-                                @endforeach
+                                
                             </tr>
+                            @endforeach
                             <!-- end row -->
                             
                         </tbody>

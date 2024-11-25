@@ -16,9 +16,9 @@
     </div>
   </div>
   <!-- Preloader -->
-  <div class="preloader">
+  {{-- <div class="preloader">
     <img src="./assets/images/logos/anya.jpg" alt="loader" class="lds-ripple img-fluid" />
-  </div>
+  </div> --}}
   <div id="main-wrapper">
     <!-- Sidebar Start -->
     @include('staff.sidebar')
@@ -380,6 +380,7 @@
   </div>
   <div class="dark-transparent sidebartoggler"></div>
   {{-- script --}}
+  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
   @include('staff.script')
 
