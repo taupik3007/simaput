@@ -42,8 +42,9 @@
                                 <td>{{$major->mjr_name}}</td>
                                 <td>{{$major->mjr_prefix}}</td>
                                 <td>
-                                     <a href="" class="btn btn-primary">Edit</a>
-                                     <a href="" class="btn btn-danger">Hapus</a>
+                                     <a href="/staff/major/{{$major->mjr_id}}/edit" class="btn btn-primary">Edit</a>
+                                     <a href="/staff/major/{{$major->mjr_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+
                                 </td>
 
 
