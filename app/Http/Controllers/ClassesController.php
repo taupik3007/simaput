@@ -70,17 +70,31 @@ class ClassesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Classes $classes)
+    public function edit(Classes $classes,$id)
     {
-        //
+        $classes = Classes::findOrFail($id);
+        $major = major::select('mjr_name','mjr_id')->where('mjr_id','!=',$classes->cls_major_id)->get();
+        return view('staff.classes.edit',compact(['major','classes']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Classes $classes)
+    public function update(Request $request, Classes $classes, $id)
     {
-        //
+        // $major = Major::all();
+        $classCheck = Classes::where('cls_level',$request->cls_level)->where('cls_major_id',$request->cls_major_id)->where('cls_number',$request->cls_number)->where('cls_id','!=',$id)->first();
+        if($classCheck){
+            Alert::error('Gagal Mengubah', 'Kelas Sudah Terdaftar');
+            return redirect('/staff/classes');
+        }
+        $updateClasses = Classes::findOrfail($id);
+        $updateClasses->cls_level       = $request->cls_level;
+        $updateClasses->cls_major_id    = $request->cls_major_id;
+        $updateClasses->cls_number      = $request->cls_number;
+        $updateClasses->save();
+        Alert::success('Berhasil Mengedit', 'Kelas Berhasil Diedit');
+        return redirect('/staff/classes');
     }
 
     /**
@@ -88,7 +102,7 @@ class ClassesController extends Controller
      */
     public function destroy(Classes $classes,$id)
     {
-        $destroyClasses = Classes::findOrFail($id)->first();
+        $destroyClasses = Classes::findOrFail($id);
         // dd($destroyClasses);
         $destroyClasses->delete();
         Alert::success('Berhasil Menghapus', 'Kelas Berhasil Dihapus');
