@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ClassesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,3 +34,11 @@ Route::get('/staff/major/{id}/edit',[MajorController::class, 'edit'])->name('sta
 Route::post('/staff/major/{id}/edit',[MajorController::class, 'update'])->name('staff.major.update');
 Route::delete('/staff/major/{id}/destroy',[MajorController::class, 'destroy'])->name('staff.major.destroy');
 
+
+
+Route::get('/staff/classes',[ClassesController::class, 'index'])->name('staff.classes');
+Route::get('/staff/classes/create',[ClassesController::class, 'create'])->name('staff.major.create');
+Route::post('/staff/classes/create',[ClassesController::class, 'store'])->name('staff.major.store');
+Route::get('/staff/classes/{id}/edit',[ClassesController::class, 'edit'])->name('staff.major.edit');
+Route::post('/staff/classes/{id}/edit',[ClassesController::class, 'update'])->name('staff.major.update');
+Route::delete('/staff/classes/{id}/destroy',[ClassesController::class, 'destroy'])->name('staff.major.destroy');

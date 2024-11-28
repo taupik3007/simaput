@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Jurusan
+    SiMaput | Daftar Kelas
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Jurusan</h4>
-                    <a href="/staff/major/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Jurusan</a>
+                    <h4 class="card-title mb-0">Daftar Kelas</h4>
+                    <a href="/staff/classes/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Kelas</a>
                 </div>
                 <p class="card-subtitle mb-3">
                     
@@ -26,25 +26,29 @@
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
+                                <th>Tingkatan</th>
                                 <th>Jurusan</th>
-                                <th>Singkatan</th>
+                                <th>Nomor</th>
+                                <th>Wali Kelas</th>
                                 <th>Aksi</th>
-                                
                                 
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($major as $no=>$major)
+                            @foreach ($classes as $no=>$classes)
                             <tr>
                                 
                                 <td>{{$no+1}}</td>
-                                <td>{{$major->mjr_name}}</td>
-                                <td>{{$major->mjr_prefix}}</td>
+                                <td>{{$classes->cls_level}}</td>
+                                <td>{{$classes->cls_major->mjr_prefix}}</td>
+                                <td>{{$classes->cls_number}}</td>
+                                <td></td>
                                 <td>
-                                     <a href="/staff/major/{{$major->mjr_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/major/{{$major->mjr_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                     <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a>
+                                     <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                     
 
                                 </td>
 
@@ -61,10 +65,11 @@
 
                             <tr>
                                 <th width="10%">No</th>
+                                <th>Tingkatan</th>
                                 <th>Jurusan</th>
-                                <th>Singkatan</th>
+                                <th>Nomor</th>
+                                <th>Wali Kelas</th>
                                 <th>Aksi</th>
-                                
                             </tr>
                             <!-- end row -->
                         </tfoot>
