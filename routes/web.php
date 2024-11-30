@@ -23,6 +23,10 @@ Route::get('/master',function(){
     return view('staff.profile.pembayaran');
 });
 
+Route::get('/login2', function () {
+    return view('auth.login2');
+});
+
 
 
 
