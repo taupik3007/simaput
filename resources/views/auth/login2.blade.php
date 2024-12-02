@@ -22,45 +22,59 @@
     <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <div id="main-wrapper" class="auth-customizer-none">
-    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
-      <div class="d-flex align-items-center justify-content-center w-100">
-        <div class="row justify-content-center w-100">
-          <div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
-            <div class="card mb-0">
-              <div class="card-body">
-                <a href="../main/index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-                  <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
-                </a>
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
+      <div class="position-relative z-index-5">
+        <div class="row">
+          <div class="col-xl-7 col-xxl-8">
+            <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+              <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
+              <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+            </a>
+            <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
+              <img src="../assets/images/backgrounds/login-security.svg" alt="modernize-img" class="img-fluid" width="500">
+            </div>
+          </div>
+          <div class="col-xl-5 col-xxl-4">
+            <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
+              <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
+                <h2 class="mb-1 fs-7 fw-bolder">Welcome to Modernize</h2>
+                <p class="mb-7">Your Admin Dashboard</p>
                 
+                <div class="position-relative text-center my-4">
+                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Log in</p>
+                  <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
+                </div>
                 <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">{{ __('Email') }}</label>
-                    <input type="email" id="email" class="form-control" aria-describedby="emailHelp" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                  @csrf
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">{{ __('Email') }}</label>
+                  <input type="email" id="email" class="form-control" aria-describedby="emailHelp" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                  @error('email')
+                  gararetek
+                  @enderror
+                </div>
+                <div class="mb-4">
+                  <label for="exampleInputPassword1" class="form-label">{{ __('Password') }}</label>
+                  <input type="password" id="password" class="form-control" name="password" required autocomplete="current-password" />
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                  <div class="form-check">
+                    <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label text-dark" for="flexCheckChecked">
+                      {{ __('Remember me') }}
+                    </label>
                   </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">{{ __('Password') }}</label>
-                    <input type="password" id="password" class="form-control" name="password" required autocomplete="current-password" />
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        {{ __('Remember me') }}
-                      </label>
-                    </div>
-                    <a class="text-primary fw-medium" href="../main/authentication-forgot-password.html">Forgot
-                      Password ?</a>
-                  </div>
-                  
-                  <input type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2" value="{{ __('Log in') }}">
-                  <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-medium">New to Modernize?</p>
-                    <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
-                      account</a>
-                  </div>
-                </form>
+                  <a class="text-primary fw-medium" href="../main/authentication-forgot-password.html">Forgot
+                    Password ?</a>
+                </div>
+                
+                <input type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2" value="{{ __('Log in') }}">
+                <div class="d-flex align-items-center justify-content-center">
+                  <p class="fs-4 mb-0 fw-medium">New to Modernize?</p>
+                  <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
+                    account</a>
+                </div>
+              </form>
               </div>
             </div>
           </div>
