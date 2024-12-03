@@ -21,4 +21,8 @@ class Classes extends Model
     {
         return $this->BelongsTo(Major::class,'cls_major_id');
     }
+    public function cls_homeroom(): BelongsTo
+    {
+        return $this->BelongsTo(User::class,'cls_homeroom_id');
+    }
 }

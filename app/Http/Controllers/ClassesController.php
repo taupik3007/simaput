@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Models\major;
+use App\Models\User;
 Use Alert;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ClassesController extends Controller
@@ -52,7 +55,7 @@ class ClassesController extends Controller
             'cls_level'     => $request->cls_level,
             'cls_major_id'  => $request->cls_major_id,
             'cls_number'    => $request->cls_number,
-            // 'cls_created_by'=> Auth::user()->usr_id
+            'cls_created_by'=> Auth::user()->usr_id
         ]);
 
             Alert::success('Berhasil Menambah', 'Kelas Berhasil Ditambah');
@@ -92,6 +95,7 @@ class ClassesController extends Controller
         $updateClasses->cls_level       = $request->cls_level;
         $updateClasses->cls_major_id    = $request->cls_major_id;
         $updateClasses->cls_number      = $request->cls_number;
+        $updateClasses->cls_updated_by  = Auth::user()->usr_id;
         $updateClasses->save();
         Alert::success('Berhasil Mengedit', 'Kelas Berhasil Diedit');
         return redirect('/staff/classes');
@@ -104,8 +108,26 @@ class ClassesController extends Controller
     {
         $destroyClasses = Classes::findOrFail($id);
         // dd($destroyClasses);
+        $majorUpdate = Classes::findOrFail($id)->update([
+           
+            'cls_deleted_by'=> Auth::user()->usr_id
+        ]);
         $destroyClasses->delete();
         Alert::success('Berhasil Menghapus', 'Kelas Berhasil Dihapus');
+        return redirect('/staff/classes');
+    }
+
+    public function homeroomEdit($id){
+        $teacher = User::role('teacher')->get();
+        // dd($teacher);
+        return view('staff.classes.edit-homeroom',compact(['teacher']));
+    }
+
+    public function homeroomUpdate($id, Request $request){
+        $classesUpdate = Classes::findOrFail($id)->update([
+            'cls_homeroom_id' => $request->cls_homeroom_id
+        ]);
+        Alert::success('Berhasil Mengubah Wali kelas', 'Wali Kelas Berhasil Diubah');
         return redirect('/staff/classes');
     }
 }

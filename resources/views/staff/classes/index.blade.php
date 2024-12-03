@@ -44,8 +44,9 @@
                                 <td>{{$classes->cls_level}}</td>
                                 <td>{{$classes->cls_major->mjr_prefix}}</td>
                                 <td>{{$classes->cls_number}}</td>
-                                <td></td>
+                                <td>{{$classes->cls_homeroom->name}}</td>
                                 <td>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
                                      <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a>
                                      <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
                                      

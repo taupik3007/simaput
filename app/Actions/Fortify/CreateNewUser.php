@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
         if($input['role'] == 1){
             $createUser->assignRole('student');
         }elseif($input['role'] == 2){
-            $createUser->assingRole('teacher');
+            $createUser->assignRole('teacher');
         }else{
             $createUser->assignRole('staff');
         }

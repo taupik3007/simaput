@@ -6,6 +6,7 @@ use App\Models\major;
 use Illuminate\Http\Request;
 use App\Models\Classes;
 Use Alert;
+use Illuminate\Support\Facades\Auth;
 
 
 class MajorController extends Controller
@@ -38,6 +39,8 @@ class MajorController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+
+        // dd(Auth::user()->usr_id);
         $request->validate([
             'mjr_name'      =>  'required',
             'mjr_prefix'    =>  'required'
@@ -53,7 +56,8 @@ class MajorController extends Controller
         }
             $majroCreate = Major::create([
                 'mjr_name'      =>  $request->mjr_name,
-                'mjr_prefix'    =>  $request->mjr_prefix
+                'mjr_prefix'    =>  $request->mjr_prefix,
+                'mjr_created_by'=> Auth::user()->usr_id
                 // 'mjr_created_by'=> Auth::user()->usr_id
             ]);
             Alert::success('Berhasil Menambah Jurusan', 'Jurusan Berhasil Ditambah');
@@ -105,7 +109,8 @@ class MajorController extends Controller
         }
             $majorUpdate = Major::findOrFail($id)->update([
                 'mjr_name' => $request->mjr_name,
-                'mjr_prefix'    =>  $request->mjr_prefix
+                'mjr_prefix'    =>  $request->mjr_prefix,
+                'mjr_updated_by'=> Auth::user()->usr_id
 
                 // 'mjr_updated_by'=> Auth::user()->usr_id
             ]);
@@ -124,10 +129,10 @@ class MajorController extends Controller
             Alert::error('Gagal Menghapus Jurusan', 'Masih Ada Kelas Yang Terkait Ke Jurusan');
             return redirect('/staff/major');
         }
-        // $majorUpdate = Major::findOrFail($id)->update([
+        $majorUpdate = Major::findOrFail($id)->update([
            
-        //     // 'mjr_deleted_by'=> Auth::user()->usr_id
-        // ]);
+            'mjr_deleted_by'=> Auth::user()->usr_id
+        ]);
         $majorDelete= Major::findOrFail($id)->delete();
         Alert::success('Berhasil Menghapus Jurusan', 'Jurusan Berhasil Dihapus');
         return redirect('/staff/major');
