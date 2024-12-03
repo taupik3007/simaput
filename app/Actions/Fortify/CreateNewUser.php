@@ -24,12 +24,29 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+        ],
+        [
+            'email.unique'          => 'Email Sudah Terdaftar',
+            'password.min'          => 'Password Minimal :min Karakter',
+            'password.confirmed'    => 'Password Tidak Sama'
+        ]
+        )->validate();
 
-        return User::create([
+       $createUser =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        
+        if($input['role'] == 1){
+            $createUser->assignRole('student');
+        }elseif($input['role'] == 2){
+            $createUser->assingRole('teacher');
+        }else{
+            $createUser->assignRole('staff');
+        }
+        return $createUser;
+
     }
 }
