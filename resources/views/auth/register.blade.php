@@ -57,6 +57,10 @@
                     <input  class="form-control" id="name" aria-describedby="textHelp" type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
                   </div>
                   <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">NIK</label>
+                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required autofocus autocomplete="bio_nik">
+                  </div>
+                  <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input  class="form-control"  aria-describedby="emailHelp" id="email"  type="email" name="email" :value="old('email')" required autocomplete="username">
                   </div>

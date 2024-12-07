@@ -22,6 +22,16 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->bigInteger('usr_status')->default(0);
             $table->timestamps();
+
+            $table->renameColumn('updated_at', 'usr_updated_at');
+            $table->renameColumn('created_at', 'usr_created_at');
+            $table->unsignedBigInteger('usr_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('usr_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('usr_updated_by')->unsigned()->nullable();
+      
+            $table->softDeletes();
+            $table->renameColumn('deleted_at', 'usr_deleted_at');
+            $table->string('usr_sys_note')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

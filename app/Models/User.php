@@ -68,4 +68,8 @@ class User extends Authenticatable
     }
 
     protected $primaryKey = 'usr_id';
+    const CREATED_AT = 'usr_created_at';
+    const UPDATED_AT = 'usr_updated_at';
+    const DELETED_AT = 'usr_deleted_at';
+
 }

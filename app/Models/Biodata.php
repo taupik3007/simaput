@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Biodata extends Model
 {
-    use SoftDeletes;
-    use HasFactory, SoftDeletes ;
+
+    use  SoftDeletes ;
     protected $primaryKey = 'bio_id';
     protected $guarded = [];
 

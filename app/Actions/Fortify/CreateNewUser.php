@@ -23,13 +23,15 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'bio_nik'   => ['required', 'integer', 'unique:biodatas'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ],
         [
             'email.unique'          => 'Email Sudah Terdaftar',
             'password.min'          => 'Password Minimal :min Karakter',
-            'password.confirmed'    => 'Password Tidak Sama'
+            'password.confirmed'    => 'Password Tidak Sama',
+            'bio_nik.unique'        => 'Nik sudah Terdaftar'
         ]
         )->validate();
 
@@ -47,10 +49,15 @@ class CreateNewUser implements CreatesNewUsers
         }else{
             $createUser->assignRole('staff');
         }
-        return $createUser;
         $createBio = Biodata::create([
-            'bio_user_id'=> $createUser->usr_id
+            'bio_user_id'   => $createUser->usr_id,
+            'bio_nik'       => $input['bio_nik']
         ]);
+        return $createUser;
+        // dd($createUser);
+        
+        return $createBio;
+
 
     }
 }
