@@ -15,11 +15,11 @@ return new class extends Migration
             $table->bigincrements('bio_id');
             $table->bigInteger('bio_nik');
             $table->unsignedBiginteger('bio_user_id');
-            $table->unsignedBiginteger('bio_religion_id');
-            $table->string('bio_place_of_birth');
-            $table->timestamp('bio_date_of_birth');
-            $table->bigInteger('bio_height');
-            $table->bigInteger('bio_weight');
+            $table->unsignedBiginteger('bio_religion_id')->nullable();
+            $table->string('bio_place_of_birth')->nullable();
+            $table->timestamp('bio_date_of_birth')->nullable();
+            $table->bigInteger('bio_height')->nullable();
+            $table->bigInteger('bio_weight')->nullable();
             $table->timestamps();
 
             $table->renameColumn('updated_at', 'bio_updated_at');

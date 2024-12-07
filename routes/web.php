@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,7 +29,7 @@ Route::get('/login2', function () {
 });
 
 Route::get('/register2', function () {
-    return view('auth.register2');
+    return view('profile.layout.master');
 });
 
 
@@ -53,5 +54,8 @@ Route::delete('/staff/classes/{id}/destroy',[ClassesController::class, 'destroy'
 Route::get('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomEdit'])->name('staff.classes.homeroom.edit');
 Route::post('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomUpdate'])->name('staff.classes.homeroom.update');
 
+
+
+Route::get('profile/{id}',[ProfileController::class, 'index'])->name('profile');
 
 });
