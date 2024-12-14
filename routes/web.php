@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\RequirementDocumentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,17 +21,17 @@ Route::middleware([
 
 
 
-Route::get('/master',function(){
-    return view('staff.profile.pembayaran');
-});
+// Route::get('/master',function(){
+//     return view('staff.profile.pembayaran');
+// });
 
-Route::get('/login2', function () {
-    return view('auth.login2');
-});
+// Route::get('/login2', function () {
+//     return view('auth.login2');
+// });
 
-Route::get('/register2', function () {
-    return view('profile.layout.master');
-});
+// Route::get('/register2', function () {
+//     return view('profile.layout.master');
+// });
 
 
 
@@ -54,7 +55,12 @@ Route::delete('/staff/classes/{id}/destroy',[ClassesController::class, 'destroy'
 Route::get('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomEdit'])->name('staff.classes.homeroom.edit');
 Route::post('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomUpdate'])->name('staff.classes.homeroom.update');
 
-
+Route::get('/staff/ppdb-requirement-document',[RequirementDocumentController::class, 'index'])->name('staff.classes');
+Route::get('/staff/ppdb-requirement-document/create',[ClassesController::class, 'create'])->name('staff.classes.create');
+Route::post('/staff/ppdb-requirement-document/create',[ClassesController::class, 'store'])->name('staff.classes.store');
+Route::get('/staff/ppdb-requirement-document/{id}/edit',[ClassesController::class, 'edit'])->name('staff.classes.edit');
+Route::post('/staff/ppdb-requirement-document/{id}/edit',[ClassesController::class, 'update'])->name('staff.classes.update');
+Route::delete('/staff/ppdb-requirement-document/{id}/destroy',[ClassesController::class, 'destroy'])->name('staff.classes.destroy');
 
 Route::get('profile/{id}',[ProfileController::class, 'index'])->name('profile');
 

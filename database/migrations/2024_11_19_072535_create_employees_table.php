@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('emp_nuptk')->nullable();
             $table->string('emp_cv')->nullable();
             $table->string('emp_linkedin')->nullable();
+            $table->unsignedBiginteger('emp_user_id');
             
 
 
@@ -35,6 +36,8 @@ return new class extends Migration
             $table->foreign('emp_created_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('emp_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('emp_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('emp_user_id')->references('usr_id')->on('users')->onDelete('cascade');
+
         });
     }
 

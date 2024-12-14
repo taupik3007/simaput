@@ -103,6 +103,30 @@
               </ul>
             </li>
 
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">PPDB </span>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/staff/requirement-document" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu"> Kelola Persyaratan PPDB</span>
+              </a>
+            </li>
+
+
+
+
+
+
+
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Lamaran </span>
+            </li>
             <!-- ---------------------------------- -->
             <!-- Apps -->
             <!-- ---------------------------------- -->

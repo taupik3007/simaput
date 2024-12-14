@@ -4,6 +4,8 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\Biodata;
+use App\Models\Student;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -44,19 +46,30 @@ class CreateNewUser implements CreatesNewUsers
         
         if($input['role'] == 1){
             $createUser->assignRole('student');
+            $createStudent = Student::create([
+                'std_user_id' => $createUser->usr_id,
+            ]);
         }elseif($input['role'] == 2){
             $createUser->assignRole('teacher');
+            $createStudent = Employee::create([
+                'std_user_id' => $createUser->usr_id,
+            ]);
+           
         }else{
             $createUser->assignRole('staff');
+            $createEmployee = Employee::create([
+                'std_user_id' => $createUser->usr_id,
+            ]);
         }
         $createBio = Biodata::create([
             'bio_user_id'   => $createUser->usr_id,
             'bio_nik'       => $input['bio_nik']
         ]);
+        
         return $createUser;
         // dd($createUser);
         
-        return $createBio;
+        // return $createBio;
 
 
     }

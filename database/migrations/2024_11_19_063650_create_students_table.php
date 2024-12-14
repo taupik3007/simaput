@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('std_un_participant_number')->nullable()->unique();
             $table->string('std_original_school')->nullable();
             $table->unsignedBiginteger('std_class_id')->nullable();
+            $table->unsignedBiginteger('std_user_id');
             
             $table->renameColumn('updated_at', 'std_updated_at');
             $table->renameColumn('created_at', 'std_created_at');
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->foreign('std_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('std_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('std_class_id')->references('cls_id')->on('classes')->onDelete('cascade');
+            $table->foreign('std_user_id')->references('usr_id')->on('users')->onDelete('cascade');
 
         });
     }

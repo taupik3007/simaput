@@ -12,7 +12,8 @@ class RequirementDocumentController extends Controller
      */
     public function index()
     {
-        //
+        $requirementDocument = RequirementDocument::where('rqd_status',1)->get();
+        return view('staff.ppdb_requirement_document.index',compact(['requirementDocument']));
     }
 
     /**

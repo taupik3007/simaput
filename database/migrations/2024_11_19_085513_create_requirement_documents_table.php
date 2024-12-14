@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('requirement_documents', function (Blueprint $table) {
             $table->bigIncrements('rqd_id');
             $table->string('rqd_name');
+            $table->bigInteger('rqd_status');
+
             
             $table->timestamps();
 
