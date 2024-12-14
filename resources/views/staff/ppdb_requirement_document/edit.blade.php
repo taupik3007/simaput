@@ -21,7 +21,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Nama Persyaratan</label>
                   <div class="col-sm-9">
-                    <input type="text" name="rqd_name" class="form-control" id="exampleInputText1" placeholder="" required oninvalid="this.setCustomValidity('Nama Persayratan Wajib Diisi')" 
+                    <input type="text" name="rqd_name" class="form-control" value="{{$requirementDocument->rqd_name}}" id="exampleInputText1" placeholder="" required oninvalid="this.setCustomValidity('Nama Persayratan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   

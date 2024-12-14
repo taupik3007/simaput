@@ -41,10 +41,10 @@
                             <tr>
                                 
                                 <td>{{$no+1}}</td>
-                                <td>{{$rdc->rdc_name}}</td>
+                                <td>{{$rdc->rqd_name}}</td>
                                 <td>
-                                     <a href="/staff/major/{{rdc_rdc_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/major/{{rdc_rdc_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                     <a href="/staff/ppdb-requirement-document/{{$rdc->rqd_id}}/edit" class="btn btn-primary">Edit</a>
+                                     <a href="/staff/ppdb-requirement-document/{{$rdc->rqd_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
 
                                 </td>
 

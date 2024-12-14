@@ -55,12 +55,12 @@ Route::delete('/staff/classes/{id}/destroy',[ClassesController::class, 'destroy'
 Route::get('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomEdit'])->name('staff.classes.homeroom.edit');
 Route::post('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomUpdate'])->name('staff.classes.homeroom.update');
 
-Route::get('/staff/ppdb-requirement-document',[RequirementDocumentController::class, 'index'])->name('staff.classes');
-Route::get('/staff/ppdb-requirement-document/create',[ClassesController::class, 'create'])->name('staff.classes.create');
-Route::post('/staff/ppdb-requirement-document/create',[ClassesController::class, 'store'])->name('staff.classes.store');
-Route::get('/staff/ppdb-requirement-document/{id}/edit',[ClassesController::class, 'edit'])->name('staff.classes.edit');
-Route::post('/staff/ppdb-requirement-document/{id}/edit',[ClassesController::class, 'update'])->name('staff.classes.update');
-Route::delete('/staff/ppdb-requirement-document/{id}/destroy',[ClassesController::class, 'destroy'])->name('staff.classes.destroy');
+Route::get('/staff/ppdb-requirement-document',[RequirementDocumentController::class, 'index'])->name('staff.ppdbrequirementdocument');
+Route::get('/staff/ppdb-requirement-document/create',[RequirementDocumentController::class, 'create'])->name('staff.ppdbrequirementdocument.create');
+Route::post('/staff/ppdb-requirement-document/create',[RequirementDocumentController::class, 'store'])->name('staff.ppdbrequirementdocument.store');
+Route::get('/staff/ppdb-requirement-document/{id}/edit',[RequirementDocumentController::class, 'edit'])->name('staff.ppdbrequirementdocument.edit');
+Route::post('/staff/ppdb-requirement-document/{id}/edit',[RequirementDocumentController::class, 'update'])->name('staff.ppdbrequirementdocument.update');
+Route::delete('/staff/ppdb-requirement-document/{id}/destroy',[RequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
 
 Route::get('profile/{id}',[ProfileController::class, 'index'])->name('profile');
 
