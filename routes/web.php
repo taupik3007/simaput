@@ -2,6 +2,7 @@
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\RequirementDocumentController;
+use App\Http\Controllers\ApplicationRequirementDocumentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,5 +64,13 @@ Route::post('/staff/ppdb-requirement-document/{id}/edit',[RequirementDocumentCon
 Route::delete('/staff/ppdb-requirement-document/{id}/destroy',[RequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
 
 Route::get('profile/{id}',[ProfileController::class, 'index'])->name('profile');
+
+
+Route::get('/staff/application-requirement-document',[ApplicationRequirementDocumentController::class, 'index'])->name('staff.ppdbrequirementdocument');
+Route::get('/staff/application-requirement-document/create',[ApplicationRequirementDocumentController::class, 'create'])->name('staff.ppdbrequirementdocument.create');
+Route::post('/staff/application-requirement-document/create',[ApplicationRequirementDocumentController::class, 'store'])->name('staff.ppdbrequirementdocument.store');
+Route::get('/staff/application-requirement-document/{id}/edit',[ApplicationRequirementDocumentController::class, 'edit'])->name('staff.ppdbrequirementdocument.edit');
+Route::post('/staff/application-requirement-document/{id}/edit',[ApplicationRequirementDocumentController::class, 'update'])->name('staff.ppdbrequirementdocument.update');
+Route::delete('/staff/application-requirement-document/{id}/destroy',[ApplicationRequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
 
 });
