@@ -108,6 +108,15 @@
               <span class="hide-menu">PPDB </span>
             </li>
 
+           
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/staff/student-admission" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Kelola Pembukaan PPDB</span>
+              </a>
+            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="/staff/ppdb-requirement-document" id="get-url" aria-expanded="false">
                 <span>

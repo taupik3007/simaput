@@ -4,6 +4,8 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\RequirementDocumentController;
 use App\Http\Controllers\ApplicationRequirementDocumentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentAdmissionController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -72,5 +74,12 @@ Route::post('/staff/application-requirement-document/create',[ApplicationRequire
 Route::get('/staff/application-requirement-document/{id}/edit',[ApplicationRequirementDocumentController::class, 'edit'])->name('staff.ppdbrequirementdocument.edit');
 Route::post('/staff/application-requirement-document/{id}/edit',[ApplicationRequirementDocumentController::class, 'update'])->name('staff.ppdbrequirementdocument.update');
 Route::delete('/staff/application-requirement-document/{id}/destroy',[ApplicationRequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
+
+Route::get('/staff/student-admission',[StudentAdmissionController::class, 'index'])->name('staff.ppdbrequirementdocument');
+Route::get('/staff/tudent-admission/create',[StudentAdmissionDocumentController::class, 'create'])->name('staff.studentadmission.create');
+Route::post('/staff/tudent-admission/create',[StudentAdmissionDocumentController::class, 'store'])->name('staff.studentadmission.store');
+Route::get('/staff/tudent-admission/{id}/edit',[StudentAdmissionDocumentController::class, 'edit'])->name('staff.studentadmission.edit');
+Route::post('/staff/tudent-admission/{id}/edit',[StudentAdmissionDocumentController::class, 'update'])->name('staff.studentadmission.update');
+Route::delete('/staff/tudent-admission/{id}/destroy',[StudentAdmissionDocumentController::class, 'destroy'])->name('staff.studentadmission.destroy');
 
 });
