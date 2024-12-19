@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_admissions', function (Blueprint $table) {
             $table->bigIncrements('sta_id');
-            $table->unsignedBiginteger('sta_year');
+            $table->string('sta_year');
             $table->timestamp('sta_start');
             $table->timestamp('sta_ended');
             $table->timestamps();

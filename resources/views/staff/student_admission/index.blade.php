@@ -14,8 +14,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Persayaratan PPDB </h4>
-                    <a href="/staff/ppdb-requirement-document/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Persayratan</a>
+                    <h4 class="card-title mb-0">Daftar Penyelenggaraan PPDB </h4>
+                    <a href="/staff/student-admission/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Persayratan</a>
                 </div>
                 <p class="card-subtitle mb-3">
                     
@@ -42,7 +42,7 @@
                                 
                                 <td>{{$no+1}}</td>
                                 <td>{{$sta->sta_year}}</td>
-                                <td>{{$sta->sta_start}}</td>
+                                <td>{{Carbon\Carbon::parse($sta->sta_created_at)->firstOfYear()->format('l jS j  F, Y')}}</td>
                                 <td>{{$sta->sta_ended}}</td>
                                 <td>
                                      <a href="/staff/ppdb-requirement-document/{{$sta->rqd_id}}/edit" class="btn btn-primary">Edit</a>

@@ -76,10 +76,10 @@ Route::post('/staff/application-requirement-document/{id}/edit',[ApplicationRequ
 Route::delete('/staff/application-requirement-document/{id}/destroy',[ApplicationRequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
 
 Route::get('/staff/student-admission',[StudentAdmissionController::class, 'index'])->name('staff.ppdbrequirementdocument');
-Route::get('/staff/tudent-admission/create',[StudentAdmissionDocumentController::class, 'create'])->name('staff.studentadmission.create');
-Route::post('/staff/tudent-admission/create',[StudentAdmissionDocumentController::class, 'store'])->name('staff.studentadmission.store');
-Route::get('/staff/tudent-admission/{id}/edit',[StudentAdmissionDocumentController::class, 'edit'])->name('staff.studentadmission.edit');
-Route::post('/staff/tudent-admission/{id}/edit',[StudentAdmissionDocumentController::class, 'update'])->name('staff.studentadmission.update');
-Route::delete('/staff/tudent-admission/{id}/destroy',[StudentAdmissionDocumentController::class, 'destroy'])->name('staff.studentadmission.destroy');
+Route::get('/staff/student-admission/create',[StudentAdmissionController::class, 'create'])->name('staff.studentadmission.create');
+Route::post('/staff/student-admission/create',[StudentAdmissionController::class, 'store'])->name('staff.studentadmission.store');
+Route::get('/staff/tudent-admission/{id}/edit',[StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');
+Route::post('/staff/tudent-admission/{id}/edit',[StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
+Route::delete('/staff/tudent-admission/{id}/destroy',[StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
 
 });
