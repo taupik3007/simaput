@@ -16,9 +16,9 @@ class StudentAdmissionController extends Controller
     public function index()
     {
         $studentAdmission = StudentAdmission::all();
-        setlocale(LC_TIME, 'id_ID');
-        Carbon::setLocale('id');
-        $today = Carbon::now()->isoFormat('D MMMM Y');
+        // setlocale(LC_TIME, 'id_ID');
+        // Carbon::setLocale('id');
+        // $today = Carbon::parse('2024-12-19 05:57:19')->isoFormat('D MMMM Y');
         // dd($today);
         return view('staff.student_admission.index',compact(['studentAdmission']));
     }
@@ -28,6 +28,16 @@ class StudentAdmissionController extends Controller
      */
     public function create()
     {
+        $time = Carbon::now();
+        // dd($time);
+        $studentAdmission = StudentAdmission::where('sta_ended', '>=', $time )->first();
+        // dd($studentAdmission);
+        if($studentAdmission){
+            Alert::warning('Tidak Bisa Menambah Penyelenggaraan', 'Penyelenggaraan PPDB Masih Berjalan');
+            return redirect('/staff/student-admission');
+
+        }
+
         $year = Carbon::now()->year;
         $loop = $year+5;
 
@@ -53,7 +63,8 @@ class StudentAdmissionController extends Controller
         $createStudentAdmission = StudentAdmission::create([
             'sta_year'  => $request->sta_year,
             'sta_start' => $request->sta_start,
-            'sta_ended' => $request->sta_ended
+            'sta_ended' => $request->sta_ended,
+            'sta_created_by' => Auth::user()->usr_id
         ]);
 
 
@@ -75,9 +86,13 @@ class StudentAdmissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StudentAdmission $studentAdmission)
+    public function edit($id)
     {
-        //
+        $studentAdmission = StudentAdmission::findOrFail($id);
+        dd($studentAdmission);
+        $year = Carbon::now()->year;
+        $loop = $year+5;
+        return view('staff.student_admission.edit',compact(['year','loop','studentAdmission']));
     }
 
     /**

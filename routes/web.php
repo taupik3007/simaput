@@ -78,8 +78,8 @@ Route::delete('/staff/application-requirement-document/{id}/destroy',[Applicatio
 Route::get('/staff/student-admission',[StudentAdmissionController::class, 'index'])->name('staff.ppdbrequirementdocument');
 Route::get('/staff/student-admission/create',[StudentAdmissionController::class, 'create'])->name('staff.studentadmission.create');
 Route::post('/staff/student-admission/create',[StudentAdmissionController::class, 'store'])->name('staff.studentadmission.store');
-Route::get('/staff/tudent-admission/{id}/edit',[StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');
-Route::post('/staff/tudent-admission/{id}/edit',[StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
-Route::delete('/staff/tudent-admission/{id}/destroy',[StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
+Route::get('/staff/student-admission/{id}/edit',[StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');
+Route::post('/staff/student-admission/{id}/edit',[StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
+Route::delete('/staff/student-admission/{id}/destroy',[StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
 
 });

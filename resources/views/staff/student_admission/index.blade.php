@@ -39,14 +39,13 @@
                             <!-- start row -->
                             @foreach ($studentAdmission as $no=>$sta)
                             <tr>
-                                
                                 <td>{{$no+1}}</td>
                                 <td>{{$sta->sta_year}}</td>
-                                <td>{{Carbon\Carbon::parse($sta->sta_created_at)->firstOfYear()->format('l jS j  F, Y')}}</td>
-                                <td>{{$sta->sta_ended}}</td>
+                                <td>{{Carbon\Carbon::parse($sta->sta_start)->firstOfYear()->addDays()->isoFormat('dddd, MMMM Y  ')}}</td>
+                                <td>{{Carbon\Carbon::parse($sta->sta_ended)->firstOfYear()->addDays()->isoFormat('dddd, MMMM Y  ')}}</td>
                                 <td>
-                                     <a href="/staff/ppdb-requirement-document/{{$sta->rqd_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/ppdb-requirement-document/{{$sta->rqd_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                     <a href="/staff/student-admission/{{$sta->sta_id}}/edit" class="btn btn-primary">Edit</a>
+                                     <a href="/staff/student-admission/{{$sta->sta_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
 
                                 </td>
 
