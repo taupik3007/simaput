@@ -15,6 +15,9 @@ class StudentAdmissionController extends Controller
      */
     public function index()
     {
+        $title = 'Hapus Penyelenggaraan!';
+        $text = "Penyelenggaraan PPDB Tidak Bisa Kembali Jika Di Hapus";
+        confirmDelete($title, $text);
         $studentAdmission = StudentAdmission::orderBy('sta_created_at','desc')->get();
         // setlocale(LC_TIME, 'id_ID');
         // Carbon::setLocale('id');
@@ -126,8 +129,11 @@ class StudentAdmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StudentAdmission $studentAdmission)
+    public function destroy(StudentAdmission $studentAdmission,$id)
     {
-        //
+        $studentAdmissionDestroy = Studentadmission::findOrFail($id)->delete();
+        Alert::success('Berhasil Menghapus penyelenggaraan', 'Penyelenggaraan PPDB Berhasil Dihapus');
+        return redirect('/staff/student-admission');
+
     }
 }
