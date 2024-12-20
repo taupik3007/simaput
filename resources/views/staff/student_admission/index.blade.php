@@ -41,8 +41,8 @@
                             <tr>
                                 <td>{{$no+1}}</td>
                                 <td>{{$sta->sta_year}}</td>
-                                <td>{{Carbon\Carbon::parse($sta->sta_start)->firstOfYear()->addDays()->isoFormat('dddd, MMMM Y  ')}}</td>
-                                <td>{{Carbon\Carbon::parse($sta->sta_ended)->firstOfYear()->addDays()->isoFormat('dddd, MMMM Y  ')}}</td>
+                                <td>{{Carbon\Carbon::parse($sta->sta_start)->isoFormat('dddd, D MMMM Y  ')}}</td>
+                                <td>{{Carbon\Carbon::parse($sta->sta_ended)->isoFormat('dddd, D MMMM Y  ')}}</td>
                                 <td>
                                      <a href="/staff/student-admission/{{$sta->sta_id}}/edit" class="btn btn-primary">Edit</a>
                                      <a href="/staff/student-admission/{{$sta->sta_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>

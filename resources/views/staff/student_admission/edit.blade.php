@@ -38,9 +38,9 @@
                 <div class="col-sm-9">
                   <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="sta_year" oninvalid="this.setCustomValidity('Tahun Ajaran Wajib Diisi')" 
                   onchange="this.setCustomValidity('')" required>
-                    <option selected value="" >Pilih...</option>
+                    <option selected value="{{$studentAdmission->sta_year}}" >{{$studentAdmission->sta_year}}</option>
                     @for ($i = $year; $i < $loop; $i++)
-                    @if($i - $i+1 != $studentAdmission->sta_year)
+                    @if($i." - ".$i+1 != $studentAdmission->sta_year)
 
                     <option value="{{$i}} - {{$i+1}}" >{{$i}} - {{$i+1}}</option>
                     @endif
@@ -55,7 +55,7 @@
                 <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Periode Penyelenggaraan</label>
                 <div class="col-sm-4">
                   
-                    <input name="sta_start" type="datetime-local" class="form-control"  required oninvalid="this.setCustomValidity('Tanggal Awal Penyelenggaraan Wajib Diisi')" 
+                    <input name="sta_start" type="datetime-local" class="form-control" value="{{$studentAdmission->sta_start}}"  required oninvalid="this.setCustomValidity('Tanggal Awal Penyelenggaraan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                 
                   
@@ -63,7 +63,7 @@
                 <div class="col-sm-1"> <center>-</center></div>
                 <div class="col-sm-4">
                   
-                  <input name="sta_ended" type="datetime-local" class="form-control"  required oninvalid="this.setCustomValidity('Tanggal akhir penyelenggaraan Wajib Diisi')" 
+                  <input name="sta_ended" type="datetime-local" class="form-control" value="{{$studentAdmission->sta_ended}}"  required oninvalid="this.setCustomValidity('Tanggal akhir penyelenggaraan Wajib Diisi')" 
                   onchange="this.setCustomValidity('')">
               
                 

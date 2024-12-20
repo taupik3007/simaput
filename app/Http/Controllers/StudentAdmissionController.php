@@ -15,7 +15,7 @@ class StudentAdmissionController extends Controller
      */
     public function index()
     {
-        $studentAdmission = StudentAdmission::all();
+        $studentAdmission = StudentAdmission::orderBy('sta_created_at','desc')->get();
         // setlocale(LC_TIME, 'id_ID');
         // Carbon::setLocale('id');
         // $today = Carbon::parse('2024-12-19 05:57:19')->isoFormat('D MMMM Y');
@@ -89,7 +89,7 @@ class StudentAdmissionController extends Controller
     public function edit($id)
     {
         $studentAdmission = StudentAdmission::findOrFail($id);
-        dd($studentAdmission);
+        // dd($studentAdmission);
         $year = Carbon::now()->year;
         $loop = $year+5;
         return view('staff.student_admission.edit',compact(['year','loop','studentAdmission']));
@@ -98,9 +98,29 @@ class StudentAdmissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StudentAdmission $studentAdmission)
+    public function update(Request $request, StudentAdmission $studentAdmission,$id)
     {
-        //
+        $time = Carbon::now();
+        // dd($time);
+        $studentAdmission = StudentAdmission::where('sta_ended', '>=', $time )->where('sta_id','!=', $id)->first();
+        // dd($studentAdmission);
+        if($studentAdmission){
+            Alert::error('Tidak Bisa Mengedit Penyelenggaraan', 'Sedang Ada Penyelenggaraan PPDB yang Berjalan');
+            return redirect('/staff/student-admission');
+
+        }
+
+        $studentAdmissionUpdate = Studentadmission::findOrFail($id)->update([
+            'sta_year'      => $request->sta_year,
+            'sta_start'     => $request->sta_start,
+            'sta_ended'     => $request->sta_ended,
+            'sta_updated_by'=> Auth::user()->usr_id
+        ]);
+
+        Alert::success('Berhasil Mengedit penyelenggaraan', 'Penyelenggaraan PPDB Berhasil Diedit');
+        return redirect('/staff/student-admission');
+
+    
     }
 
     /**
