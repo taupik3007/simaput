@@ -5,6 +5,8 @@ use App\Http\Controllers\RequirementDocumentController;
 use App\Http\Controllers\ApplicationRequirementDocumentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentAdmissionController;
+use App\Http\Controllers\AcademicYearController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +49,12 @@ Route::get('/staff/major/{id}/edit',[MajorController::class, 'edit'])->name('sta
 Route::post('/staff/major/{id}/edit',[MajorController::class, 'update'])->name('staff.major.update');
 Route::delete('/staff/major/{id}/destroy',[MajorController::class, 'destroy'])->name('staff.major.destroy');
 
-
+Route::get('/staff/academic-year',[AcademicYearController::class, 'index'])->name('staff.AcademicYear');
+Route::get('/staff/academic-year/create',[AcademicYearController::class, 'create'])->name('staff.AcademicYear.create');
+Route::post('/staff/academic-year/create',[AcademicYearController::class, 'store'])->name('staff.AcademicYear.store');
+Route::get('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'edit'])->name('staff.AcademicYear.store');
+Route::post('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'update'])->name('staff.AcademicYear.update');
+Route::delete('/staff/academic-year/{id}/destroy',[AcademicYearController::class, 'destroy'])->name('staff.AcademicYear.destroy');
 
 Route::get('/staff/classes',[ClassesController::class, 'index'])->name('staff.classes');
 Route::get('/staff/classes/create',[ClassesController::class, 'create'])->name('staff.classes.create');

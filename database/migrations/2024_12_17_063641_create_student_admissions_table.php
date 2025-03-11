@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_admissions', function (Blueprint $table) {
             $table->bigIncrements('sta_id');
-            $table->string('sta_year');
+            $table->unsignedBiginteger('sta_academicy_id');
             $table->timestamp('sta_start');
             $table->timestamp('sta_ended');
             $table->timestamps();
@@ -29,6 +29,8 @@ return new class extends Migration
             $table->foreign('sta_created_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sta_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sta_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('sta_academicy_id')->references('acy_id')->on('academic_years')->onDelete('cascade');
+
            
         });
     }

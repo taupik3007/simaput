@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cls_major_id');
             $table->string('cls_number');
             $table->unsignedBigInteger('cls_homeroom_id')->nullable();
+            $table->unsignedBigInteger('cls_academicy_id');
             $table->timestamps();
             $table->renameColumn('updated_at', 'cls_updated_at');
             $table->renameColumn('created_at', 'cls_created_at');
@@ -32,6 +33,8 @@ return new class extends Migration
             $table->foreign('cls_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('cls_homeroom_id')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('cls_major_id')->references('mjr_id')->on('majors')->onDelete('cascade');
+            $table->foreign('cls_academicy_id')->references('acy_id')->on('academic_years')->onDelete('cascade');
+
         });
     }
 
