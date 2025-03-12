@@ -48,6 +48,22 @@
                 <span class="hide-menu">Kelola Kelas</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.studentadmission')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">Kelola PPDB</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.academicyear')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">tahun akademik</span>
+              </a>
+            </li>
             
             <!-- ---------------------------------- -->
             <!-- Frontend page -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudentAdmission;
+use App\Models\Academicyear;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 Use Alert;
@@ -40,11 +41,16 @@ class StudentAdmissionController extends Controller
             return redirect('/staff/student-admission');
 
         }
+        // dd($time)
 
         $year = Carbon::now()->year;
-        $loop = $year+5;
+        if($time->month >=6){
+            $year+=1;
+        }
+        $loop = $year+2;
 
-        // dd($year);
+        // dd($time->month);
+        
         return view('staff.student_admission.create',compact(['year','loop']));
     }
 
@@ -55,7 +61,7 @@ class StudentAdmissionController extends Controller
     {
         // dd($request->sta_ended);
         $request->validate([
-            'sta_year' => 'unique:student_admissions'
+            'acy_starting_year' => 'unique:academic_years'
         ],[
             'sta_year.unique' => 'tahun ajaran sudah terdaftar'
         ]);
@@ -63,8 +69,12 @@ class StudentAdmissionController extends Controller
             $error = 'tanggal Penyelenggaraan Tidak Valid';
             return redirect('staff/student-admission/create')->withErrors(['error' => $error]);
         }
+        $createAcademicYear     = AcademicYear::create([
+            'acy_starting_year'  => $request->acy_starting_year,
+            'acy_year_over'     => $request->acy_starting_year+1
+        ]);
         $createStudentAdmission = StudentAdmission::create([
-            'sta_year'  => $request->sta_year,
+            'sta_academicy_id' => $createAcademicYear->acy_id,
             'sta_start' => $request->sta_start,
             'sta_ended' => $request->sta_ended,
             'sta_created_by' => Auth::user()->usr_id

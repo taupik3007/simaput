@@ -49,12 +49,12 @@ Route::get('/staff/major/{id}/edit',[MajorController::class, 'edit'])->name('sta
 Route::post('/staff/major/{id}/edit',[MajorController::class, 'update'])->name('staff.major.update');
 Route::delete('/staff/major/{id}/destroy',[MajorController::class, 'destroy'])->name('staff.major.destroy');
 
-Route::get('/staff/academic-year',[AcademicYearController::class, 'index'])->name('staff.AcademicYear');
-Route::get('/staff/academic-year/create',[AcademicYearController::class, 'create'])->name('staff.AcademicYear.create');
-Route::post('/staff/academic-year/create',[AcademicYearController::class, 'store'])->name('staff.AcademicYear.store');
-Route::get('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'edit'])->name('staff.AcademicYear.store');
-Route::post('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'update'])->name('staff.AcademicYear.update');
-Route::delete('/staff/academic-year/{id}/destroy',[AcademicYearController::class, 'destroy'])->name('staff.AcademicYear.destroy');
+Route::get('/staff/academic-year',[AcademicYearController::class, 'index'])->name('staff.academicyear');
+Route::get('/staff/academic-year/create',[AcademicYearController::class, 'create'])->name('staff.academicyear.create');
+Route::post('/staff/academic-year/create',[AcademicYearController::class, 'store'])->name('staff.academicyear.store');
+Route::get('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'edit'])->name('staff.academicyear.store');
+Route::post('/staff/academic-year/{id}/edit',[AcademicYearController::class, 'update'])->name('staff.academicyear.update');
+Route::delete('/staff/academic-year/{id}/destroy',[AcademicYearController::class, 'destroy'])->name('staff.academicyear.destroy');
 
 Route::get('/staff/classes',[ClassesController::class, 'index'])->name('staff.classes');
 Route::get('/staff/classes/create',[ClassesController::class, 'create'])->name('staff.classes.create');
@@ -82,7 +82,7 @@ Route::get('/staff/application-requirement-document/{id}/edit',[ApplicationRequi
 Route::post('/staff/application-requirement-document/{id}/edit',[ApplicationRequirementDocumentController::class, 'update'])->name('staff.ppdbrequirementdocument.update');
 Route::delete('/staff/application-requirement-document/{id}/destroy',[ApplicationRequirementDocumentController::class, 'destroy'])->name('staff.ppdbrequirementdocument.destroy');
 
-Route::get('/staff/student-admission',[StudentAdmissionController::class, 'index'])->name('staff.ppdbrequirementdocument');
+Route::get('/staff/student-admission',[StudentAdmissionController::class, 'index'])->name('staff.studentadmission');
 Route::get('/staff/student-admission/create',[StudentAdmissionController::class, 'create'])->name('staff.studentadmission.create');
 Route::post('/staff/student-admission/create',[StudentAdmissionController::class, 'store'])->name('staff.studentadmission.store');
 Route::get('/staff/student-admission/{id}/edit',[StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');

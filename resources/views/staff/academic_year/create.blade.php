@@ -49,25 +49,7 @@
                   <div>error</div>
                 @enderror
               </div>
-              <div class="mb-4 row align-items-center">
-                <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Periode Penyelenggaraan</label>
-                <div class="col-sm-4">
-                  
-                    <input name="sta_start" type="datetime-local" class="form-control"  required oninvalid="this.setCustomValidity('Tanggal Awal Penyelenggaraan Wajib Diisi')" 
-                    onchange="this.setCustomValidity('')">
-                
-                  
-                </div>
-                <div class="col-sm-1"> <center>-</center></div>
-                <div class="col-sm-4">
-                  
-                  <input name="sta_ended" type="datetime-local" class="form-control"  required oninvalid="this.setCustomValidity('Tanggal akhir penyelenggaraan Wajib Diisi')" 
-                  onchange="this.setCustomValidity('')">
               
-                
-              </div>
-                
-              </div>
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9">

@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="mb-5 position-relative">
                     <h4 class="card-title mb-0">Daftar Kelas</h4>
-                    <a href="/staff/academic-year/create" class="btn btn-primary position-absolute top-0 end-0">Tambah  Tahun Ajaran</a>
+                    
                 </div>
                 <p class="card-subtitle mb-3">
                     

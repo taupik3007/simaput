@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AcademicYearController extends Controller
 {
@@ -12,7 +13,7 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        $academicYear = AcademicYear::all();
+        $academicYear = AcademicYear::orderBy('acy_created_at','desc')->get();
         // dd($academicYear);
         return view('staff.academic_year.index',compact(['academicYear']));
     }
@@ -22,7 +23,10 @@ class AcademicYearController extends Controller
      */
     public function create()
     {
-        return view('staff.academic_year.create');
+        // $year = Carbon::now()->year;
+        // $year+=1;
+        // $loop = $year+2;
+        // return view('staff.academic_year.create',compact(['year','loop']));
     }
 
     /**

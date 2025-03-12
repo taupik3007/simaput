@@ -18,6 +18,21 @@ return new class extends Migration
             $table->unsignedBigInteger('acy_status')->default(2);
 
             $table->timestamps();
+
+            $table->renameColumn('updated_at', 'acy_updated_at');
+            $table->renameColumn('created_at', 'acy_created_at');
+            $table->unsignedBigInteger('acy_created_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('acy_deleted_by')->unsigned()->nullable();
+            $table->unsignedBigInteger('acy_updated_by')->unsigned()->nullable();
+      
+            $table->softDeletes();
+            $table->renameColumn('deleted_at', 'acy_deleted_at');
+            $table->string('acy_sys_note')->nullable();
+
+
+            $table->foreign('acy_created_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('acy_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('acy_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
         });
     }
 

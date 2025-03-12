@@ -40,7 +40,7 @@
                             @foreach ($studentAdmission as $no=>$sta)
                             <tr>
                                 <td>{{$no+1}}</td>
-                                <td>{{$sta->sta_year}}</td>
+                                <td>{{$sta->sta_year->acy_starting_year}} - {{$sta->sta_year->acy_year_over}}</td>
                                 <td>{{Carbon\Carbon::parse($sta->sta_start)->isoFormat('dddd, D MMMM Y  ')}}</td>
                                 <td>{{Carbon\Carbon::parse($sta->sta_ended)->isoFormat('dddd, D MMMM Y  ')}}</td>
                                 <td>
