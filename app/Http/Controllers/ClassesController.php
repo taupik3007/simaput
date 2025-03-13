@@ -52,6 +52,7 @@ class ClassesController extends Controller
 
 
         $class = Classes::create([
+            'cls_academicy_id'=>1,
             'cls_level'     => $request->cls_level,
             'cls_major_id'  => $request->cls_major_id,
             'cls_number'    => $request->cls_number,

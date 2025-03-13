@@ -21,12 +21,12 @@
               <div class="mb-4 row align-items-center">
                 <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Tingkatan</label>
                 <div class="col-sm-9">
-                  <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="cls_level" oninvalid="this.setCustomValidity('Tingkatan Wajib Diisi')" 
+                  <select class="form-select mr-sm-2" disabled id="inlineFormCustomSelect" name="cls_level" oninvalid="this.setCustomValidity('Tingkatan Wajib Diisi')" 
                   onchange="this.setCustomValidity('')" required>
-                    <option selected value="" >Pilih...</option>
+                    {{-- <option selected value="" >Pilih...</option> --}}
                     <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
+                    {{-- <option value="XI">XI</option>
+                    <option value="XII">XII</option> --}}
                 </select>
                 </div>
                 @error('mjr_name')
