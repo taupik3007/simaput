@@ -131,4 +131,8 @@ class ClassesController extends Controller
         Alert::success('Berhasil Mengubah Wali kelas', 'Wali Kelas Berhasil Diubah');
         return redirect('/staff/classes');
     }
+
+    public function student($id){
+        return view('staff.classes.student');
+    }
 }

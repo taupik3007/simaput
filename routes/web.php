@@ -64,6 +64,7 @@ Route::post('/staff/classes/{id}/edit',[ClassesController::class, 'update'])->na
 Route::delete('/staff/classes/{id}/destroy',[ClassesController::class, 'destroy'])->name('staff.classes.destroy');
 Route::get('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomEdit'])->name('staff.classes.homeroom.edit');
 Route::post('/staff/classes/{id}/homeroom/edit',[ClassesController::class, 'homeroomUpdate'])->name('staff.classes.homeroom.update');
+Route::get('/staff/classes/{id}/student',[ClassesController::class, 'student'])->name('staff.classes.student');
 
 Route::get('/staff/ppdb-requirement-document',[RequirementDocumentController::class, 'index'])->name('staff.ppdbrequirementdocument');
 Route::get('/staff/ppdb-requirement-document/create',[RequirementDocumentController::class, 'create'])->name('staff.ppdbrequirementdocument.create');
@@ -88,5 +89,6 @@ Route::post('/staff/student-admission/create',[StudentAdmissionController::class
 Route::get('/staff/student-admission/{id}/edit',[StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');
 Route::post('/staff/student-admission/{id}/edit',[StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
 Route::delete('/staff/student-admission/{id}/destroy',[StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
+
 
 });
