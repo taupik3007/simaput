@@ -23,10 +23,10 @@ class AcademicYearController extends Controller
      */
     public function create()
     {
-        // $year = Carbon::now()->year;
-        // $year+=1;
-        // $loop = $year+2;
-        // return view('staff.academic_year.create',compact(['year','loop']));
+        $year = Carbon::now()->year;
+        $year+=1;
+        $loop = $year+2;
+        return view('staff.academic_year.create',compact(['year','loop']));
     }
 
     /**

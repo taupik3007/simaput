@@ -28,7 +28,7 @@
                                 <th width="10%">No</th>
                                 <th>tahun mulai</th>
                                 <th>tahun selesai</th>
-                                <th>status</th>  
+                                {{-- <th>status</th>   --}}
                                 <th>Aksi</th>
                                 
                             </tr>
@@ -42,7 +42,7 @@
                                 <td>{{$no+1}}</td>
                                 <td>{{$acy->acy_starting_year}}</td>
                                 <td>{{$acy->acy_year_over}}</td>
-                                <td>
+                                {{-- <td>
                                 @if($acy->acy_status == 2)
                                 <span class="mb-1 badge text-bg-primary">proses Penerimaan</span>
                                 @elseif($acy->acy_status == 1)
@@ -51,7 +51,7 @@
                                 <span class="mb-1 badge text-bg-danger">berakhir</span>
 
                                 @endif
-                                </td>
+                                </td> --}}
                                 
                                 <td>
                                     <a href="/staff/classes/{{$acy->acy_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
@@ -76,7 +76,7 @@
                                 <th width="10%">No</th>
                                 <th>tahun mulai</th>
                                 <th>tahun selesai</th>
-                                <th>status</th>
+                                {{-- <th>status</th> --}}
                                 <th>Aksi</th>
                             </tr>
                             <!-- end row -->

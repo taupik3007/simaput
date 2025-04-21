@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('acy_id');
             $table->unsignedBiginteger('acy_starting_year');
             $table->unsignedBigInteger('acy_year_over');
-            $table->unsignedBigInteger('acy_status')->default(2);
+            // $table->unsignedBigInteger('acy_status')->default(2);
 
             $table->timestamps();
 
