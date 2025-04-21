@@ -37,32 +37,7 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($classes as $no=>$classes)
-                            <tr>
-                                
-                                <td>{{$no+1}}</td>
-                                <td>{{$classes->cls_level}}</td>
-                                <td>{{$classes->cls_major->mjr_prefix}}</td>
-                                <td>{{$classes->cls_number}}</td>
-                                @if($classes->cls_homeroom_id != null )
-                                <td>{{$classes->cls_homeroom->name}}</td>
-                                @else
-                                <td></td>
-                                @endif
-                                
-                                <td>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-primary">homeroom</a>
-                                     <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
-                                     
-
-                                </td>
-
-
-                                
-                            </tr>
-                            @endforeach
+                           
                             <!-- end row -->
                             
                         </tbody>

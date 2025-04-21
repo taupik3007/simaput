@@ -36,11 +36,11 @@
               <div class="mb-4 row align-items-center">
                 <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Tahun Ajaran</label>
                 <div class="col-sm-9">
-                  <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="sta_year" oninvalid="this.setCustomValidity('Tahun Ajaran Wajib Diisi')" 
+                  <select class="form-select mr-sm-2" disabled id="inlineFormCustomSelect" name="sta_year" oninvalid="this.setCustomValidity('Tahun Ajaran Wajib Diisi')" 
                   onchange="this.setCustomValidity('')" required>
-                    <option selected value="{{$studentAdmission->sta_year}}" >{{$studentAdmission->sta_year}}</option>
+                    <option selected value="{{$studentAdmission->sta_year}}" >{{$studentAdmission->sta_year->acy_starting_year." - ".$studentAdmission->sta_year->acy_year_over}}</option>
                     @for ($i = $year; $i < $loop; $i++)
-                    @if($i." - ".$i+1 != $studentAdmission->sta_year)
+                    @if($i." - ".$i+1 != $studentAdmission->sta_year->acy_starting_year." - ".$studentAdmission->sta_year->acy_year_over)
 
                     <option value="{{$i}} - {{$i+1}}" >{{$i}} - {{$i+1}}</option>
                     @endif
