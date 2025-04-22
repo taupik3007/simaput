@@ -21,7 +21,7 @@
                     
                 </p>
                 <div class="table-responsive">
-                    <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
+                    <table id="zero_config" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
                             <!-- start row -->
                             <tr>
@@ -87,5 +87,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
-    <script src="{{ asset('assets/js/datatable/datatable-advanced.init.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatable-basic.init.js') }}"></script>
+
 @endpush

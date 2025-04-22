@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+Use Alert;
+
 
 class AcademicYearController extends Controller
 {
@@ -23,6 +25,12 @@ class AcademicYearController extends Controller
      */
     public function create()
     {
+        $acyCheck = AcademicYear::where('acy_status', 3)->orWhere('acy_status', 2)->count();
+        if($acyCheck > 0){
+            Alert::warning('Tidak bisa menambah ', 'Masih Ada Tahun Ajaran Belum Aktif Atau Sedang Dalam Proses Penerimaan');
+            return redirect('/staff/academic-year');
+        }
+        dd($acyCheck);
         $year = Carbon::now()->year;
         $year+=1;
         $loop = $year+2;
@@ -34,7 +42,23 @@ class AcademicYearController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       
+        // dd($request);
+        $request->validate([
+            'acy_starting_year'      =>  'required|unique:academic_years',
+           
+        ],[
+            'required'      => 'harus di isi',
+            'unique'        => 'tahun ajaran sudah terdaftar'
+        ]);      
+        
+        $acyCreate = AcademicYear::create([
+            'acy_starting_year'     => $request->acy_starting_year,
+            'acy_year_over'         => $request->acy_starting_year+1
+        ]) ;
+        Alert::success('Berhasil Menambah', 'Tahun Ajaran Berhasil Ditambah');
+        return redirect('/staff/academic-year');
     }
 
     /**

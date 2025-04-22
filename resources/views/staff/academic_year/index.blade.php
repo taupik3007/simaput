@@ -14,21 +14,22 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Kelas</h4>
+                    <h4 class="card-title mb-0">Daftar Tahun ajaran</h4>
+                    <a href="/staff/academic-year/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Kelas</a>
                     
                 </div>
                 <p class="card-subtitle mb-3">
                     
                 </p>
                 <div class="table-responsive">
-                    <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
+                    <table id="zero_config" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
                                 <th>tahun mulai</th>
                                 <th>tahun selesai</th>
-                                {{-- <th>status</th>   --}}
+                                <th>status</th>  
                                 <th>Aksi</th>
                                 
                             </tr>
@@ -42,23 +43,25 @@
                                 <td>{{$no+1}}</td>
                                 <td>{{$acy->acy_starting_year}}</td>
                                 <td>{{$acy->acy_year_over}}</td>
-                                {{-- <td>
+                                <td>
                                 @if($acy->acy_status == 2)
                                 <span class="mb-1 badge text-bg-primary">proses Penerimaan</span>
                                 @elseif($acy->acy_status == 1)
                                 <span class="mb-1 badge text-bg-success">sedang berjalan</span>
+                                @elseif($acy->acy_status == 3)
+                                <span class="mb-1 badge text-bg-danger">belum aktif</span>
                                 @else
-                                <span class="mb-1 badge text-bg-danger">berakhir</span>
+                                <span class="mb-1 badge text-bg-dark">berakhir</span>
 
                                 @endif
-                                </td> --}}
+                                </td>
                                 
                                 <td>
-                                    <a href="/staff/classes/{{$acy->acy_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
-                                     <a href="/staff/classes/{{$acy->acy_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/classes/{{$acy->acy_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
-                                     
-
+                                  @if($acy->acy_status != 3)
+                                    <a href="/staff/" class="btn btn-danger disabled"  data-confirm-delete="true">Delete</a>
+                                 @else
+                                    <a href="/staff/" class="btn btn-danger"  data-confirm-delete="true">Delete</a>
+                                    @endif
                                 </td>
 
 
@@ -76,7 +79,7 @@
                                 <th width="10%">No</th>
                                 <th>tahun mulai</th>
                                 <th>tahun selesai</th>
-                                {{-- <th>status</th> --}}
+                                <th>status</th>
                                 <th>Aksi</th>
                             </tr>
                             <!-- end row -->
@@ -100,5 +103,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
-    <script src="{{ asset('assets/js/datatable/datatable-advanced.init.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatable-basic.init.js') }}"></script>
+
 @endpush
