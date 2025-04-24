@@ -6,6 +6,8 @@ use App\Http\Controllers\ApplicationRequirementDocumentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentAdmissionController;
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\DashboardController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,12 @@ Route::middleware([
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/staff/dashboard',[DashboardController::class, 'index'])->name('staff.dashboard');
+
+
+
+
 
 Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');
 Route::get('/staff/major/create',[MajorController::class, 'create'])->name('staff.major.create');

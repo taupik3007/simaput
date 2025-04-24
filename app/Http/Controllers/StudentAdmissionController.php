@@ -17,7 +17,7 @@ class StudentAdmissionController extends Controller
     public function index()
     {
         $title = 'Hapus Penyelenggaraan!';
-        $text = "Penyelenggaraan PPDB Tidak Bisa Kembali Jika Di Hapus";
+        $text = "Penghapusan Sekaligus Dengan Tahun Akademik, Data Penyelenggaraan PPDB Tidak Bisa Kembali Jika Di Hapus";
         confirmDelete($title, $text);
         $studentAdmission = StudentAdmission::orderBy('sta_created_at','desc')->get();
         // setlocale(LC_TIME, 'id_ID');
@@ -141,7 +141,11 @@ class StudentAdmissionController extends Controller
      */
     public function destroy(StudentAdmission $studentAdmission,$id)
     {
-        $studentAdmissionDestroy = Studentadmission::findOrFail($id)->delete();
+        $studentAdmissionDestroy = Studentadmission::findOrFail($id);
+        $academicyearId          = $studentAdmissionDestroy->sta_academicy_id;
+        // dd($academicyearId);
+        $studentAdmissionDestroy->delete();
+        $studentAdmissionDestroy = AcademicYear::findOrFail($academicyearId)->delete();
         Alert::success('Berhasil Menghapus penyelenggaraan', 'Penyelenggaraan PPDB Berhasil Dihapus');
         return redirect('/staff/student-admission');
 

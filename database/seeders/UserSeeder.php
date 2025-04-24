@@ -21,6 +21,6 @@ class UserSeeder extends Seeder
             'name'  => 'gararetek',
 
         ]);
-        $user->assignRole('student');
+        $user->assignRole('staff');
     }
 }

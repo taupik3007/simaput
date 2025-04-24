@@ -30,7 +30,7 @@ class AcademicYearController extends Controller
             Alert::warning('Tidak bisa menambah ', 'Masih Ada Tahun Ajaran Belum Aktif Atau Sedang Dalam Proses Penerimaan');
             return redirect('/staff/academic-year');
         }
-        dd($acyCheck);
+        // dd($acyCheck);
         $year = Carbon::now()->year;
         $year+=1;
         $loop = $year+2;

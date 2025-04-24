@@ -48,8 +48,7 @@
                                 <span class="mb-1 badge text-bg-primary">proses Penerimaan</span>
                                 @elseif($acy->acy_status == 1)
                                 <span class="mb-1 badge text-bg-success">sedang berjalan</span>
-                                @elseif($acy->acy_status == 3)
-                                <span class="mb-1 badge text-bg-danger">belum aktif</span>
+                                
                                 @else
                                 <span class="mb-1 badge text-bg-dark">berakhir</span>
 
@@ -57,11 +56,11 @@
                                 </td>
                                 
                                 <td>
-                                  @if($acy->acy_status != 3)
-                                    <a href="/staff/" class="btn btn-danger disabled"  data-confirm-delete="true">Delete</a>
+                                  @if($acy->acy_status != 2)
+                                    
                                  @else
-                                    <a href="/staff/" class="btn btn-danger"  data-confirm-delete="true">Delete</a>
-                                    @endif
+                                    <a href="/staff/student-admission" class="btn btn-info"  data-confirm-delete="true">Lihat</a>
+                                @endif
                                 </td>
 
 
