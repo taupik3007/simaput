@@ -22,5 +22,13 @@ class UserSeeder extends Seeder
 
         ]);
         $user->assignRole('staff');
+
+        $user = User::create([
+            'email' => 'taupik2@gmail.com',
+            'password' => bcrypt('gararetek44'),
+            'name'  => 'gararetek',
+
+        ]);
+        $user->assignRole('student');
     }
 }

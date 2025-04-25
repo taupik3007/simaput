@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentAdmissionController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\student\StudentDashboardController;
+
 
 
 
@@ -22,7 +24,20 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect('/staff/dashboard');
+        $user = auth()->user();
+        // $redirect = '/staff/dashboard';
+       
+        if ($user->hasRole('staff')) {
+            $redirect = '/staff/dashboard';
+        } elseif ($user->hasRole('guru')) {
+            $redirect = '/guru/dashboard';
+        } elseif ($user->hasRole('student')) {
+            $redirect = '/student/dashboard';
+        } else {
+            $redirect = '/dashboard'; // fallback
+        }
+
+        return redirect()->intended($redirect);
     })->name('dashboard');
 });
 
@@ -99,4 +114,12 @@ Route::post('/staff/student-admission/{id}/edit',[StudentAdmissionController::cl
 Route::delete('/staff/student-admission/{id}/destroy',[StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
 
 
+});
+
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/student/dashboard',[StudentDashboardController::class, 'index'])->name('student.dashboard');
+    
 });
