@@ -20,9 +20,12 @@ return new class extends Migration
             $table->string('prn_mother_name');
             $table->string('prn_mother_occupation');
             $table->string('prn_mother_phone');
-            $table->string('prn_guardian_name');
-            $table->string('prn_guardian_occupation');
-            $table->string('prn_guardian_phone');
+            $table->string('prn_guardian_name')->nullable();
+            $table->string('prn_guardian_occupation')->nullable();
+            $table->string('prn_guardian_phone')->nullable();
+            $table->bigInteger('prn_family_income_level');
+            $table->bigInteger('prn_economy_status')->nullable();
+            $table->bigInteger('prn_status');
             $table->timestamps();
 
             $table->renameColumn('updated_at', 'prn_updated_at');

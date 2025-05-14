@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('std_id');
             $table->string('std_nis')->nullable()->unique();
             $table->string('std_nisn')->nullable()->unique();
-            $table->string('std_un_participant_number')->nullable()->unique();
-            $table->string('std_original_school')->nullable();
+            // $table->string('std_un_participant_number')->nullable()->unique();
+            // $table->string('std_original_school')->nullable();
             $table->unsignedBiginteger('std_class_id')->nullable();
             $table->unsignedBiginteger('std_user_id');
             
