@@ -23,13 +23,14 @@ class RegisterController extends Controller
             "email" => "required | email:dns | unique:users,email",
             "password" => "required | min:5 | max:30",
             'role' => 'required',
+            'bio_nik' => 'required|unique:users,usr_nik'
         ]);
 
         $createUser =  User::create([
             'name' => $validateData['name'],
             'email' => $validateData['email'],
             'password' => Hash::make($validateData['password']),
-            'usr_nik' => $request['bio_nik'],
+            'usr_nik' => $validateData['bio_nik'],
         ]);
 
         if ($request['role'] == 2) {
