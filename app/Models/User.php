@@ -27,11 +27,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ["id", "timestamps"];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -71,5 +67,4 @@ class User extends Authenticatable
     const CREATED_AT = 'usr_created_at';
     const UPDATED_AT = 'usr_updated_at';
     const DELETED_AT = 'usr_deleted_at';
-
 }

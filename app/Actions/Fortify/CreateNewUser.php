@@ -22,40 +22,42 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'bio_nik'   => ['required', 'integer', 'unique:biodatas'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ],
-        [
-            'email.unique'          => 'Email Sudah Terdaftar',
-            'password.min'          => 'Password Minimal :min Karakter',
-            'password.confirmed'    => 'Password Tidak Sama',
-            'bio_nik.unique'        => 'Nik sudah Terdaftar'
-        ]
+        Validator::make(
+            $input,
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'bio_nik'   => ['required', 'integer', 'unique:biodatas'],
+                'password' => $this->passwordRules(),
+                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            ],
+            [
+                'email.unique'          => 'Email Sudah Terdaftar',
+                'password.min'          => 'Password Minimal :min Karakter',
+                'password.confirmed'    => 'Password Tidak Sama',
+                'bio_nik.unique'        => 'Nik sudah Terdaftar'
+            ]
         )->validate();
 
-       $createUser =  User::create([
+        $createUser =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'usr_nik' => $input['bio_nik']
         ]);
-        
-        
-        if($input['role'] == 1){
+
+
+        if ($input['role'] == 1) {
             $createUser->assignRole('student');
             $createStudent = Student::create([
                 'std_user_id' => $createUser->usr_id,
             ]);
-        }elseif($input['role'] == 2){
+        } elseif ($input['role'] == 2) {
             $createUser->assignRole('teacher');
             $createStudent = Employee::create([
                 'std_user_id' => $createUser->usr_id,
             ]);
-           
-        }else{
+        } else {
             $createUser->assignRole('staff');
             $createEmployee = Employee::create([
                 'std_user_id' => $createUser->usr_id,
@@ -65,10 +67,10 @@ class CreateNewUser implements CreatesNewUsers
             'bio_user_id'   => $createUser->usr_id,
             'bio_nik'       => $input['bio_nik']
         ]);
-        
+
         return $createUser;
         // dd($createUser);
-        
+
         // return $createBio;
 
 

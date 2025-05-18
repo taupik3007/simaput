@@ -8,7 +8,13 @@ class DashboardController extends Controller
 {
 
 
-    function index(){
+    function index()
+    {
+        return view('staff.dashboard.index');
+    }
+
+    public function teacher_index()
+    {
         return view('staff.dashboard.index');
     }
 }

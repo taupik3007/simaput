@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usr_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('usr_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('usr_updated_by')->unsigned()->nullable();
-      
+
             $table->softDeletes();
             $table->renameColumn('deleted_at', 'usr_deleted_at');
             $table->string('usr_sys_note')->nullable();
