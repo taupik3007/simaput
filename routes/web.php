@@ -8,8 +8,7 @@ use App\Http\Controllers\StudentAdmissionController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\student\StudentDashboardController;
-
-
+use App\Http\Controllers\RegisterController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -17,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register-student', [RegisterController::class, 'registerStudentView']);
+Route::post('/user/add/student', [RegisterController::class, 'registerStudentSystem']);
 
 Route::middleware([
     'auth:sanctum',
