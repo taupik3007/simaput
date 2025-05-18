@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentAdmissionController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\student\StudentDashboardController;
+use App\Http\Controllers\RegisterController;
 
 
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register-staff', [RegisterController::class, 'register_staff_page']);
+Route::post('/user/add/staff', [RegisterController::class, 'register_staff_system']);
 
 Route::middleware([
     'auth:sanctum',
@@ -63,8 +67,6 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/staff/dashboard',[DashboardController::class, 'index'])->name('staff.dashboard');
-
-
 
 
 
