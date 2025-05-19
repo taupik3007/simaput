@@ -50,7 +50,7 @@
                     <strong class="text-center">{{ $error }} </strong> 
                   </div>
                 @endforeach
-                <form method="POST" action="/user/add/staff">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nama</label>

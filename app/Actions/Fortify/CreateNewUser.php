@@ -46,25 +46,16 @@ class CreateNewUser implements CreatesNewUsers
         
         if($input['role'] == 1){
             $createUser->assignRole('student');
-            $createStudent = Student::create([
-                'std_user_id' => $createUser->usr_id,
-            ]);
+           
         }elseif($input['role'] == 2){
             $createUser->assignRole('teacher');
-            $createStudent = Employee::create([
-                'std_user_id' => $createUser->usr_id,
-            ]);
+           
            
         }else{
             $createUser->assignRole('staff');
-            $createEmployee = Employee::create([
-                'std_user_id' => $createUser->usr_id,
-            ]);
+           
         }
-        $createBio = Biodata::create([
-            'bio_user_id'   => $createUser->usr_id,
-            'bio_nik'       => $input['bio_nik']
-        ]);
+        
         
         return $createUser;
         // dd($createUser);
