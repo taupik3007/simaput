@@ -76,7 +76,7 @@
                   <input type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2" value="Register">
                   <div class="d-flex align-items-center">
                     <p class="fs-4 mb-0 text-dark">Already have an Account?</p>
-                    <a class="text-primary fw-medium ms-2" href="../main/authentication-login.html">Sign In</a>
+                    <a class="text-primary fw-medium ms-2" href="/login">Sign In</a>
                   </div>
                 </form>
               </div>
