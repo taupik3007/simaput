@@ -18,10 +18,15 @@ class RegisterController extends Controller
 
     public function register_teacher_system(Request $request)
     {
+        // if ($request["password"] !== $request["password_confirmation"]) {
+        //     return redirect("/register-teacher");
+        //     exit();
+        // }
+
         $validateData = $request->validate([
             "name" => "required | min:3 | max:255",
             "email" => "required | email:dns | unique:users,email",
-            "password" => "required | min:5 | max:30",
+            "password" => "required | min:5 | max:30 | confirmed",
             'role' => 'required',
             'bio_nik' => 'required|unique:users,usr_nik'
         ]);

@@ -26,7 +26,7 @@
       <div class="position-relative z-index-5">
         <div class="row">
           <div class="col-xl-7 col-xxl-8">
-            <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+            <a href="/" class="text-nowrap logo-img d-block px-4 py-9 w-100">
               <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
               <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
             </a>
