@@ -10,7 +10,7 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\student\StudentDashboardController;
-use App\Http\Controllers\RegisterController;
+// use App\Http\Controllers\RegisterController;
 
 
 

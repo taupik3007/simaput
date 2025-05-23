@@ -16,32 +16,5 @@ class RegisterController extends Controller
         return view('auth.register-teacher');
     }
 
-    public function register_teacher_system(Request $request)
-    {
-        // if ($request["password"] !== $request["password_confirmation"]) {
-        //     return redirect("/register-teacher");
-        //     exit();
-        // }
-
-        $validateData = $request->validate([
-            "name" => "required | min:3 | max:255",
-            "email" => "required | email:dns | unique:users,email",
-            "password" => "required | min:5 | max:30 | confirmed",
-            'role' => 'required',
-            'bio_nik' => 'required|unique:users,usr_nik'
-        ]);
-
-        $createUser =  User::create([
-            'name' => $validateData['name'],
-            'email' => $validateData['email'],
-            'password' => Hash::make($validateData['password']),
-            'usr_nik' => $validateData['bio_nik'],
-        ]);
-
-        if ($request['role'] == 2) {
-            $createUser->assignRole('teacher');
-        }
-
-        return redirect('/dashboard');
-    }
+    
 }
