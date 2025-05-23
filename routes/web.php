@@ -25,7 +25,7 @@ Route::get('/register-teacher', [RegisterController::class, 'register_teacher_pa
 Route::post('/user/add/teacher', [RegisterController::class, 'register_teacher_system']);
 
 
-Route::get('/register-student', [RegisterController::class, 'registerStudentView']);
+Route::get('/register-student', [RegisterController::class, 'register_student_page']);
 Route::post('/user/add/student', [RegisterController::class, 'registerStudentSystem']);
 
 Route::get('/register-staff', [RegisterController::class, 'register_staff_page']);

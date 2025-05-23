@@ -15,6 +15,14 @@ class RegisterController extends Controller
     {
         return view('auth.register-teacher');
     }
+    public function register_student_page()
+    {
+        return view('auth.register-student');
+    }
+    public function register_staff_page()
+    {
+        return view('auth.register-staff');
+    }
 
 
 }

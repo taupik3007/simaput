@@ -41,7 +41,7 @@
                 <p class="mb-7">Your Admin Dashboard</p>
                 
                 <div class="position-relative text-center my-4">
-                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Register</p>
+                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Register Staff</p>
                   <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                 </div>
                 @foreach ($errors->all() as $error)
@@ -50,7 +50,7 @@
                     <strong class="text-center">{{ $error }} </strong> 
                   </div>
                 @endforeach
-                <form method="POST" action="/user/add/student">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nama</label>
@@ -58,13 +58,13 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">NIK</label>
-                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required autofocus autocomplete="bio_nik">
+                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input  class="form-control"  aria-describedby="emailHelp" id="email"  type="email" name="email" :value="old('email')" required autocomplete="username">
                   </div>
-                  <input name="role" value="1" type="text" hidden>
+                  <input type="text" name="role" value="3" hidden>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input  class="form-control" id="password"  type="password" name="password" required autocomplete="new-password" >

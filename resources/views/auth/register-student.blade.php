@@ -13,7 +13,7 @@
   <!-- Core Css -->
   <link rel="stylesheet" href="../assets/css/styles.css" />
 
-  <title>Register</title>
+  <title>Modernize Bootstrap Admin</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
       <div class="position-relative z-index-5">
         <div class="row">
           <div class="col-xl-7 col-xxl-8">
-            <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+            <a href="/" class="text-nowrap logo-img d-block px-4 py-9 w-100">
               <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
               <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
             </a>
@@ -37,14 +37,14 @@
           <div class="col-xl-5 col-xxl-4">
             <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
               <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
-                <h2 class="mb-1 fs-7 fw-bolder">Welcome to Simaput</h2>
+                <h2 class="mb-1 fs-7 fw-bolder">Welcome to Modernize</h2>
                 <p class="mb-7">Your Admin Dashboard</p>
                 
                 <div class="position-relative text-center my-4">
-                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Register Staff</p>
+                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Register Student</p>
                   <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                 </div>
-                @foreach ($errors->all() as $error)
+                @foreach($errors->all() as $error)
                 <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong class="text-center">{{ $error }} </strong> 
@@ -58,13 +58,13 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">NIK</label>
-                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required autofocus autocomplete="bio_nik">
+                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input  class="form-control"  aria-describedby="emailHelp" id="email"  type="email" name="email" :value="old('email')" required autocomplete="username">
                   </div>
-                  <input type="text" name="role" value="3" hidden>
+                  <input type="text" name="role" value="1" hidden>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input  class="form-control" id="password"  type="password" name="password" required autocomplete="new-password" >
