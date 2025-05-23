@@ -9,6 +9,11 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\student\StudentDashboardController;
 use App\Http\Controllers\RegisterController;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 
 
 use Illuminate\Support\Facades\Route;
@@ -17,8 +22,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/register-student', [RegisterController::class, 'registerStudentView']);
 Route::post('/user/add/student', [RegisterController::class, 'registerStudentSystem']);
+=======
+Route::get('/register-staff', [RegisterController::class, 'register_staff_page']);
+Route::post('/user/add/staff', [RegisterController::class, 'register_staff_system']);
+>>>>>>> main
 
 Route::middleware([
     'auth:sanctum',
@@ -65,8 +75,6 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/staff/dashboard',[DashboardController::class, 'index'])->name('staff.dashboard');
-
-
 
 
 
