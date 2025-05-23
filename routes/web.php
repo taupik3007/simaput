@@ -10,7 +10,7 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\student\StudentDashboardController;
-
+use App\Http\Controllers\RegisterController;
 
 
 
@@ -20,8 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/register-teacher', [RegisterController::class, 'register_teacher_page']);
 Route::post('/user/add/teacher', [RegisterController::class, 'register_teacher_system']);
+
+
+Route::get('/register-student', [RegisterController::class, 'registerStudentView']);
+Route::post('/user/add/student', [RegisterController::class, 'registerStudentSystem']);
+
+Route::get('/register-staff', [RegisterController::class, 'register_staff_page']);
+Route::post('/user/add/staff', [RegisterController::class, 'register_staff_system']);
+
 
 Route::middleware([
     'auth:sanctum',
@@ -69,16 +78,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/staff/dashboard', [DashboardController::class, 'index'])->name('staff.dashboard');
     Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
 
-
-
-
-
-    Route::get('/staff/major', [MajorController::class, 'index'])->name('staff.major');
-    Route::get('/staff/major/create', [MajorController::class, 'create'])->name('staff.major.create');
-    Route::post('/staff/major/create', [MajorController::class, 'store'])->name('staff.major.store');
-    Route::get('/staff/major/{id}/edit', [MajorController::class, 'edit'])->name('staff.major.store');
-    Route::post('/staff/major/{id}/edit', [MajorController::class, 'update'])->name('staff.major.update');
-    Route::delete('/staff/major/{id}/destroy', [MajorController::class, 'destroy'])->name('staff.major.destroy');
+    Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');
+    Route::get('/staff/major/create',[MajorController::class, 'create'])->name('staff.major.create');
+    Route::post('/staff/major/create',[MajorController::class, 'store'])->name('staff.major.store');
+    Route::get('/staff/major/{id}/edit',[MajorController::class, 'edit'])->name('staff.major.store');
+    Route::post('/staff/major/{id}/edit',[MajorController::class, 'update'])->name('staff.major.update');
+    Route::delete('/staff/major/{id}/destroy',[MajorController::class, 'destroy'])->name('staff.major.destroy');
 
     Route::get('/staff/academic-year', [AcademicYearController::class, 'index'])->name('staff.academicyear');
     Route::get('/staff/academic-year/create', [AcademicYearController::class, 'create'])->name('staff.academicyear.create');
