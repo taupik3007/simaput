@@ -9,7 +9,9 @@ use App\Http\Controllers\StudentAdmissionController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\student\StudentDashboardController;
+use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
+
 // use App\Http\Controllers\RegisterController;
 
 
@@ -71,12 +73,14 @@ Route::middleware([
 //     return view('profile.layout.master');
 // });
 
+    // Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
 
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/staff/dashboard', [DashboardController::class, 'index'])->name('staff.dashboard');
     Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
+
 
     Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');
     Route::get('/staff/major/create',[MajorController::class, 'create'])->name('staff.major.create');
@@ -133,3 +137,24 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
 });
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+});
+
+
+//prospective student
+    Route::get('/prospective-student/home', [StudentAdmissionCollectionController::class, 'home'])->name('ProspectiveStudent.home');
+    Route::get('/prospective-student/biodata', [StudentAdmissionCollectionController::class, 'biodata'])->name('ProspectiveStudent.biodata');
+    Route::post('/prospective-student/biodata', [StudentAdmissionCollectionController::class, 'biodataUpdate'])->name('ProspectiveStudent.biodata.update');
+    Route::get('/prospective-student/parent', [StudentAdmissionCollectionController::class, 'parent'])->name('ProspectiveStudent.parent');
+    Route::post('/prospective-student/parent', [StudentAdmissionCollectionController::class, 'parentUpdate'])->name('ProspectiveStudent.parent.update');
+    Route::get('/prospective-student/address', [StudentAdmissionCollectionController::class, 'address'])->name('ProspectiveStudent.address');
+    Route::post('/prospective-student/address', [StudentAdmissionCollectionController::class, 'addressUpdate'])->name('ProspectiveStudent.address.update');
+    Route::get('/prospective-student/origin-school', [StudentAdmissionCollectionController::class, 'originSchool'])->name('ProspectiveStudent.originSchool');
+    Route::post('/prospective-student/origin-school', [StudentAdmissionCollectionController::class, 'originSchoolUpdate'])->name('ProspectiveStudent.originSchoolUpdate');
+
+
+
+

@@ -24,7 +24,7 @@
             <!-- ---------------------------------- -->
             <!-- Dashboard -->
             <!-- ---------------------------------- -->
-            <li class="sidebar-item">
+            <li class="sidebar-item " hidden>
               <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
@@ -32,73 +32,55 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-        
+            <li class="sidebar-item " >
+              <a class="sidebar-link" href="/prospective-student/home" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-home"></i>
+                </span>
+                <span class="hide-menu">Home</span>
+              </a>
+            </li>
             
             <!-- ---------------------------------- -->
             <!-- Frontend page -->
             <!-- ---------------------------------- -->
-            <li class="sidebar-item">
-              <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <span class="d-flex">
-                  <i class="ti ti-layout-grid"></i>
-                </span>
-                <span class="hide-menu">Frontend page</span>
-              </a>
-              <ul aria-expanded="false" class="collapse first-level">
-                <li class="sidebar-item">
-                  <a href="./main/frontend-landingpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Homepage</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-aboutpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">About Us</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-contactpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Contact Us</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-blogpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Blog</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-blogdetailpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Blog Details</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
+           
 
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">PPDB </span>
+              <span class="hide-menu">Data Diri </span>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/staff/ppdb-requirement-document" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/prospective-student/biodata" id="get-url" aria-expanded="false">
                 <span>
-                  <i class="ti ti-aperture"></i>
+                  <i class="ti ti-user"></i>
                 </span>
-                <span class="hide-menu"> Kelola Persyaratan PPDB</span>
+                <span class="hide-menu"> Biodata</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/prospective-student/parent" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu"> Data Orang Tua</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/prospective-student/address" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-map-pin"></i>
+                </span>
+                <span class="hide-menu"> Alamat</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/prospective-student/origin-school" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu"> Sekolah Asal</span>
               </a>
             </li>
 
@@ -106,25 +88,20 @@
 
 
 
-
-
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Lamaran </span>
-            </li>
+           
             <!-- ---------------------------------- -->
             <!-- Apps -->
             <!-- ---------------------------------- -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Apps</span>
+              <span class="hide-menu">PPDB</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./main/app-calendar.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-calendar"></i>
+                  <i class="ti ti-ballpen"></i>
                 </span>
-                <span class="hide-menu">Calendar</span>
+                <span class="hide-menu">Pendaftar</span>
               </a>
             </li>
             

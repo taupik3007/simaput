@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
 
 <!-- head -->
-@include('student.head')
+@include('prospective_student.head')
 <!-- endhead -->
 <body>
   <div class="toast toast-onload align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -21,18 +21,18 @@
   </div> --}}
   <div id="main-wrapper">
     <!-- Sidebar Start -->
-    @include('student.sidebar')
+    @include('prospective_student.sidebar')
     <!--  Sidebar End -->
     <div class="page-wrapper">
       <!--  Header Start -->
-      @include('student.navbar')
+      @include('prospective_student.navbar')
       <!--  Header End -->
 
       <aside class="left-sidebar with-horizontal">
         <!-- Sidebar scroll-->
         <div>
           <!-- Sidebar navigation-->
-          @include('student.sidenav')
+          @include('prospective_student.sidenav')
           <!-- End Sidebar navigation -->
         </div>
         <!-- End Sidebar scroll-->
@@ -382,7 +382,7 @@
   {{-- script --}}
   @include('sweetalert::alert')
 
-  @include('student.script')
+  @include('prospective_student.script')
 
 
   {{-- endscript --}}

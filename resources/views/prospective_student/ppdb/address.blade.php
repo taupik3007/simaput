@@ -1,4 +1,4 @@
-@extends('student.master')
+@extends('prospective_student.master')
 
 @push('link')
     
