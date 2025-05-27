@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ProspectiveStudent;
 
 use App\Http\Controllers\Controller;
 use App\Models\StudentAdmissionCollection;
+use App\Models\Religion;
 use Illuminate\Http\Request;
+
 
 class StudentAdmissionCollectionController extends Controller
 {
@@ -20,7 +22,8 @@ class StudentAdmissionCollectionController extends Controller
      * Show the form for creating a new resource.
      */
     public function biodata(){
-        return view('prospective_student.ppdb.biodata');
+       $religion= Religion::select('rlg_name','rlg_id')->get();
+        return view('prospective_student.ppdb.biodata',compact(['religion']));
    }
    public function biodataUpdate(){
         
@@ -38,7 +41,7 @@ class StudentAdmissionCollectionController extends Controller
         
    }
     public function originSchool(){
-        return view('prospective_student.ppdb.originSchool');
+        return view('prospective_student.ppdb.origin-school');
    }
    public function originSchoolUpdate(){
         
