@@ -17,7 +17,7 @@ return new class extends Migration
             $table->longtext('bio_description')->nullable();
             $table->unsignedBiginteger('bio_religion_id')->nullable();
             $table->string('bio_place_of_birth')->nullable();
-            $table->timestamp('bio_date_of_birth')->nullable();
+            $table->date('bio_date_of_birth')->nullable();
             $table->bigInteger('bio_height')->nullable();
             $table->bigInteger('bio_weight')->nullable();
             $table->timestamps();

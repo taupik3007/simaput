@@ -21,11 +21,15 @@
               
                
                 <div class="mb-4 row align-items-center">
-                  <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Biodata</label>
+                  <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Agama</label>
                   <div class="col-sm-9">
-                    <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="bio_religion_id" oninvalid="this.setCustomValidity('Tingkatan Wajib Diisi')" 
+                    <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="bio_religion_id" oninvalid="this.setCustomValidity('Agama Wajib Diisi')" 
                   onchange="this.setCustomValidity('')" required>
+                    @if(isset($biodata))
+                    <option selected value="{{$biodata->bio_religion_id}}" >{{$biodata->bio_religion->rlg_name}}</option>
+                    @else
                     <option selected value="" >Pilih...</option>
+                    @endif
                     @foreach ($religion as $religion)
                       <option value="{{$religion->rlg_id}}">{{$religion->rlg_name}}</option>
                     @endforeach
@@ -38,7 +42,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Tempat Lahir</label>
                   <div class="col-sm-9">
-                    <input type="text" name="bio_place_of_birth" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
+                    <input type="text" name="bio_place_of_birth" value="{{$biodata->bio_place_of_birth ?? ''}}" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Tempat Lahir Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   @error('bio_place_of_birth')
@@ -48,7 +52,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Tanggal Lahir</label>
                   <div class="col-sm-9">
-                    <input type="date" name="bio_date_of_birth" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
+                    <input type="date" name="bio_date_of_birth" class="form-control" value="{{$biodata->bio_date_of_birth ?? ''}}" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Tanggal Lahir Belum Di isi atau Format salah')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   @error('bio_date_of_birth')
@@ -58,7 +62,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Tinggi badan</label>
                   <div class="col-sm-8">
-                    <input type="text" name="bio_height" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
+                    <input type="text" name="bio_height" class="form-control" id="exampleInputText2" value="{{$biodata->bio_height ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Tinggi Badan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   <div class="col-sm-1">cm</div>
@@ -69,7 +73,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Berat Badan</label>
                   <div class="col-sm-8">
-                    <input type="text" name="bio_weight" class="form-control" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
+                    <input type="text" name="bio_weight" class="form-control" id="exampleInputText2" value="{{$biodata->bio_weight ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Berat Badan Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   <div class="col-sm-1">Kg</div>
