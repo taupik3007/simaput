@@ -5,7 +5,9 @@ namespace App\Http\Controllers\ProspectiveStudent;
 use App\Http\Controllers\Controller;
 use App\Models\StudentAdmissionCollection;
 use App\Models\Religion;
+use App\Models\Parented;
 use App\Models\Biodata;
+use App\Models\OriginSchool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Use Alert;
@@ -56,22 +58,49 @@ class StudentAdmissionCollectionController extends Controller
             $updateBiodata = new Biodata();
 
         }
-        $updateBiodata->bio_user_id = Auth::user()->usr_id;
-        $updateBiodata->bio_religion_id = $request->bio_religion_id;
-        $updateBiodata->bio_place_of_birth = $request->bio_place_of_birth;
-        $updateBiodata->bio_date_of_birth = $request->bio_date_of_birth;
-        $updateBiodata->bio_height = $request->bio_height;
-        $updateBiodata->bio_weight = $request->bio_weight;
+        $updateBiodata->bio_user_id         = Auth::user()->usr_id;
+        $updateBiodata->bio_religion_id     = $request->bio_religion_id;
+        $updateBiodata->bio_place_of_birth  = $request->bio_place_of_birth;
+        $updateBiodata->bio_date_of_birth   = $request->bio_date_of_birth;
+        $updateBiodata->bio_height          = $request->bio_height;
+        $updateBiodata->bio_weight          = $request->bio_weight;
         $updateBiodata->save();
         Alert::success('Berhasil Mengedit Biodata', 'Biodata Berhasil Diedit');
             return redirect('/prospective-student/biodata');
    }
     public function parent(){
-        return view('prospective_student.ppdb.parent');
+        $parent =  Parented::where('prn_user_id',Auth::user()->usr_id)->first();
+
+        return view('prospective_student.ppdb.parent',compact(['parent']));
    }
-   public function parentUpdate(){
-        
+   public function parentUpdate(request $request){
+        // dd($request);
+        $parentCount    = Parented::where('prn_user_id',Auth::user()->usr_id)->count();
+        // dd($parentCheck);
+        if($parentCount >= 1){
+            $updateParent =  Parented::where('prn_user_id',Auth::user()->usr_id)->first();
+        }else{
+            $updateParent = new Parented();
+
+        }
+        $updateParent->prn_user_id = Auth::user()->usr_id;
+        $updateParent->prn_father_name              =  $request->prn_father_name;
+        $updateParent->prn_father_occupation        = $request->prn_father_occupation;
+        $updateParent->prn_father_phone             = $request->prn_father_phone;
+        $updateParent->prn_mother_name              = $request->prn_mother_name;
+        $updateParent->prn_mother_occupation        = $request->prn_mother_occupation;
+        $updateParent->prn_mother_phone             = $request->prn_mother_phone;
+        $updateParent->prn_guardian_name            = $request->prn_guardian_name;
+        $updateParent->prn_guardian_occupation      = $request->prn_guardian_occupation;
+        $updateParent->prn_guardian_phone           = $request->prn_guardian_phone;
+        $updateParent->prn_status                   = $request->prn_status;
+        $updateParent->prn_family_income_level      = $request->prn_family_income_level;
+
+        $updateParent->save();
+        Alert::success('Berhasil Mengedit Data orang Tua', 'Data Orang Tua Berhasil Diedit');
+            return redirect('/prospective-student/parent');
    }
+   
     public function address(){
         return view('prospective_student.ppdb.address');
    }
@@ -79,9 +108,28 @@ class StudentAdmissionCollectionController extends Controller
         
    }
     public function originSchool(){
-        return view('prospective_student.ppdb.origin-school');
+        $originSchool =  OriginSchool::where('ors_user_id',Auth::user()->usr_id)->first();
+
+        return view('prospective_student.ppdb.origin-school',compact(['originSchool']));
    }
-   public function originSchoolUpdate(){
-        
+   public function originSchoolUpdate(request $request){
+        $originSchoolCount    = OriginSchool::where('ors_user_id',Auth::user()->usr_id)->count();
+        if($originSchoolCount >= 1){
+            $updateOriginSchool =  OriginSchool::where('ors_user_id',Auth::user()->usr_id)->first();
+        }else{
+            $updateOriginSchool = new OriginSchool();
+
+        }
+        $updateOriginSchool->ors_user_id                  = Auth::user()->usr_id;
+        $updateOriginSchool->ors_school_name              =  $request->ors_school_name;
+        $updateOriginSchool->ors_npsn                     = $request->ors_npsn;
+        $updateOriginSchool->ors_un_participant_number    = $request->ors_un_participant_number;
+
+
+       
+
+        $updateOriginSchool->save();
+        Alert::success('Berhasil Mengedit Asal Sekolah', 'Asal Sekolah Berhasil Diedit');
+            return redirect('/prospective-student/origin-school');
    }
 }
