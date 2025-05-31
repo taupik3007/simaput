@@ -5,7 +5,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Kelas
+    SiMaput | Data Orang Tua
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="card">
           <div class="px-4 py-3 border-bottom">
-            <h4 class="card-title mb-0">Tambah Jurusan</h4>
+            <h4 class="card-title mb-0">Data orang Tua</h4>
           </div>
           <form action="" method="post">
             @csrf
@@ -34,7 +34,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Pekerjaan Ayah</label>
                   <div class="col-sm-9">
-                    <input type="date" name="prn_father_occupation" class="form-control" value="{{$parent->prn_father_occupation ?? ''}}" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Pekerjaan Ayah Wajib Diisi')" 
+                    <input type="text" name="prn_father_occupation" class="form-control" value="{{$parent->prn_father_occupation ?? ''}}" id="exampleInputText2" placeholder="" required oninvalid="this.setCustomValidity('Pekerjaan Ayah Wajib Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   @error('prn_faher_occupation')
@@ -111,7 +111,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">No Telp Wali (opsional)</label>
                   <div class="col-sm-9">
-                    <input type="text" name="prn_guardian_phone" class="form-control" value="{{$parent->prn_guardian_phone ?? ''}}" id="exampleInputText2" placeholder=""  oninvalid="this.setCustomValidity('Singkatan Wajib Diisi')" 
+                    <input type="number" name="prn_guardian_phone" class="form-control" value="{{$parent->prn_guardian_phone ?? ''}}" id="exampleInputText2" placeholder=""  oninvalid="this.setCustomValidity('Format Pengisian salah Atau Belum Diisi')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   
@@ -141,7 +141,7 @@
                   @enderror
                 </div>
                  <div class="mb-4 row align-items-center">
-                  <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Biodata</label>
+                  <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Penghasilan Keluarga</label>
                   <div class="col-sm-9">
                     <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="prn_family_income_level" oninvalid="this.setCustomValidity('Penghasilan Keluarga Wajib Diisi')" 
                   onchange="this.setCustomValidity('')" required>

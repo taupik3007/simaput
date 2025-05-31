@@ -15,9 +15,10 @@ return new class extends Migration
             $table->bigIncrements('adr_id');
             $table->unsignedBiginteger('adr_user_id');
             $table->string('adr_province');
-            $table->string('adr_city');
-            $table->string('adr_subdistrict');
-            $table->string('adr_postal_code');
+            $table->string('adr_regency');
+            $table->string('adr_district');
+            $table->string('adr_village');
+            // $table->string('adr_postal_code');
             $table->string('adr_detail');
             $table->timestamps();
             $table->renameColumn('updated_at', 'adr_updated_at');

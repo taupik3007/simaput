@@ -141,10 +141,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
-});
-
-
-//prospective student
+    //prospective student
     Route::get('/prospective-student/home', [StudentAdmissionCollectionController::class, 'home'])->name('ProspectiveStudent.home');
     Route::get('/prospective-student/biodata', [StudentAdmissionCollectionController::class, 'biodata'])->name('ProspectiveStudent.biodata');
     Route::post('/prospective-student/biodata', [StudentAdmissionCollectionController::class, 'biodataUpdate'])->name('ProspectiveStudent.biodata.update');
@@ -154,6 +151,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/prospective-student/address', [StudentAdmissionCollectionController::class, 'addressUpdate'])->name('ProspectiveStudent.address.update');
     Route::get('/prospective-student/origin-school', [StudentAdmissionCollectionController::class, 'originSchool'])->name('ProspectiveStudent.originSchool');
     Route::post('/prospective-student/origin-school', [StudentAdmissionCollectionController::class, 'originSchoolUpdate'])->name('ProspectiveStudent.originSchoolUpdate');
+
+    Route::get('/prospective-student/address', [StudentAdmissionCollectionController::class, 'address'])->name('ProspectiveStudent.address');
+    Route::get('/prospective-student/address/regencies/{procvince_id}', [StudentAdmissionCollectionController::class, 'regencies']);
+    Route::get('/prospective-student/address/districts/{regency_id}', [StudentAdmissionCollectionController::class, 'districts']);
+    Route::get('/prospective-student/address/villages/{district_id}', [StudentAdmissionCollectionController::class, 'villages']);
+
+    // Route::get('/prospective-student/address/', [StudentAdmissionCollectionController::class, 'address'])->name('ProspectiveStudent.address');
+
+    Route::post('/prospective-student/address', [StudentAdmissionCollectionController::class, 'addressUpdate'])->name('ProspectiveStudent.address.update');
+});
+
+
+
 
 
 

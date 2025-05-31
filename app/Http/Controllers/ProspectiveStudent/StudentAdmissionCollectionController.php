@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\StudentAdmissionCollection;
 use App\Models\Religion;
 use App\Models\Parented;
+use App\Models\Address;
 use App\Models\Biodata;
 use App\Models\OriginSchool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Use Alert;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -101,12 +103,8 @@ class StudentAdmissionCollectionController extends Controller
             return redirect('/prospective-student/parent');
    }
    
-    public function address(){
-        return view('prospective_student.ppdb.address');
-   }
-   public function addressUpdate(){
-        
-   }
+    
+  
     public function originSchool(){
         $originSchool =  OriginSchool::where('ors_user_id',Auth::user()->usr_id)->first();
 
@@ -132,4 +130,70 @@ class StudentAdmissionCollectionController extends Controller
         Alert::success('Berhasil Mengedit Asal Sekolah', 'Asal Sekolah Berhasil Diedit');
             return redirect('/prospective-student/origin-school');
    }
+
+   public function address(){
+        $address = Address::where('adr_user_id',Auth::user()->usr_id)->first();
+        // dd($address);
+        $response = Http::get('https://wilayah.id/api/provinces.json');
+        $province = $response->json()['data'];
+        $selectedProvince = $address->adr_province ?? ''; // kalau belum ada bisa kosongin dulu
+        $selectedRegency = $address->adr_regency ?? '';
+        $selectedDistrict = $address->adr_district?? '';
+        $selectedVillage = $address->adr_village?? '';
+        $selectedDetail = $address->adr_detail ?? '';
+        // dd($province);
+        return view('prospective_student.ppdb.address', compact([
+            'province',
+            'selectedProvince'   ,
+            'selectedRegency'    ,
+            'selectedDistrict'  ,
+            'selectedVillage'   ,
+            'selectedDetail']));
+   }
+   public function regencies($province_code){
+        $response = Http::get('https://wilayah.id/api/regencies/'.$province_code.'.json');
+        // dd($response->json());
+        return $response->json('data');
+   }
+   public function districts($district_code){
+        $response = Http::get('https://wilayah.id/api/districts/'.$district_code.'.json');
+        // dd($response);
+        return $response->json('data');
+   }
+   public function villages($village_code){
+        $response = Http::get('https://wilayah.id/api/villages/'.$village_code.'.json');
+        // dd($response->json());
+        return $response->json('data');
+   }
+    public function addressUpdate(request $request){
+        // dd($request);
+        $addresCount = Address::where('adr_user_id',Auth::user()->usr_id)->count();
+        if($addresCount >= 1){
+            $createAddress = Address::where('adr_user_id',Auth::user()->usr_id)->first()->update([
+            'adr_user_id'   => Auth::user()->usr_id,
+            'adr_province'  => $request->adr_province,
+            'adr_regency'   => $request->adr_regency,
+            'adr_district'  => $request->adr_district,
+            'adr_village'   => $request->adr_village,
+            'adr_detail'    => $request->adr_detail        
+        ]);
+        }else{
+           $createAddress = Address::create([
+            'adr_user_id'   => Auth::user()->usr_id,
+            'adr_province'  => $request->adr_province,
+            'adr_regency'   => $request->adr_regency,
+            'adr_district'  => $request->adr_district,
+            'adr_village'   => $request->adr_village,
+            'adr_detail'    => $request->adr_detail        
+        ]); 
+
+        }
+
+
+        
+        Alert::success('Berhasil Mengedit Alamat', 'Alamat Berhasil Diedit');
+            return redirect('/prospective-student/address');
+   }
+   
+
 }
