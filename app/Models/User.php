@@ -11,6 +11,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\hasOne;
+
 
 class User extends Authenticatable
 {
@@ -65,7 +67,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
+    public function student_admission_collection()
+{
+    return $this->hasOne(StudentAdmissionCollection::class,'sar_user_id','usr_id');
+}
     protected $primaryKey = 'usr_id';
     const CREATED_AT = 'usr_created_at';
     const UPDATED_AT = 'usr_updated_at';

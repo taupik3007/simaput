@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentAdmission;
 use App\Models\Academicyear;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 Use Alert;
@@ -149,5 +151,11 @@ class StudentAdmissionController extends Controller
         Alert::success('Berhasil Menghapus penyelenggaraan', 'Penyelenggaraan PPDB Berhasil Dihapus');
         return redirect('/staff/student-admission');
 
+    }
+
+     public function notSubmitted()
+    {
+        $user = User::whereHas('student_admission_collection')->where('usr_status',0)->get();
+        dd($user);
     }
 }

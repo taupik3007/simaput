@@ -48,90 +48,97 @@
                 <span class="hide-menu">Kelola Kelas</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('staff.studentadmission')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-school"></i>
-                </span>
-                <span class="hide-menu">Kelola PPDB</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('staff.academicyear')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-school"></i>
-                </span>
-                <span class="hide-menu">tahun akademik</span>
-              </a>
-            </li>
+            
             
             <!-- ---------------------------------- -->
-            <!-- Frontend page -->
+            <!-- PPDB -->
             <!-- ---------------------------------- -->
-            <li class="sidebar-item">
-              <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <span class="d-flex">
-                  <i class="ti ti-layout-grid"></i>
-                </span>
-                <span class="hide-menu">Frontend page</span>
-              </a>
-              <ul aria-expanded="false" class="collapse first-level">
-                <li class="sidebar-item">
-                  <a href="./main/frontend-landingpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Homepage</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-aboutpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">About Us</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-contactpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Contact Us</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-blogpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Blog</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="./main/frontend-blogdetailpage.html" class="sidebar-link">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Blog Details</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
+           
 
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">PPDB </span>
             </li>
+             <li class="sidebar-item">
+              <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <span class="d-flex">
+                  <i class="ti ti-ballpen"></i>
+                </span>
+                <span class="hide-menu">Pengelolaan PPDB</span>
+              </a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="{{route('staff.studentadmission')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Penyelenggaraan PPDB</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="{{route('staff.academicyear')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Tahun Akademik</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Persyaratan PPDB  </span>
+                  </a>
+                </li>
+               
+              </ul>
+            </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/staff/ppdb-requirement-document" id="get-url" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
+              <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <span class="d-flex">
+                  <i class="ti ti-file"></i>
                 </span>
-                <span class="hide-menu"> Kelola Persyaratan PPDB</span>
+                <span class="hide-menu">Pendaftar PPDB </span>
               </a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="{{route('staff.studentadmission')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Belum Pengajuan </span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="{{route('staff.academicyear')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Pengajuan</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Diterima  </span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Ditolak  </span>
+                  </a>
+                </li>
+               
+              </ul>
             </li>
+           
 
 
 
@@ -143,20 +150,48 @@
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Lamaran </span>
             </li>
-            <!-- ---------------------------------- -->
-            <!-- Apps -->
-            <!-- ---------------------------------- -->
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Apps</span>
-            </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./main/app-calendar.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-calendar"></i>
+              <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <span class="d-flex">
+                  <i class="ti ti-file"></i>
                 </span>
-                <span class="hide-menu">Calendar</span>
+                <span class="hide-menu">Kelola Lamaran </span>
               </a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="{{route('staff.studentadmission')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Belum Pengajuan </span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="{{route('staff.academicyear')}}" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Pengajuan</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Diterima  </span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Daftar Ditolak  </span>
+                  </a>
+                </li>
+               
+              </ul>
             </li>
             
 
@@ -182,5 +217,7 @@
         <!-- ---------------------------------- -->
         <!-- Start Vertical Layout Sidebar -->
         <!-- ---------------------------------- -->
+
+        
       </div>
     </aside>

@@ -11,6 +11,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
+// use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
+
 
 // use App\Http\Controllers\RegisterController;
 
@@ -129,6 +131,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/staff/student-admission/{id}/edit', [StudentAdmissionController::class, 'edit'])->name('staff.studentadmission.edit');
     Route::post('/staff/student-admission/{id}/edit', [StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
     Route::delete('/staff/student-admission/{id}/destroy', [StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
+
+    Route::get('/staff/student-admission-collection/not-submitted', [StudentAdmissionController::class, 'notSubmitted'])->name('staff.studentadmission.not-submitted');
+
 });
 
 
