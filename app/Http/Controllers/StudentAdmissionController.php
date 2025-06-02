@@ -153,9 +153,5 @@ class StudentAdmissionController extends Controller
 
     }
 
-     public function notSubmitted()
-    {
-        $user = User::whereHas('student_admission_collection')->where('usr_status',0)->get();
-        dd($user);
-    }
+    
 }

@@ -19,4 +19,5 @@ class StudentAdmission extends Model
     {
         return $this->BelongsTo(AcademicYear::class,'sta_academicy_id');
     }
+   
 }

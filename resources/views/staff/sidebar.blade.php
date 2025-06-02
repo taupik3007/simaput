@@ -104,7 +104,7 @@
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                  <a href="{{route('staff.studentadmission')}}" class="sidebar-link">
+                  <a href="/staff/student-admission-collection/not-submitted" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>
@@ -112,7 +112,7 @@
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="{{route('staff.academicyear')}}" class="sidebar-link">
+                  <a href="/staff/student-admission-collection/0/submission" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>
@@ -120,7 +120,7 @@
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                  <a href="/staff/student-admission-collection/0/accepted" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>
@@ -128,7 +128,7 @@
                   </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="/staff/ppdb-requirement-document" class="sidebar-link">
+                  <a href="/staff/student-admission-collection/0/rejected" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>
@@ -159,7 +159,7 @@
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                  <a href="{{route('staff.studentadmission')}}" class="sidebar-link">
+                  <a href="" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-circle"></i>
                     </div>

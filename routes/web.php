@@ -11,6 +11,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
+use App\Http\Controllers\StudentAdmissionRegistrationController;
+
+
 // use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
 
 
@@ -132,7 +135,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/staff/student-admission/{id}/edit', [StudentAdmissionController::class, 'update'])->name('staff.studentadmission.update');
     Route::delete('/staff/student-admission/{id}/destroy', [StudentAdmissionController::class, 'destroy'])->name('staff.studentadmission.destroy');
 
-    Route::get('/staff/student-admission-collection/not-submitted', [StudentAdmissionController::class, 'notSubmitted'])->name('staff.studentadmission.not-submitted');
+    Route::get('/staff/student-admission-collection/not-submitted', [StudentAdmissionRegistrationController::class, 'notSubmitted'])->name('staff.studentadmission.not-submitted');
+    Route::get('/staff/student-admission-collection/{admission_id}/submission', [StudentAdmissionRegistrationController::class, 'submission'])->name('staff.studentadmission.submission');
+    Route::get('/staff/student-admission-collection/{admission_id}/accepted', [StudentAdmissionRegistrationController::class, 'accepted'])->name('staff.studentadmission.accepted');
+    Route::get('/staff/student-admission-collection/{admission_id}/rejected', [StudentAdmissionRegistrationController::class, 'rejected'])->name('staff.studentadmission.rejected');
 
 });
 

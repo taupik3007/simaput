@@ -67,9 +67,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function student_admission_collection()
+    public function student_admission_registration()
 {
-    return $this->hasOne(StudentAdmissionCollection::class,'sar_user_id','usr_id');
+    return $this->hasOne(StudentAdmissionRegistration::class,'sar_user_id','usr_id');
 }
     protected $primaryKey = 'usr_id';
     const CREATED_AT = 'usr_created_at';

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_admission_collections', function (Blueprint $table) {
+        Schema::create('student_admission_registration', function (Blueprint $table) {
             $table->bigIncrements('sar_id');
             $table->unsignedBiginteger('sar_user_id');
             $table->unsignedBiginteger('sar_student_admission_id');
@@ -19,7 +19,7 @@ return new class extends Migration
         
             $table->timestamps();
             $table->renameColumn('updated_at', 'sar_updated_at');
-            $table->renameColumn('created_at', 'sta_created_at');
+            $table->renameColumn('created_at', 'sar_created_at');
             $table->unsignedBigInteger('sar_created_by')->unsigned()->nullable();
             $table->unsignedBigInteger('sar_deleted_by')->unsigned()->nullable();
             $table->unsignedBigInteger('sar_updated_by')->unsigned()->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->foreign('sar_updated_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sar_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sar_user_id')->references('usr_id')->on('users')->onDelete('cascade');
-            $table->foreign('sar_student_admission_id')->references('usr_id')->on('users')->onDelete('cascade');
+            $table->foreign('sar_student_admission_id')->references('sta_id')->on('student_admissions')->onDelete('cascade');
 
            
         });

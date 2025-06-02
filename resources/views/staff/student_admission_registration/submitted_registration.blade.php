@@ -17,8 +17,16 @@
                     <h4 class="card-title mb-0">Daftar Penyelenggaraan PPDB </h4>
                     <a href="/staff/student-admission/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Persayratan</a>
                 </div>
-                <p class="card-subtitle mb-3">
-                    
+                <p class="card-subtitle mb-3 col-sm-5">
+                    {{-- <a href="/staff/student-admission/create" class="btn btn-primary ">Tambah Persayratan</a> --}}
+                    <select id="admissionSelect" class="form-control">
+                        <option value="">-- Pilih Admission --</option>
+                        @foreach($admission as $admission)
+                            <option value="">
+                                {{ $admission->sta_year->acy_starting_year."-".$admission->sta_year->acy_year_over ?? 'Admission #' . $admission->sad_id }}
+                            </option>
+                        @endforeach
+                    </select>
                 </p>
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
@@ -27,9 +35,9 @@
                             <tr>
                                 <th width="10%">No</th>
                                 
-                                <th>Tahun Ajaran</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Selesai</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                
                                 <th>Aksi</th>                                                         
                                 
                             </tr>
@@ -37,22 +45,14 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            {{-- @foreach ($studentAdmission as $no=>$sta)
+                            @foreach ($user as $no=>$user)
                             <tr>
                                 <td>{{$no+1}}</td>
-                                <td>{{$sta->sta_year->acy_starting_year}} - {{$sta->sta_year->acy_year_over}}</td>
-                                <td>{{Carbon\Carbon::parse($sta->sta_start)->isoFormat('dddd, D MMMM Y  ')}}</td>
-                                <td>{{Carbon\Carbon::parse($sta->sta_ended)->isoFormat('dddd, D MMMM Y  ')}}</td>
-                                <td>
-                                     <a href="/staff/student-admission/{{$sta->sta_id}}/edit" class="btn btn-primary">Edit</a>
-                                     <a href="/staff/student-admission/{{$sta->sta_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
-
-                                </td>
-
-
-                                
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td></td>   
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                             <!-- end row -->
                             
                         </tbody>
@@ -63,10 +63,10 @@
                             <tr>
                                 <th width="10%">No</th>
                                 
-                                <th>Tahun Ajaran</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Selesai</th>
-                                <th>Aksi</th> 
+                                <th>Nama</th>
+                                <th>Email</th>
+                                
+                                <th>Aksi</th>   
                                
                                 
                             </tr>
