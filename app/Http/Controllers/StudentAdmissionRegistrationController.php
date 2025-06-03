@@ -17,14 +17,14 @@ class StudentAdmissionRegistrationController extends Controller
     public function submission($admission_id)
     {
         if($admission_id == 0){
-            $admission_id = StudentAdmission::latest()->first()->value('sta_id');
-            // $admission_id = $admission->sta_id;
+            $admission_id = StudentAdmission::latest()->value('sta_id');
+            // dd($admission_id);
         }
         // dd($admission_id);
-        $admission = StudentAdmission::with(['sta_year'=>function($query){
-            $query->orderBy('acy_starting_year','asc');
-        }])->get();
-        dd($admission);
+        $admission = StudentAdmission::join('academic_years','student_admissions.sta_academicy_id','acy_id') ->orderBy('acy_starting_year', 'desc')
+    ->with('sta_year') // eager load biasa tanpa orderBy karena sudah urut
+    ->get();
+        // dd($admission);
         $user = User::whereHas('student_admission_registration', function ($query)use ($admission_id) {
         $query->where('sar_status', 1)->where('sar_student_admission_id',$admission_id);})
         ->where('usr_status',0)->Role('student')->get();
@@ -33,17 +33,33 @@ class StudentAdmissionRegistrationController extends Controller
     }
     public function accepted($admission_id)
     {
+        if($admission_id == 0){
+            $admission_id = StudentAdmission::latest()->value('sta_id');
+            // dd($admission_id);
+        }
+        // dd($admission_id);
+        $admission = StudentAdmission::join('academic_years','student_admissions.sta_academicy_id','acy_id') ->orderBy('acy_starting_year', 'desc')
+    ->with('sta_year') // eager load biasa tanpa orderBy karena sudah urut
+    ->get();
         $user = User::whereHas('student_admission_registration',function ($query) {
         $query->where('sar_status', 2);})
         ->where('usr_status',1)->Role('student')->get();
         // dd($user);
-        return view('staff.student_admission_registration.accepted_registration',compact(['user']));
+        return view('staff.student_admission_registration.accepted_registration',compact(['user','admission']));
     }
     public function rejected($admission_id)
     {
+        if($admission_id == 0){
+            $admission_id = StudentAdmission::latest()->value('sta_id');
+            // dd($admission_id);
+        }
+        // dd($admission_id);
+        $admission = StudentAdmission::join('academic_years','student_admissions.sta_academicy_id','acy_id') ->orderBy('acy_starting_year', 'desc')
+    ->with('sta_year') // eager load biasa tanpa orderBy karena sudah urut
+    ->get();
         $user = User::whereHas('student_admission_registration',function ($query) {
         $query->where('sar_status', 0);})->where('usr_status',0)->Role('student')->get();
         // dd($user);
-        return view('staff.student_admission_registration.rejected_registration',compact(['user']));
+        return view('staff.student_admission_registration.rejected_registration',compact(['user','admission']));
     }
 }

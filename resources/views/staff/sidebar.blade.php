@@ -150,7 +150,7 @@
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Lamaran </span>
             </li>
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                   <i class="ti ti-file"></i>
@@ -190,7 +190,7 @@
                     <span class="hide-menu">Daftar Ditolak  </span>
                   </a>
                 </li>
-               
+                --}}
               </ul>
             </li>
             

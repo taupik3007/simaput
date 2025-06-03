@@ -17,8 +17,15 @@
                     <h4 class="card-title mb-0">Daftar Penyelenggaraan PPDB </h4>
                     <a href="/staff/student-admission/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Persayratan</a>
                 </div>
-                <p class="card-subtitle mb-3">
-                    
+                <p class="card-subtitle mb-3 col-sm-5">
+                    <select id="admissionSelect" class="form-control">
+                        <option value="">-- Pilih Admission --</option>
+                        @foreach($admission as $admission)
+                            <option value="/staff/student-admission-collection/{{$admission->sta_id}}/rejected">
+                                {{ $admission->sta_year->acy_starting_year."-".$admission->sta_year->acy_year_over ?? 'Admission #' . $admission->sad_id }}
+                            </option>
+                        @endforeach
+                    </select>
                 </p>
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
@@ -69,7 +76,14 @@
             </div>
         </div>
     </div>
-    
+    <script>
+    document.getElementById('admissionSelect').addEventListener('change', function () {
+        const url = this.value;
+        if (url) {
+            window.location.href = url;
+        }
+    });
+</script>
 @endsection
 
 

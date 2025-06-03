@@ -1,6 +1,7 @@
 @extends('staff.master')
 
 @push('link')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 @endpush
@@ -22,7 +23,7 @@
                     <select id="admissionSelect" class="form-control">
                         <option value="">-- Pilih Admission --</option>
                         @foreach($admission as $admission)
-                            <option value="">
+                            <option value="/staff/student-admission-collection/{{$admission->sta_id}}/submission">
                                 {{ $admission->sta_year->acy_starting_year."-".$admission->sta_year->acy_year_over ?? 'Admission #' . $admission->sad_id }}
                             </option>
                         @endforeach
@@ -77,7 +78,14 @@
             </div>
         </div>
     </div>
-    
+    <script>
+    document.getElementById('admissionSelect').addEventListener('change', function () {
+        const url = this.value;
+        if (url) {
+            window.location.href = url;
+        }
+    });
+</script>
 @endsection
 
 
