@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
+use App\Http\Controllers\ProspectiveStudent\RequirementDocumentCollectionController;
 use App\Http\Controllers\StudentAdmissionRegistrationController;
 
 
@@ -171,6 +172,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/prospective-student/address/', [StudentAdmissionCollectionController::class, 'address'])->name('ProspectiveStudent.address');
 
     Route::post('/prospective-student/address', [StudentAdmissionCollectionController::class, 'addressUpdate'])->name('ProspectiveStudent.address.update');
+    Route::get('/prospective-student/requirement-document-collection', [RequirementDocumentCollectionController::class, 'requirementSubmission']);
+    Route::post('/prospective-student/requirement-document-collection', [RequirementDocumentCollectionController::class, 'requirementSubmissionStore']);
+
 });
 
 

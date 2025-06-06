@@ -7,7 +7,7 @@
 
   <!-- Favicon icon-->
   <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/logos/favicon.png')}}" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" />
