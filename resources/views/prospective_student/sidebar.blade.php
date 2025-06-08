@@ -83,6 +83,14 @@
                 <span class="hide-menu"> Sekolah Asal</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/prospective-student/requirement-document-collection" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-notes"></i>
+                </span>
+                <span class="hide-menu"> Persyaratan PPDB</span>
+              </a>
+            </li>
 
 
 
@@ -97,11 +105,11 @@
               <span class="hide-menu">PPDB</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./main/app-calendar.html" aria-expanded="false">
+              <a class="sidebar-link" href="/prospective-student/student-admission-collection" aria-expanded="false">
                 <span>
                   <i class="ti ti-ballpen"></i>
                 </span>
-                <span class="hide-menu">Pendaftar</span>
+                <span class="hide-menu">Pendaftaran PPDB</span>
               </a>
             </li>
             

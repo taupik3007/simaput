@@ -18,7 +18,21 @@
           <form action="" method="post">
             @csrf
             <div class="card-body">
-              
+              <div class="mb-4 row align-items-center">
+                  <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Jenis Kelamin</label>
+                  <div class="col-sm-9">
+                    <select class="form-select mr-sm-2" id="inlineFormCustomSelect" name="bio_gender" oninvalid="this.setCustomValidity('Jenis Kelamin Wajib Diisi')" 
+                  onchange="this.setCustomValidity('')" required>
+                   <option value="">Pilih..</option>
+                   <option value="1" {{ optional($biodata)->bio_gender == 1 ? 'selected' : '' }}>Laki-Laki</option>
+                   <option value="2" {{ optional($biodata)->bio_gender == 2 ? 'selected' : '' }}>Perempuan</option>
+
+                </select>
+                  </div>
+                  @error('bio_gender')
+                    <div>error</div>
+                  @enderror
+                </div>
                
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText1" class="form-label col-sm-3 col-form-label">Agama</label>

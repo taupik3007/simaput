@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\ProspectiveStudent;
 
 use App\Http\Controllers\Controller;
-use App\Models\StudentAdmissionCollection;
+use App\Models\StudentAdmissionRegistration;
 use App\Models\Religion;
 use App\Models\Parented;
 use App\Models\Address;
 use App\Models\Biodata;
+use App\Models\Major;
+
 use App\Models\OriginSchool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Use Alert;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use App\Models\AcademicYear;
 
 
 
@@ -33,6 +37,7 @@ class StudentAdmissionCollectionController extends Controller
         $biodata = Biodata::where('bio_user_id',Auth::user()->usr_id)->first();
         if(isset($biodata)){
        $religion= Religion::where('rlg_id','!=',$biodata->bio_religion_id)->select('rlg_name','rlg_id')->get();
+       
 
         }else{
        $religion= Religion::select('rlg_name','rlg_id')->get();
@@ -61,6 +66,7 @@ class StudentAdmissionCollectionController extends Controller
 
         }
         $updateBiodata->bio_user_id         = Auth::user()->usr_id;
+        $updateBiodata->bio_gender          = $request->bio_gender;
         $updateBiodata->bio_religion_id     = $request->bio_religion_id;
         $updateBiodata->bio_place_of_birth  = $request->bio_place_of_birth;
         $updateBiodata->bio_date_of_birth   = $request->bio_date_of_birth;
@@ -193,6 +199,38 @@ class StudentAdmissionCollectionController extends Controller
         
         Alert::success('Berhasil Mengedit Alamat', 'Alamat Berhasil Diedit');
             return redirect('/prospective-student/address');
+   }
+
+   public function admissionCollection(){
+     $academicYear = AcademicYear::where('acy_status', 2)->first();
+
+    if (!$academicYear) {
+               return view('prospective_student.ppdb.admission-clossed');
+
+    }
+
+
+    $admission = $academicYear->acy_admission;
+
+    // if (!$admission) {
+    //     return view('ppdb.closed', ['message' => 'Data jadwal penerimaan tidak ditemukan']);
+    // }
+
+    $today = Carbon::now();
+
+    if ($today->lt($admission->sta_start)) {
+        return view('prospective_student.ppdb.admission-clossed');
+    }
+
+    if ($today->gt($admission->sta_ended)) {
+                        return view('prospective_student.ppdb.admission-clossed');
+
+
+    }
+
+   $major = Major::all();
+   $admissionMajor = StudentAdmissionRegistration::where('sar_user_id',Auth()->user()->usr_id)->first();
+    return view('prospective_student.ppdb.admission-collection',compact(['major','admissionMajor']));
    }
    
 

@@ -16,7 +16,7 @@ class LoginResponse implements LoginResponseContract
         } elseif ($user->hasRole('guru')) {
             $redirect = '/guru/dashboard';
         } elseif ($user->hasRole('student') && $user->usr_status == 0) {
-            $redirect = '/prospective-student/dashboard';
+            $redirect = '/prospective-student/home';
         }elseif ($user->hasRole('student')) {
             $redirect = '/student/dashboard';
         } else {

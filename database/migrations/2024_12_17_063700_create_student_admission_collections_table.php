@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('sar_id');
             $table->unsignedBiginteger('sar_user_id');
             $table->unsignedBiginteger('sar_student_admission_id');
+            $table->unsignedBigInteger('sar_major_id');
             $table->biginteger('sar_status');
         
             $table->timestamps();
@@ -33,6 +34,8 @@ return new class extends Migration
             $table->foreign('sar_deleted_by')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sar_user_id')->references('usr_id')->on('users')->onDelete('cascade');
             $table->foreign('sar_student_admission_id')->references('sta_id')->on('student_admissions')->onDelete('cascade');
+            $table->foreign('sar_major_id')->references('mjr_id')->on('majors')->onDelete('cascade');
+
 
            
         });

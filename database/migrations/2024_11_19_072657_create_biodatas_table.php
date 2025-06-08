@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('biodatas', function (Blueprint $table) {
             $table->bigincrements('bio_id');
             $table->unsignedBiginteger('bio_user_id');
+            $table->unsignedBiginteger('bio_gender');
             $table->longtext('bio_description')->nullable();
             $table->unsignedBiginteger('bio_religion_id')->nullable();
             $table->string('bio_place_of_birth')->nullable();

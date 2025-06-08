@@ -55,7 +55,7 @@ Route::middleware([
         } elseif ($user->hasRole('teacher')) {
             $redirect = '/teacher/dashboard';
         } elseif ($user->hasRole('student') && $user->usr_status == 0) {
-            $redirect = '/prospective-student/dashboard';
+            $redirect = '/prospective-student/home';
         } elseif ($user->hasRole('student')) {
             $redirect = '/student/dashboard';
         } else {
@@ -174,6 +174,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/prospective-student/address', [StudentAdmissionCollectionController::class, 'addressUpdate'])->name('ProspectiveStudent.address.update');
     Route::get('/prospective-student/requirement-document-collection', [RequirementDocumentCollectionController::class, 'requirementSubmission']);
     Route::post('/prospective-student/requirement-document-collection', [RequirementDocumentCollectionController::class, 'requirementSubmissionStore']);
+
+    Route::get('/prospective-student/student-admission-collection', [StudentAdmissionCollectionController::class, 'admissionCollection']);
+
 
 });
 
