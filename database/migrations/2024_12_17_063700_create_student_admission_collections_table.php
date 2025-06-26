@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBiginteger('sar_user_id');
             $table->unsignedBiginteger('sar_student_admission_id');
             $table->unsignedBigInteger('sar_major_id');
-            $table->biginteger('sar_status');
+            $table->biginteger('sar_status')->default(1);
         
             $table->timestamps();
             $table->renameColumn('updated_at', 'sar_updated_at');

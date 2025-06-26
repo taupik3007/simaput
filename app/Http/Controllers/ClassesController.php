@@ -6,8 +6,14 @@ use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Models\major;
 use App\Models\User;
+use App\Models\Student;
+
 Use Alert;
+use App\Models\StudentAdmissionRegistration;
+use App\Models\AcademicYear;
 use Illuminate\Support\Facades\Auth;
+use App\Models\StudentAdmission;
+
 
 
 
@@ -134,5 +140,47 @@ class ClassesController extends Controller
 
     public function student($id){
         return view('staff.classes.student');
+    }
+
+    public function partitionClassroom(){
+
+       $majors = Major::withCount('registrations')->get();
+        return view('staff.classes.partition_classroom',compact(['majors']));
+    }
+     public function partitionClassroomStore(request $request){
+        
+       $request->validate([
+    'classes' => 'required|array',
+    'classes.*' => 'required|integer|min:1',
+        ]);
+        $academicYear = AcademicYear::where('acy_status',2)->first();
+        $studentAdmission = StudentAdmission::where('sta_academicy_id',$academicYear->acy_id)->first();
+        // dd($studentAdmission);
+
+        foreach ($request->classes as $majorId => $classes) {
+            // dd($classes);
+            $student = User:: join('student_admission_registration as sar', 'sar.sar_user_id', '=', 'usr_id')->where('sar.sar_student_admission_id',$studentAdmission->sta_id)->get();
+            // dd($student);
+            $studentChunks = $student->chunk(ceil($student->count() / $classes));
+            // dd($studentChunks);s
+        foreach (range(1, $classes) as $i => $classNumber) {
+            // Misalnya nama kelasnya "X IPA 1", "X IPA 2", dst
+            $newClasses = new Classes();
+            $newClasses->cls_level = "X";
+            $newClasses->cls_major_id = $majorId;
+            $newClasses->cls_academicy_id = $academicYear->acy_id;
+            $newClasses->cls_number = $i; // atau bisa lebih dinamis kalau kamu punya format
+            $newClasses->cls_created_by = Auth::user()->usr_id;
+            $newClasses->save();
+            foreach($studentChunks[$i] as $student){
+                $classesPlace = Student::create([
+                    'std_user_id' => $student->usr_id,
+                    'std_class_id'=> $newClasses->cls_id,
+                ]);
+            }
+        }
+    }
+
+
     }
 }

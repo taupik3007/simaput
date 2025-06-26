@@ -51,7 +51,12 @@
                                 <td>{{$no+1}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td></td>   
+                                <td>
+                                    <a href="/staff/student-admission-collection/{{$user->usr_id}}/submission/accept" class="btn btn-success">Terima</a>
+                                    <a href="/staff/student-admission-collection/{{$user->usr_id}}/submission/reject" class="btn btn-danger">Tolak</a>
+                                    <a href="/staff/student-admission-collection/{{$user->usr_id}}/submission/detail" class="btn btn-info">Detail</a>
+
+                                </td>   
                             </tr>
                             @endforeach
                             <!-- end row -->

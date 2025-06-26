@@ -71,6 +71,32 @@ class User extends Authenticatable
 {
     return $this->hasOne(StudentAdmissionRegistration::class,'sar_user_id','usr_id');
 }
+public function biodata()
+    {
+        return $this->hasOne(Biodata::class, 'bio_user_id', 'usr_id');
+    }
+
+    // Relasi ke alamat
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'adr_user_id', 'usr_id');
+    }
+
+    // Relasi ke orang tua
+    public function parent()
+    {
+        return $this->hasOne(Parented::class, 'prn_user_id', 'usr_id');
+    }
+
+    // Relasi ke asal sekolah
+    public function originSchool()
+    {
+        return $this->hasOne(OriginSchool::class, 'ors_user_id', 'usr_id');
+    }
+    public function requirementDocuments()
+{
+    return $this->hasMany(RequirementDocumentCollection::class, 'rdc_user_id', 'usr_id');
+}
     protected $primaryKey = 'usr_id';
     const CREATED_AT = 'usr_created_at';
     const UPDATED_AT = 'usr_updated_at';

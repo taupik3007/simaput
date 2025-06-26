@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\StudentAdmission;
+use App\Models\Religion;
+use App\Models\RequirementDocument;
+use App\Models\RequirementDocumentCollection;
+use App\Models\StudentAdmissionRegistration;
+
 
 use Illuminate\Http\Request;
 
@@ -24,6 +29,7 @@ class StudentAdmissionRegistrationController extends Controller
         $admission = StudentAdmission::join('academic_years','student_admissions.sta_academicy_id','acy_id') ->orderBy('acy_starting_year', 'desc')
     ->with('sta_year') // eager load biasa tanpa orderBy karena sudah urut
     ->get();
+    // dd($admission);
         // dd($admission);
         $user = User::whereHas('student_admission_registration', function ($query)use ($admission_id) {
         $query->where('sar_status', 1)->where('sar_student_admission_id',$admission_id);})
@@ -43,7 +49,7 @@ class StudentAdmissionRegistrationController extends Controller
     ->get();
         $user = User::whereHas('student_admission_registration',function ($query) {
         $query->where('sar_status', 2);})
-        ->where('usr_status',1)->Role('student')->get();
+        ->Role('student')->get();
         // dd($user);
         return view('staff.student_admission_registration.accepted_registration',compact(['user','admission']));
     }
@@ -61,5 +67,28 @@ class StudentAdmissionRegistrationController extends Controller
         $query->where('sar_status', 0);})->where('usr_status',0)->Role('student')->get();
         // dd($user);
         return view('staff.student_admission_registration.rejected_registration',compact(['user','admission']));
+    }
+    public function acceptSubmission($id){
+        $acceptSubmission = StudentAdmissionRegistration::where('sar_user_id',$id)->update([
+            'sar_status'=> 2
+        ]);
+    }
+    public function rejectSubmission($id){
+        $acceptSubmission = StudentAdmissionRegistration::where('sar_user_id',$id)->update([
+            'sar_status'=> 0
+        ]);
+    }
+     public function detailSubmission($id){
+        
+        $user = User::where('usr_id',$id)->first();
+        // dd($user->originSchool);
+        // $religion = Religion::all();
+        // $userReligion = 
+        $requirementDocument = RequirementDocument::all();
+        $submission = RequirementDocumentCollection::where('rdc_user_id',$id)->get()->keyBy('rdc_rqd_id');
+        // dd($requirementDocumentCollection);
+        return view('staff.student_admission_registration.detail_registration',compact(['user','requirementDocument','submission']));
+
+
     }
 }

@@ -140,7 +140,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/staff/student-admission-collection/{admission_id}/submission', [StudentAdmissionRegistrationController::class, 'submission'])->name('staff.studentadmission.submission');
     Route::get('/staff/student-admission-collection/{admission_id}/accepted', [StudentAdmissionRegistrationController::class, 'accepted'])->name('staff.studentadmission.accepted');
     Route::get('/staff/student-admission-collection/{admission_id}/rejected', [StudentAdmissionRegistrationController::class, 'rejected'])->name('staff.studentadmission.rejected');
+    Route::get('/staff/student-admission-collection/{user_id}/submission/accept', [StudentAdmissionRegistrationController::class, 'acceptSubmission'])->name('staff.studentadmission.accept-submission');
+    Route::get('/staff/student-admission-collection/{user_id}/submission/reject', [StudentAdmissionRegistrationController::class, 'rejectSubmission'])->name('staff.studentadmission.reject-submission');
+    Route::get('/staff/student-admission-collection/{user_id}/submission/detail', [StudentAdmissionRegistrationController::class, 'detailSubmission'])->name('staff.studentadmission.detail-submission');
+    
+    Route::get('/staff/partition-classroom', [ClassesController::class, 'partitionClassroom'])->name('staff.classes.partition-classroom');
+    Route::post('/staff/partition-classroom', [ClassesController::class, 'partitionClassroomStore'])->name('staff.classes.partition-classroom-store');
 
+
+
+    
 });
 
 
@@ -176,6 +185,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/prospective-student/requirement-document-collection', [RequirementDocumentCollectionController::class, 'requirementSubmissionStore']);
 
     Route::get('/prospective-student/student-admission-collection', [StudentAdmissionCollectionController::class, 'admissionCollection']);
+    Route::post('/prospective-student/student-admission-collection', [StudentAdmissionCollectionController::class, 'admissionCollectionStore']);
+
 
 
 });

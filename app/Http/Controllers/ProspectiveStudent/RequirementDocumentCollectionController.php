@@ -4,10 +4,10 @@ namespace App\Http\Controllers\ProspectiveStudent;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\RequirementDocument;
 use App\Models\RequirementDocumentCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\RequirementDocument;
 use Illuminate\Support\Facades\Auth;
 use Alert;
 

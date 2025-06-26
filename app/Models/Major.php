@@ -15,5 +15,10 @@ class Major extends Model
     const CREATED_AT = 'mjr_created_at';
     const UPDATED_AT = 'mjr_updated_at';
     const DELETED_AT = 'mjr_deleted_at';
+public function registrations()
+{
+    return $this->hasMany(StudentAdmissionRegistration::class, 'sar_major_id', 'mjr_id');
+}
+
 
 }

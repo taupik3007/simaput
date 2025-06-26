@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\ProspectiveStudent;
-
+use App\Models\RequirementDocument;
+use App\Models\RequirementDocumentCollection;
 use App\Http\Controllers\Controller;
 use App\Models\StudentAdmissionRegistration;
 use App\Models\Religion;
@@ -227,10 +228,58 @@ class StudentAdmissionCollectionController extends Controller
 
 
     }
-
+       
+        confirmDelete();
+        // return view('users.index', compact('users'));
    $major = Major::all();
    $admissionMajor = StudentAdmissionRegistration::where('sar_user_id',Auth()->user()->usr_id)->first();
-    return view('prospective_student.ppdb.admission-collection',compact(['major','admissionMajor']));
+
+
+
+
+   $user = auth()->user();
+
+    // Ambil semua requirement dokumen yang aktif
+    $requirements = RequirementDocument::where('rqd_status', 1)->pluck('rqd_id')->toArray();
+
+    // Ambil dokumen yang udah diupload user
+    $uploaded = RequirementDocumentCollection::where('rdc_user_id', $user->usr_id)
+                    ->pluck('rdc_rqd_id')
+                    ->toArray();
+
+    // Cek apakah semua dokumen sudah diupload
+    $hasUploadedAllDocs = empty(array_diff($requirements, $uploaded));
+
+    // Cek semua syarat lainnya
+    // dd($user->address->adr_province);
+    $isComplete = $user->biodata && $user->address && $user->parent && $user->originSchool&& $hasUploadedAllDocs;
+    // dd($isComplete);
+    return view('prospective_student.ppdb.admission-collection',compact(['major','admissionMajor','admission','isComplete']));
+   }
+   public function admissionCollectionStore(request $request){
+   $user = auth()->user();
+ $requirements = RequirementDocument::where('rqd_status', 1)->pluck('rqd_id')->toArray();
+
+    // Ambil dokumen yang udah diupload user
+    $uploaded = RequirementDocumentCollection::where('rdc_user_id', $user->usr_id)
+                    ->pluck('rdc_rqd_id')
+                    ->toArray();
+
+    // Cek apakah semua dokumen sudah diupload
+    $hasUploadedAllDocs = empty(array_diff($requirements, $uploaded));
+    $isComplete = $user->biodata && $user->address && $user->parent && $user->originSchool&& $hasUploadedAllDocs;
+    if (!$isComplete) {
+    return redirect()->back()->with('error', 'Lengkapi data terlebih dahulu sebelum memilih jurusan.');
+}
+    $admissionRegistration = StudentAdmissionRegistration::create([
+        
+        'sar_user_id' => Auth::user()->usr_id,
+        'sar_student_admission_id' => $request->sar_student_admission_id,
+        'sar_major_id'              => $request->sar_major_id
+    ]);
+    Alert::success('Berhasil Melakukan Pendaftaran ', 'Pendaftaran PPDB Berhasil di Kirim');
+            return redirect('/prospective-student/student-admission-collection');
+
    }
    
 

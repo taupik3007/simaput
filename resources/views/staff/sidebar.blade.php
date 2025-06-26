@@ -91,6 +91,14 @@
                     <span class="hide-menu">Persyaratan PPDB  </span>
                   </a>
                 </li>
+                <li class="sidebar-item">
+                  <a href="/staff/partition-classroom" class="sidebar-link">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Pembagian Kelas</span>
+                  </a>
+                </li>
                
               </ul>
             </li>

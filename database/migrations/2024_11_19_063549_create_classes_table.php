@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('cls_id');
-            $table->string('cls_code');
+            // $table->string('cls_code');
             $table->string('cls_level');
             $table->unsignedBigInteger('cls_major_id');
             $table->string('cls_number');
