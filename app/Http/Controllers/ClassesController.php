@@ -13,7 +13,8 @@ use App\Models\StudentAdmissionRegistration;
 use App\Models\AcademicYear;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StudentAdmission;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -144,7 +145,9 @@ class ClassesController extends Controller
 
     public function partitionClassroom(){
 
-       $majors = Major::withCount('registrations')->get();
+       $majors = Major::withCount(['registrations' => function ($query) {
+        $query->where('sar_status', 2);
+        }])->get();
         return view('staff.classes.partition_classroom',compact(['majors']));
     }
      public function partitionClassroomStore(request $request){
@@ -152,33 +155,85 @@ class ClassesController extends Controller
        $request->validate([
     'classes' => 'required|array',
     'classes.*' => 'required|integer|min:1',
-        ]);
-        $academicYear = AcademicYear::where('acy_status',2)->first();
-        $studentAdmission = StudentAdmission::where('sta_academicy_id',$academicYear->acy_id)->first();
-        // dd($studentAdmission);
+        ]);try {
+          DB::beginTransaction();
 
-        foreach ($request->classes as $majorId => $classes) {
-            // dd($classes);
-            $student = User:: join('student_admission_registration as sar', 'sar.sar_user_id', '=', 'usr_id')->where('sar.sar_student_admission_id',$studentAdmission->sta_id)->get();
-            // dd($student);
-            $studentChunks = $student->chunk(ceil($student->count() / $classes));
-            // dd($studentChunks);s
-        foreach (range(1, $classes) as $i => $classNumber) {
-            // Misalnya nama kelasnya "X IPA 1", "X IPA 2", dst
-            $newClasses = new Classes();
-            $newClasses->cls_level = "X";
-            $newClasses->cls_major_id = $majorId;
-            $newClasses->cls_academicy_id = $academicYear->acy_id;
-            $newClasses->cls_number = $i; // atau bisa lebih dinamis kalau kamu punya format
-            $newClasses->cls_created_by = Auth::user()->usr_id;
-            $newClasses->save();
-            foreach($studentChunks[$i] as $student){
-                $classesPlace = Student::create([
-                    'std_user_id' => $student->usr_id,
-                    'std_class_id'=> $newClasses->cls_id,
+        // 1. Ambil tahun akademik & pendaftaran aktif
+        $academicYear = AcademicYear::where('acy_status', 2)->firstOrFail();
+        $studentAdmission = StudentAdmission::where('sta_academicy_id', $academicYear->acy_id)->firstOrFail();
+
+        // 2. Buat semua kelas berdasarkan jurusan
+        $kelasByMajor = [];
+        foreach ($request->classes as $majorId => $classCount) {
+            $kelasByMajor[$majorId] = [];
+
+            for ($i = 0; $i < $classCount; $i++) {
+                $kelas = Classes::create([
+                    'cls_level' => 'X',
+                    'cls_major_id' => $majorId,
+                    'cls_academicy_id' => $academicYear->acy_id,
+                    'cls_number' => $i + 1,
+                    'cls_created_by' => Auth::user()->id,
                 ]);
+
+                $kelasByMajor[$majorId][] = [
+                    'class' => $kelas,
+                    'students' => []
+                ];
             }
         }
+        // $a=1;
+        // dd($a);
+        // 3. Ambil semua siswa urut nama global (pakai kolom 'name')
+        $allStudents = User::join('student_admission_registration as sar', 'sar.sar_user_id', '=', 'users.usr_id')
+            ->where('sar.sar_student_admission_id', $studentAdmission->sta_id)
+            ->select('users.usr_id as usr_id', 'users.name', 'sar.sar_major_id')
+            ->orderBy('users.name') // ✅ penting: urut nama global
+            ->get();
+            // dd($allStudents);
+
+        $globalIndex = 1;
+        $classPointer = [];
+
+        // Hitung siswa per jurusan
+        $studentsPerMajor = $allStudents->groupBy('sar_major_id')->map->count();
+
+        // 4. Loop semua siswa urut nama
+        foreach ($allStudents as $student) {
+            $majorId = $student->sar_major_id;
+            $classPointer[$majorId] ??= 0;
+
+            $kelas = $kelasByMajor[$majorId][$classPointer[$majorId]]['class'];
+
+            $urutan = str_pad($globalIndex++, 2, '0', STR_PAD_LEFT);
+            $nis = substr($academicYear->acy_starting_year, -2)
+                 . substr($academicYear->acy_year_over, -2)
+                 . ".10." . $urutan;
+
+            Student::create([
+                'std_user_id'  => $student->usr_id,
+                'std_class_id' => $kelas->cls_id,
+                'std_nis'      => $nis,
+            ]);
+            User::where('usr_id', $student->usr_id)->update(['usr_status' => 1]);
+
+            $kelasByMajor[$majorId][$classPointer[$majorId]]['students'][] = $student;
+
+            $maxPerClass = ceil($studentsPerMajor[$majorId] / count($kelasByMajor[$majorId]));
+            if (count($kelasByMajor[$majorId][$classPointer[$majorId]]['students']) >= $maxPerClass) {
+                $classPointer[$majorId]++;
+            }
+        }
+
+        DB::commit();
+
+       Alert::success('Berhasil Mengubah Wali kelas', 'Wali Kelas Berhasil Diubah');
+        return redirect('/staff/classes');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        Log::error('Error saat pembagian kelas: '.$e->getMessage());
+       Alert::error('gagal', 'gagal');
+        return redirect('/staff/partition-classroom');
     }
 
 

@@ -58,7 +58,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">NIK</label>
-                    <input  class="form-control" id="bio_nik" aria-describedby="textHelp" type="number" name="bio_nik" :value="old('bio_nik')" required>
+                    <input  class="form-control" id="usr_nik" aria-describedby="textHelp" type="number" name="usr_nik" :value="old('usr_nik')" required>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>

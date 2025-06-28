@@ -8,6 +8,7 @@ use App\Models\RequirementDocument;
 use App\Models\RequirementDocumentCollection;
 use App\Models\StudentAdmissionRegistration;
 
+Use Alert;
 
 use Illuminate\Http\Request;
 
@@ -72,11 +73,15 @@ class StudentAdmissionRegistrationController extends Controller
         $acceptSubmission = StudentAdmissionRegistration::where('sar_user_id',$id)->update([
             'sar_status'=> 2
         ]);
+        Alert::success('Siswa Diterima', 'siswa telah diterima');
+            return redirect('/staff/student-admission-collection/0/submission');
     }
     public function rejectSubmission($id){
         $acceptSubmission = StudentAdmissionRegistration::where('sar_user_id',$id)->update([
             'sar_status'=> 0
         ]);
+         Alert::success('Siswa Ditolah', 'siswa telah ditolak');
+            return redirect('/staff/student-admission-collection/0/submission');
     }
      public function detailSubmission($id){
         

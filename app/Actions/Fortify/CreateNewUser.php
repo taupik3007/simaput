@@ -28,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
             [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'bio_nik'   => ['required', 'integer', 'unique:biodatas'],
+                'usr_nik'   => ['required', 'integer', 'unique:users'],
                 'password' => $this->passwordRules(),
                 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             ],
@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email.unique'          => 'Email Sudah Terdaftar',
                 'password.min'          => 'Password Minimal :min Karakter',
                 'password.confirmed'    => 'Password Tidak Sama',
-                'bio_nik.unique'        => 'Nik sudah Terdaftar'
+                'usr_nik.unique'        => 'Nik sudah Terdaftar'
             ]
         )->validate();
 
@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'usr_nik' => $input['bio_nik']
+            'usr_nik' => $input['usr_nik']
         ]);
 
 
