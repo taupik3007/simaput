@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Kelas
+    SiMaput | Daftar Mata Pelajaran
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Kelas</h4>
-                    {{-- <a href="/staff/classes/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Kelas</a> --}}
+                    <h4 class="card-title mb-0">Daftar mata Pelajaran</h4>
+                    <a href="/staff/subject/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Mata Pelajaran</a>
                 </div>
                 <p class="card-subtitle mb-3">
                     
@@ -26,10 +26,10 @@
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Tingkatan</th>
+                                <th>Mapel</th>
+                                <th>Kode Mapel</th>
                                 <th>Jurusan</th>
-                                <th>Nomor</th>
-                                <th>Wali Kelas</th>
+                                <th>Tingkatan</th>
                                 <th>Aksi</th>
                                 
                             </tr>
@@ -37,28 +37,34 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($classes as $no=>$classes)
+                            @foreach ($subject as $no=>$subject)
                             <tr>
                                 
                                 <td>{{$no+1}}</td>
-                                <td>{{$classes->cls_level}}</td>
-                                <td>{{$classes->cls_major->mjr_prefix}}</td>
-                                <td>{{$classes->cls_number}}</td>
-                                @if($classes->cls_homeroom_id != null )
-                                <td>{{$classes->cls_homeroom->name}}</td>
+                                <td>{{$subject->subj_name}}</td>
+                                <td>{{$subject->subj_code}}</td>
+                                @if($subject->subj_major_id ==null)
+                                <td>Normatif</td>
                                 @else
-                                <td></td>
+                                <td>{{$subject->major->mjr_name}}</td>
                                 @endif
-                                
+                                <td>{{$subject->subj_level}}</td>
                                 <td>
-                                     <a href="/staff/classes/{{$classes->cls_id}}/schedule" class="btn btn-success">Penjadwalan Mapel </a>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a><br>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-info">Daftar Siswa</a> 
-                                     {{-- <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a> --}}
-                                     <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
-                                     
+                                    <a href="/staff/subject/{{$subject->subj_id}}/classes" class="btn btn-info">pengampu</a>
+                                    <a href="/staff/subject/{{$subject->subj_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
 
                                 </td>
+
+                                
+                               
+{{--                                 
+                                <td>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-primary">homeroom</a>
+                                     <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a>
+                                     
+
+                                </td> --}}
 
 
                                 
@@ -73,10 +79,10 @@
 
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Tingkatan</th>
+                                <th>Mapel</th>
+                                <th>Kode Mapel</th>
                                 <th>Jurusan</th>
-                                <th>Nomor</th>
-                                <th>Wali Kelas</th>
+                                <th>Tingkatan</th>
                                 <th>Aksi</th>
                             </tr>
                             <!-- end row -->

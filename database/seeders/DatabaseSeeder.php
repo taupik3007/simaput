@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             ReligionSeeder::class,
+            MajorSeeder::class,
+            ScheduleSlotSeeder::class,
+            FullStudentSeeder::class
 
         ]);
     }

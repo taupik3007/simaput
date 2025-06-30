@@ -15,6 +15,6 @@ class DashboardController extends Controller
 
     public function teacher_index()
     {
-        return view('staff.dashboard.index');
+        return view('teacher.dashboard.index');
     }
 }

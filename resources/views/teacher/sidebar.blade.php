@@ -32,31 +32,13 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-        
-          
-
+      
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/student/classes" id="get-url" aria-expanded="false">
+              <a class="sidebar-link" href="/teacher/subject" id="get-url" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
-                <span class="hide-menu"> Kelas</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/student/subject" id="get-url" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                <span class="hide-menu"> Mata Pelajaran</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/student/schedule" id="get-url" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                <span class="hide-menu"> Jadwal Pelajaran</span>
+                <span class="hide-menu"> Mapel Diampu</span>
               </a>
             </li>
 

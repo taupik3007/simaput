@@ -48,6 +48,22 @@
                 <span class="hide-menu">Kelola Kelas</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.subject')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">Kelola Mata Pelajaran</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.schedule')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">Kelola Jadwal Pelajaran</span>
+              </a>
+            </li>
             
             
             <!-- ---------------------------------- -->

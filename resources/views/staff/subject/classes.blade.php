@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Kelas
+    SiMaput | Daftar pengampu
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Kelas</h4>
-                    {{-- <a href="/staff/classes/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Kelas</a> --}}
+                    <h4 class="card-title mb-0">Daftar Pengampu</h4>
+                    <a href="/staff/subject/{{$subj_id}}/classes/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Pengampu</a>
                 </div>
                 <p class="card-subtitle mb-3">
                     
@@ -26,44 +26,39 @@
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Tingkatan</th>
-                                <th>Jurusan</th>
-                                <th>Nomor</th>
-                                <th>Wali Kelas</th>
-                                <th>Aksi</th>
+                                <th>Guru Pengampu</th>
+                                <th>kelas</th>
+                                
                                 
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($classes as $no=>$classes)
+                            @foreach ($teachingAssignment as $no=>$teach)
                             <tr>
                                 
                                 <td>{{$no+1}}</td>
-                                <td>{{$classes->cls_level}}</td>
-                                <td>{{$classes->cls_major->mjr_prefix}}</td>
-                                <td>{{$classes->cls_number}}</td>
-                                @if($classes->cls_homeroom_id != null )
-                                <td>{{$classes->cls_homeroom->name}}</td>
-                                @else
-                                <td></td>
-                                @endif
+                                <td>{{$teach->teacher->name}}</td>
+                                <td>{{$teach->class->cls_level." ".$teach->class->cls_major->mjr_name." ".$teach->class->cls_number}}</td>
+                               
                                 
+
+                                
+                               
+{{--                                 
                                 <td>
-                                     <a href="/staff/classes/{{$classes->cls_id}}/schedule" class="btn btn-success">Penjadwalan Mapel </a>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a><br>
-                                    <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-info">Daftar Siswa</a> 
-                                     {{-- <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a> --}}
-                                     <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-primary">homeroom</a>
+                                     <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a>
                                      
 
-                                </td>
+                                </td> --}}
 
 
-                                
+                              
                             </tr>
-                            @endforeach
+                            @endforeach 
                             <!-- end row -->
                             
                         </tbody>
@@ -73,11 +68,8 @@
 
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Tingkatan</th>
-                                <th>Jurusan</th>
-                                <th>Nomor</th>
-                                <th>Wali Kelas</th>
-                                <th>Aksi</th>
+                                <th>Guru Pengampu</th>
+                                <th>kelas</th>
                             </tr>
                             <!-- end row -->
                         </tfoot>

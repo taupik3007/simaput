@@ -15,4 +15,14 @@ class Student extends Model
     const CREATED_AT = 'std_created_at';
     const UPDATED_AT = 'std_updated_at';
     const DELETED_AT = 'std_deleted_at';
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'std_user_id', 'usr_id');
+    }
+    public function class()
+{
+    return $this->belongsTo(Classes::class, 'std_class_id', 'cls_id');
+}
+    
 }

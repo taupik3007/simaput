@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\major;
 use App\Models\User;
 use App\Models\Student;
+use App\Models\ScheduleSlot;
+use App\Models\Schedule;
+
 
 Use Alert;
 use App\Models\StudentAdmissionRegistration;
@@ -126,7 +129,8 @@ class ClassesController extends Controller
     }
 
     public function homeroomEdit($id){
-        $teacher = User::role('teacher')->get();
+        $usedTeacherIds = Classes::whereNotNull('cls_homeroom_id')->pluck('cls_homeroom_id');
+        $teacher = User::role('teacher') ->whereNotIn('usr_id', $usedTeacherIds)->get();
         // dd($teacher);
         return view('staff.classes.edit-homeroom',compact(['teacher']));
     }
@@ -140,7 +144,10 @@ class ClassesController extends Controller
     }
 
     public function student($id){
-        return view('staff.classes.student');
+        $student = Student::where('std_class_id',$id)->get();
+        $classes = Classes::where('cls_id',$id)->first();
+        // dd($student);
+        return view('staff.classes.student',compact('student','classes'));
     }
 
     public function partitionClassroom(){
@@ -238,4 +245,42 @@ class ClassesController extends Controller
 
 
     }
+
+    public function schedule($id){
+         $class = Classes::with(['teachingAssignments.subject', 'teachingAssignments.teacher'])->findOrFail($id);
+
+    $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+    // Ambil semua slot jadwal
+    $schs = ScheduleSlot::orderBy('schs_day')
+        ->orderBy('schs_order')
+        ->with(['schedule' => function ($query) use ($class) {
+            $query->whereHas('teachingAssignment', function ($q) use ($class) {
+                $q->where('teach_class_id', $class->cls_id);
+            });
+        }])
+        ->get();
+
+    return view('staff.classes.schedule', compact('class', 'schs', 'days'));
+    }
+    public function storePerDay(Request $request, Classes $class, $day)
+{
+    // dd($request->schedules);
+   foreach ($request->schedules ?? [] as $slotId => $teachingId) {
+    if ($teachingId && $teachingId != '') {
+    // dd($teachingId);
+
+        Schedule::updateOrCreate(
+            ['sch_slot_id' => $slotId],
+            [
+                'sch_teaching_id' => $teachingId,
+                'sch_created_by'  => Auth::id(),
+                'sch_updated_by'  => Auth::id(),
+            ]
+        );
+    }
+}
+
+    // return back()->with('success', "Jadwal hari $day berhasil disimpan!");
+}
 }

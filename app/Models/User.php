@@ -97,6 +97,16 @@ public function biodata()
 {
     return $this->hasMany(RequirementDocumentCollection::class, 'rdc_user_id', 'usr_id');
 }
+public function student()
+{
+    return $this->hasOne(Student::class, 'std_user_id', 'usr_id');
+}
+public function teachingAssignments()
+{
+    return $this->hasMany(TeachingAssignment::class, 'teach_teacher_id', 'usr_id');
+}
+
+
     protected $primaryKey = 'usr_id';
     const CREATED_AT = 'usr_created_at';
     const UPDATED_AT = 'usr_updated_at';

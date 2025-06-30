@@ -1,4 +1,4 @@
-@extends('staff.master')
+@extends('student.master')
 
 @push('link')
     <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Siswa Kelas {{$classes->cls_level}} {{$classes->cls_major->mjr_prefix}} {{$classes->cls_number}}
+    SiMaput |  {{ $classes->cls_level . ' ' . $classes->cls_major->mjr_name . ' ' . $classes->cls_number }}
 @endsection
 
 @section('content')
@@ -14,51 +14,54 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Siswa kelas {{$classes->cls_level}} {{$classes->cls_major->mjr_prefix}} {{$classes->cls_number}}</h4>
-                   
+                    <h4 class="card-title mb-0">Daftar Siswa
+                        {{ $classes->cls_level . ' ' . $classes->cls_major->mjr_name . ' ' . $classes->cls_number }}
                 </div>
-                <p class="card-subtitle mb-3">
-                    
-                </p>
+                <div class="d-flex align-items-center mt-1 text-muted small">
+                    <i class="ti ti-user me-1"></i> Wali Kelas:
+                    <span class="badge bg-light text-dark ms-2 fw-semibold">{{ $classes->cls_homeroom->name?? "" }}</span>
+                </div>
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
+
                                 <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Aksi</th>
-                                
+                                <th>nama</th>
+
+
+
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($student as $no=>$student)
+                            @foreach ($classes->students as $no => $student)
                                 <tr>
-                                    <td>{{$no+1}}</td>
-                                    <td>{{$student->std_nis}}</td>
-                                    <td>{{$student->user->name}}</td>
-                                    <td>{{$student->user->email}}</td>
-                                    <td></td>
+                                    <td>{{ $no + 1 }}</td>
+                                    <td>{{ $student->std_nis }}</td>
+                                    <td>{{ $student->user->name }}</td>
 
                                 </tr>
                             @endforeach
                             <!-- end row -->
-                            
+
                         </tbody>
                         <tfoot>
                             <!-- start row -->
-                            
+
 
                             <tr>
                                 <th width="10%">No</th>
+
                                 <th>NIS</th>
-                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Aksi</th>
+
+
+
+
                             </tr>
                             <!-- end row -->
                         </tfoot>
@@ -67,7 +70,6 @@
             </div>
         </div>
     </div>
-    
 @endsection
 
 
@@ -78,8 +80,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script> --}}
 
     <script src="{{ asset('assets/js/datatable/datatable-advanced.init.js') }}"></script>
 @endpush

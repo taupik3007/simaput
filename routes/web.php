@@ -10,9 +10,25 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\StudentClassesController;
+use App\Http\Controllers\Student\StudentSubjectController;
+use App\Http\Controllers\Student\StudentScheduleController;
+
+
+
+use App\Http\Controllers\Teacher\TeacherSubjectController;
+
+
+
 use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
 use App\Http\Controllers\ProspectiveStudent\RequirementDocumentCollectionController;
 use App\Http\Controllers\StudentAdmissionRegistrationController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ScheduleController;
+
+
+
+
 
 
 // use App\Http\Controllers\ProspectiveStudent\StudentAdmissionCollectionController;
@@ -85,7 +101,6 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/staff/dashboard', [DashboardController::class, 'index'])->name('staff.dashboard');
-    Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
 
 
     Route::get('/staff/major',[MajorController::class, 'index'])->name('staff.major');
@@ -111,6 +126,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/staff/classes/{id}/homeroom/edit', [ClassesController::class, 'homeroomEdit'])->name('staff.classes.homeroom.edit');
     Route::post('/staff/classes/{id}/homeroom/edit', [ClassesController::class, 'homeroomUpdate'])->name('staff.classes.homeroom.update');
     Route::get('/staff/classes/{id}/student', [ClassesController::class, 'student'])->name('staff.classes.student');
+    Route::get('/staff/classes/{id}/schedule', [ClassesController::class, 'schedule'])->name('staff.classes.schedule');
+    Route::post('/staff/classes/{id}/schedule/{day}/update', [ClassesController::class, 'storePerDay'])->name('staff.classes.schedule.store');
 
     Route::get('/staff/ppdb-requirement-document', [RequirementDocumentController::class, 'index'])->name('staff.ppdbrequirementdocument');
     Route::get('/staff/ppdb-requirement-document/create', [RequirementDocumentController::class, 'create'])->name('staff.ppdbrequirementdocument.create');
@@ -147,16 +164,42 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/staff/partition-classroom', [ClassesController::class, 'partitionClassroom'])->name('staff.classes.partition-classroom');
     Route::post('/staff/partition-classroom', [ClassesController::class, 'partitionClassroomStore'])->name('staff.classes.partition-classroom-store');
 
+    Route::get('/staff/subject', [SubjectController::class, 'index'])->name('staff.subject');
+    Route::get('/staff/subject/create', [SubjectController::class, 'create'])->name('staff.subject.create');
+    Route::post('/staff/subject/create', [SubjectController::class, 'store'])->name('staff.subject.create');
+    Route::get('/staff/subject/{subj_id}/classes', [SubjectController::class, 'classes'])->name('staff.subject.classes');
+    Route::get('/staff/subject/{subj_id}/classes/create', [SubjectController::class, 'classesCreate'])->name('staff.subject.classes.create');
+    Route::post('/staff/subject/{subj_id}/classes/create', [SubjectController::class, 'classesStore'])->name('staff.subject.classes.store');
+    Route::post('/staff/subject/{subj_id}/classes/create', [SubjectController::class, 'classesStore'])->name('staff.subject.classes.store');
+
+
+    Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
+    
+
 
 
     
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
+    Route::get('/teacher/subject', [TeacherSubjectController::class, 'index'])->name('teacher.subject');
+    
 
+   
+
+
+});
 
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/student/classes', [StudentClassesController::class, 'index'])->name('student.classes');
+    Route::get('/student/subject', [StudentSubjectController::class, 'index'])->name('student.subject');
+    Route::get('/student/schedule', [StudentScheduleController::class, 'index'])->name('student.schedule');
+
+
+
 });
 
 

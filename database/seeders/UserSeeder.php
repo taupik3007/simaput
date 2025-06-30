@@ -27,10 +27,19 @@ class UserSeeder extends Seeder
         $user = User::create([
             'email' => 'taupik2@gmail.com',
             'password' => bcrypt('gararetek44'),
-            'usr_nik'=> 123123112,
+            'usr_nik'=> 3123213,
             'name'  => 'gararetek',
 
         ]);
         $user->assignRole('student');
+        
+        $user = User::create([
+            'email' => 'taupik3@gmail.com',
+            'password' => bcrypt('gararetek44'),
+            'usr_nik'=> 123123112,
+            'name'  => 'taupik',
+
+        ]);
+        $user->assignRole('teacher');
     }
 }
