@@ -49,6 +49,14 @@
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.student')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">Kelola Siswa</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.subject')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-school"></i>

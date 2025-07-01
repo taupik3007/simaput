@@ -6,6 +6,7 @@ use App\Http\Controllers\RequirementDocumentController;
 use App\Http\Controllers\ApplicationRequirementDocumentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentAdmissionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
@@ -172,6 +173,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/staff/subject/{subj_id}/classes/create', [SubjectController::class, 'classesStore'])->name('staff.subject.classes.store');
     Route::post('/staff/subject/{subj_id}/classes/create', [SubjectController::class, 'classesStore'])->name('staff.subject.classes.store');
 
+    Route::get('/staff/student', [StudentController::class, 'index'])->name('staff.student');
+    Route::get('/staff/student/{id}/tap-card', [StudentController::class, 'tapCard'])->name('staff.student.tapcard');
+    Route::post('/staff/student/{id}/tap-card', [StudentController::class, 'tapCardStore'])->name('staff.student.tapcardstore');
+
 
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
     
@@ -180,6 +185,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     
 });
+
+    Route::get('/precense', [PrecenseController::class, 'index'])->name('precense');
+
+
+
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');

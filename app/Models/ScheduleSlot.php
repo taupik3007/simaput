@@ -20,8 +20,5 @@ class ScheduleSlot extends Model
 {
     return $this->hasOne(\App\Models\Schedule::class, 'sch_slot_id', 'schs_id');
 }
-public function teachingAssignment()
-    {
-        return $this->belongsTo(TeachingAssignment::class, 'sch_teaching_id', 'teach_id');
-    }
+
 }
