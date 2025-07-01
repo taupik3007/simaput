@@ -10,6 +10,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PrecenseController;
+
 use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\Student\StudentClassesController;
 use App\Http\Controllers\Student\StudentSubjectController;
@@ -187,6 +189,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
     Route::get('/precense', [PrecenseController::class, 'index'])->name('precense');
+    Route::post('/precense', [PrecenseController::class, 'store'])->name('precense.store');
+
 
 
 
