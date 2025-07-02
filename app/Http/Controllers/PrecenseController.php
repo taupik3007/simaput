@@ -25,7 +25,7 @@ class PrecenseController extends Controller
     }
     public function store(request $request){
          $request->validate([
-        'rfid_code' => 'required|string|max:255',
+        'rfid_code' => 'required|max:255',
     ]);
 
     $user = User::where('rfid_code', $request->rfid_code)->first();
@@ -56,11 +56,14 @@ class PrecenseController extends Controller
         
         
     }
+
+    // dd($number);
     if($number == 1){
     // dd($number);
         
         return redirect('/precense');
     }
+    // dd($number);
 
 if (is_null($attendance->att_check_out)) {
     // dd($number);

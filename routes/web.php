@@ -11,6 +11,10 @@ use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PrecenseController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\LearningModuleController;
+
+
 
 use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\Student\StudentClassesController;
@@ -180,6 +184,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/staff/student/{id}/tap-card', [StudentController::class, 'tapCardStore'])->name('staff.student.tapcardstore');
 
 
+    Route::get('/staff/teacher', [TeacherController::class, 'index'])->name('staff.teacher');
+    Route::get('/staff/teacher/create', [TeacherController::class, 'create'])->name('staff.teacher.create');
+    Route::post('/staff/teacher/create', [TeacherController::class, 'store'])->name('staff.teacher.store');
+    Route::get('/staff/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('staff.teacher.edit');
+    Route::post('/staff/teacher/{id}/edit', [TeacherController::class, 'update'])->name('staff.teacher.update');
+    Route::get('/staff/teacher/{id}/edit-password', [TeacherController::class, 'editPassword'])->name('staff.teacher.editpassword');
+    Route::put('/staff/teacher/{id}/edit-password', [TeacherController::class, 'updatePassword'])->name('staff.teacher.updatepassword');
+    Route::get('/staff/teacher/{id}/subject', [TeacherController::class, 'subject'])->name('staff.teacher.subject');
+
+
+
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
     
 
@@ -199,7 +214,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
     Route::get('/teacher/subject', [TeacherSubjectController::class, 'index'])->name('teacher.subject');
-    
+    Route::get('/teacher/subject/{id}/module', [TeacherSubjectController::class, 'module'])->name('teacher.subject.module');
+    Route::get('/teacher/subject/{id}/module/create', [TeacherSubjectController::class, 'createModule'])->name('teacher.subject.createmodule');
+    Route::post('/teacher/subject/{id}/module/create', [TeacherSubjectController::class, 'storeModule'])->name('teacher.subject.storemodule');
+    Route::get('/teacher/module/{id}/download', [LearningModuleController::class, 'download'])->name('module.download');
+
 
    
 

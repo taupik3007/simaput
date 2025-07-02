@@ -1,4 +1,4 @@
-@extends('teacher.master')
+@extends('staff.master')
 
 @push('link')
     <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar mata Pelajaran
+                    <h4 class="card-title mb-0">Daftar mata Pelajaran 
                         
                 </div>
                
@@ -27,7 +27,7 @@
 
                                 <th>Mata Pelajaran</th>
                                 <th>Kelas</th>
-                                <th>Aksi</th>
+                             
 
 
 
@@ -41,11 +41,7 @@
                                     <td>{{ $no + 1 }}</td>
                                     <td>{{ $subject->subject->subj_name }}</td>
                                     <td>{{ $subject->class->cls_level }} {{ $subject->class->cls_major->mjr_prefix }} {{ $subject->class->cls_number }}</td>
-                                    <td>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/administration" class="btn btn-info">Administrasi</a>
-
-                                    </td>
+                                    
 
                                 </tr>
                             @endforeach
@@ -61,7 +57,7 @@
 
                                 <th>Mata Pelajaran</th>
                                 <th>kelas</th>
-                                <th>Aksi</th>
+                             
 
 
 

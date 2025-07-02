@@ -57,4 +57,8 @@ class TeachingAssignment extends Model
     {
         return $this->hasMany(Schedule::class, 'sch_teaching_id', 'teach_id');
     }
+    public function learningModules()
+{
+    return $this->hasMany(LearningModule::class, 'mod_teaching_id', 'teach_id');
+}
 }

@@ -1,4 +1,4 @@
-@extends('teacher.master')
+@extends('staff.master')
 
 @push('link')
     <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput |  Mata Pelajaran
+    SiMaput | Daftar Guru
 @endsection
 
 @section('content')
@@ -14,36 +14,36 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar mata Pelajaran
-                        
+                    <h4 class="card-title mb-0">Daftar Guru</h4>
+                    <a href="/staff/teacher/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Guru</a>
                 </div>
-               
+                <p class="card-subtitle mb-3">
+
+                </p>
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
-
-                                <th>Mata Pelajaran</th>
-                                <th>Kelas</th>
+                                <th>Nama</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
-
-
 
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($subject as $no => $subject)
+                            @foreach ($teacher as $no => $teacher)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $subject->subject->subj_name }}</td>
-                                    <td>{{ $subject->class->cls_level }} {{ $subject->class->cls_major->mjr_prefix }} {{ $subject->class->cls_number }}</td>
+                                    <td>{{ $teacher->name }}</td>
+                                    <td>{{ $teacher->email }}</td>
                                     <td>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/administration" class="btn btn-info">Administrasi</a>
+                                        <a href="/staff/teacher/{{$teacher->usr_id}}/edit" class="btn btn-primary">Edit</a>
+                                        <a href="/staff/teacher/{{$teacher->usr_id}}/edit-password" class="btn btn-success">Ubah Password</a>
+                                        <a href="/staff/teacher/{{$teacher->usr_id}}/subject" class="btn btn-info">Mapel</a>
 
                                     </td>
 
@@ -58,14 +58,9 @@
 
                             <tr>
                                 <th width="10%">No</th>
-
-                                <th>Mata Pelajaran</th>
-                                <th>kelas</th>
+                                <th>Nama</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
-
-
-
-
                             </tr>
                             <!-- end row -->
                         </tfoot>
@@ -81,10 +76,10 @@
 @push('script')
     <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script> --}}
 
     <script src="{{ asset('assets/js/datatable/datatable-advanced.init.js') }}"></script>

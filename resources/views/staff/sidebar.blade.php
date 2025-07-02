@@ -57,6 +57,14 @@
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.teacher')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-school"></i>
+                </span>
+                <span class="hide-menu">Kelola Guru</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.subject')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-school"></i>
