@@ -78,7 +78,7 @@ class FullStudentSeeder extends Seeder
                         'name'             => "Siswa_{$major_id}_{$class_num}_{$i}",
                         'email'            => "siswa{$globalUserId}@mail.com",
                         'password'         => Hash::make('password'),
-                        'usr_status'       => 0,
+                        'usr_status'       => 1,
                         'usr_created_by'   => 1,
                         'usr_created_at'   => now(),
                         'usr_updated_at'   => now(),

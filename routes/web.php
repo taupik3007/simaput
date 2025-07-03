@@ -24,6 +24,10 @@ use App\Http\Controllers\Student\StudentScheduleController;
 
 
 use App\Http\Controllers\Teacher\TeacherSubjectController;
+use App\Http\Controllers\Teacher\TeacherHomeroomController;
+use App\Http\Controllers\Teacher\TeacherScheduleController;
+
+
 
 
 
@@ -105,7 +109,7 @@ Route::middleware([
     // Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:staff'] ], function () {
 
     Route::get('/staff/dashboard', [DashboardController::class, 'index'])->name('staff.dashboard');
 
@@ -211,26 +215,46 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:teacher']], function () {
     Route::get('/teacher/dashboard', [DashboardController::class, 'teacher_index'])->name('teacher.dashboard');
     Route::get('/teacher/subject', [TeacherSubjectController::class, 'index'])->name('teacher.subject');
     Route::get('/teacher/subject/{id}/module', [TeacherSubjectController::class, 'module'])->name('teacher.subject.module');
     Route::get('/teacher/subject/{id}/module/create', [TeacherSubjectController::class, 'createModule'])->name('teacher.subject.createmodule');
     Route::post('/teacher/subject/{id}/module/create', [TeacherSubjectController::class, 'storeModule'])->name('teacher.subject.storemodule');
+    Route::get('/teacher/module/{id}/edit', [TeacherSubjectController::class, 'editModule'])->name('teacher.subject.editmodule');
+    Route::post('/teacher/module/{id}/edit', [TeacherSubjectController::class, 'updateModule'])->name('teacher.subject.updatemodule');
+    Route::delete('/teacher/module/{id}/destroy', [TeacherSubjectController::class, 'destroyModule'])->name('teacher.subject.destroymodule');
     Route::get('/teacher/module/{id}/download', [LearningModuleController::class, 'download'])->name('module.download');
-
+    Route::get('/teacher/subject/{id}/administration', [TeacherSubjectController::class, 'administration'])->name('teacher.subject.administration');
+    Route::get('/teacher/subject/{id}/administration/create', [TeacherSubjectController::class, 'createAdministration'])->name('teacher.subject.createadministration');
+    Route::post('/teacher/subject/{id}/administration/create', [TeacherSubjectController::class, 'storeAdministration'])->name('teacher.subject.storeadministration');
+    Route::get('/teacher/administration/{id}/edit', [TeacherSubjectController::class, 'editAdministration'])->name('teacher.subject.editadministration');
+    Route::put('/teacher/administration/{id}/edit', [TeacherSubjectController::class, 'updateAdministration'])->name('teacher.subject.updateadministration');
+    Route::delete('/teacher/administration/{id}/destroy', [TeacherSubjectController::class, 'destroyAdministration'])->name('teacher.subject.destroyadministration');
+    Route::get('/teacher/schedule', [TeacherScheduleController::class, 'index'])->name('teacher.schedule');
+    
+Route::group(['middleware' => ['permission:homeroom']], function () {
 
    
-
+    Route::get('/teacher/homeroom', [TeacherHomeroomController::class, 'index'])->name('teacher.homeroom');
+    Route::get('/teacher/homeroom/{id}/rapor', [TeacherHomeroomController::class, 'index'])->name('teacher.homeroom');
+});
 
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:student']], function () {
     Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
+
     Route::get('/student/classes', [StudentClassesController::class, 'index'])->name('student.classes');
     Route::get('/student/subject', [StudentSubjectController::class, 'index'])->name('student.subject');
+    Route::get('/student/subject/{id}/module', [StudentSubjectController::class, 'module'])->name('student.subject.module');
+
+
+
+
     Route::get('/student/schedule', [StudentScheduleController::class, 'index'])->name('student.schedule');
+    
 
 
 

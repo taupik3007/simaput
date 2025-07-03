@@ -13,7 +13,10 @@
     <div class="datatables">
         <div class="card">
             <div class="card-body">
+                <div class="mb-5 position-relative">
+                    <h4 class="card-title mb-0">Daftar Siswa
 
+                </div>
                 <p class="card-subtitle mb-3">
 
                 </p>

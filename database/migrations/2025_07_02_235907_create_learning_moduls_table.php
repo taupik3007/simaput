@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('mod_teaching_id'); // relasi ke teaching_assignments
             $table->string('mod_name');
             $table->string('mod_file');
-            $table->date('mod_start_date');
+            $table->date('mod_start_date')->nullable();
 
             // Metadata
             $table->unsignedBigInteger('mod_created_by')->nullable();

@@ -1,4 +1,4 @@
-@extends('student.master')
+@extends('teacher.master')
 
 @push('link')
     <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput |  Mata Pelajaran
+    SiMaput |  {{ $classes->cls_level . ' ' . $classes->cls_major->mjr_name . ' ' . $classes->cls_number }}
 @endsection
 
 @section('content')
@@ -14,10 +14,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar mata Pelajaran
-                        
+                    <h4 class="card-title mb-0">Daftar Siswa
+                        {{ $classes->cls_level . ' ' . $classes->cls_major->mjr_name . ' ' . $classes->cls_number }}
                 </div>
-               
+                <div class="d-flex align-items-center mt-1 text-muted small">
+                    <i class="ti ti-user me-1"></i> Wali Kelas:
+                    <span class="badge bg-light text-dark ms-2 fw-semibold">{{ $classes->cls_homeroom->name?? "" }}</span>
+                </div>
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
@@ -25,8 +28,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>Guru Pengampu</th>
+                                <th>NIS</th>
+                                <th>nama</th>
                                 <th>Aksi</th>
 
 
@@ -36,14 +39,13 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($subject as $no => $subject)
+                            @foreach ($classes->students as $no => $student)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $subject->subject->subj_name }}</td>
-                                    <td>{{ $subject->teacher->name }}</td>
+                                    <td>{{ $student->std_nis }}</td>
+                                    <td>{{ $student->user->name }}</td>
                                     <td>
-                                        <a href="/student/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
-
+                                        <a href="/teacher/homeroom/{id}/rapor" class="btn btn-primary">Rapor</a>
                                     </td>
 
                                 </tr>
@@ -58,8 +60,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>Guru Pengampu</th>
+                                <th>NIS</th>
+                                <th>Nama</th>
                                 <th>Aksi</th>
 
 

@@ -32,6 +32,10 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Data Kelas </span>
+            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.major')}}" aria-expanded="false">
                 <span>
@@ -43,15 +47,19 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.classes')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-school"></i>
+                  <i class="ti ti-chalkboard"></i>
                 </span>
                 <span class="hide-menu">Kelola Kelas</span>
               </a>
             </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Data Akun </span>
+            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.student')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-school"></i>
+                  <i class="ti ti-users"></i>
                 </span>
                 <span class="hide-menu">Kelola Siswa</span>
               </a>
@@ -59,15 +67,27 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.teacher')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-school"></i>
+                  <i class="ti ti-users"></i>
                 </span>
                 <span class="hide-menu">Kelola Guru</span>
               </a>
             </li>
+             <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.teacher')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                <span class="hide-menu">Kelola Tata Usaha</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Data Pembelajaran </span>
+            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.subject')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-school"></i>
+                  <i class="ti ti-book"></i>
                 </span>
                 <span class="hide-menu">Kelola Mata Pelajaran</span>
               </a>
@@ -75,7 +95,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('staff.schedule')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-school"></i>
+                  <i class="ti ti-calendar"></i>
                 </span>
                 <span class="hide-menu">Kelola Jadwal Pelajaran</span>
               </a>
@@ -188,7 +208,7 @@
 
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Lamaran </span>
+              <span class="hide-menu">Fitur Kurikulum </span>
             </li>
             {{-- <li class="sidebar-item">
               <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">

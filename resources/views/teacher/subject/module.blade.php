@@ -48,6 +48,13 @@
                                             class="btn btn-outline-primary">
                                             <i class="ti ti-download me-1"></i> Download
                                         </a>
+                                        <a href="/teacher/module/{{$learnModule->mod_id}}/edit"
+                                            class="btn btn-primary">
+                                             edit
+                                        </a>
+                                        
+                                     <a href="/teacher/module/{{$learnModule->mod_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+
 
 
                                     </td>

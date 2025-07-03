@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\ScheduleSlot;
 use App\Models\Schedule;
+use App\Models\TeachingAssignment;
+
 
 
 Use Alert;
@@ -139,6 +141,8 @@ class ClassesController extends Controller
         $classesUpdate = Classes::findOrFail($id)->update([
             'cls_homeroom_id' => $request->cls_homeroom_id
         ]);
+        $homeroom = User::where('usr_id',$request->cls_homeroom_id)->first();
+        $homeroom->givePermissionTo('homeroom');
         Alert::success('Berhasil Mengubah Wali kelas', 'Wali Kelas Berhasil Diubah');
         return redirect('/staff/classes');
     }
@@ -266,21 +270,51 @@ class ClassesController extends Controller
     public function storePerDay(Request $request, Classes $class, $day)
 {
     // dd($request->schedules);
-   foreach ($request->schedules ?? [] as $slotId => $teachingId) {
+  foreach ($request->schedules ?? [] as $slotId => $teachingId) {
     if ($teachingId && $teachingId != '') {
-    // dd($teachingId);
 
-        Schedule::updateOrCreate(
-            ['sch_slot_id' => $slotId],
-            [
+        $teaching = TeachingAssignment::with('class')->find($teachingId);
+        if (!$teaching) continue;
+
+        // 1. Cek apakah guru sudah ada di jadwal lain pada slot yang sama
+        $alreadyScheduled = Schedule::where('sch_slot_id', $slotId)
+            ->whereHas('teachingAssignment', function ($q) use ($teaching) {
+                $q->where('teach_teacher_id', $teaching->teach_teacher_id);
+            })
+            ->exists();
+
+        if ($alreadyScheduled) {
+            // Skip, atau bisa kasih flash error kalau mau
+            session()->flash('error', 'Guru ' . $teaching->teacher->name . ' sudah mengajar di jam ini!');
+            continue;
+        }
+
+        // 2. Cek apakah sudah ada schedule untuk slot dan kelas ini (dari relasi teachingAssignment)
+        $existing = Schedule::where('sch_slot_id', $slotId)
+            ->whereHas('teachingAssignment', function ($q) use ($teaching) {
+                $q->where('teach_class_id', $teaching->teach_class_id);
+            })
+            ->first();
+
+        if ($existing) {
+            $existing->update([
                 'sch_teaching_id' => $teachingId,
-                'sch_created_by'  => Auth::id(),
-                'sch_updated_by'  => Auth::id(),
-            ]
-        );
+                'sch_updated_by' => Auth::id(),
+            ]);
+        } else {
+            Schedule::create([
+                'sch_slot_id'      => $slotId,
+                'sch_teaching_id'  => $teachingId,
+                'sch_created_by'   => Auth::id(),
+                'sch_updated_by'   => Auth::id(),
+            ]);
+        }
     }
 }
 
-    // return back()->with('success', "Jadwal hari $day berhasil disimpan!");
+
+
+    //  Alert::success('berhasil mengubah  ', 'berhasil merubah jadwal');
+    return back();
 }
 }
