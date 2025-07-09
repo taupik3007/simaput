@@ -12,6 +12,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PrecenseController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StaffController;
+
 use App\Http\Controllers\LearningModuleController;
 
 
@@ -197,7 +199,13 @@ Route::group(['middleware' => ['auth','role:staff'] ], function () {
     Route::put('/staff/teacher/{id}/edit-password', [TeacherController::class, 'updatePassword'])->name('staff.teacher.updatepassword');
     Route::get('/staff/teacher/{id}/subject', [TeacherController::class, 'subject'])->name('staff.teacher.subject');
 
-
+    Route::get('/staff/staff', [StaffController::class, 'index'])->name('staff.staff');
+    Route::get('/staff/staff/create', [StaffController::class, 'create'])->name('staff.staff.create');
+    Route::post('/staff/staff/create', [StaffController::class, 'store'])->name('staff.staff.store');
+     Route::get('/staff/staff/{id}/edit', [StaffController::class, 'edit'])->name('staff.staff.edit');
+    Route::post('/staff/staff/{id}/edit', [StaffController::class, 'update'])->name('staff.staff.update');
+    Route::get('/staff/staff/{id}/edit-password', [StaffController::class, 'editPassword'])->name('staff.staff.editpassword');
+    Route::put('/staff/staff/{id}/edit-password', [StaffController::class, 'updatePassword'])->name('staff.staff.updatepassword');
 
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
     

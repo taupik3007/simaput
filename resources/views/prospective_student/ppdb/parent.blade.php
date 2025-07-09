@@ -47,7 +47,7 @@
                         <div class="mb-4 row align-items-center">
                             <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">No Telp Ayah</label>
                             <div class="col-sm-9">
-                                <input type="number" name="prn_father_phone" class="form-control"
+                                <input type="number" min="0" name="prn_father_phone" class="form-control"
                                     value="{{ $parent->prn_father_phone ?? '' }}" id="exampleInputText2" placeholder=""
                                     required oninvalid="this.setCustomValidity('Format Pengisian Salah atau belum Diisi')"
                                     onchange="this.setCustomValidity('')">
@@ -87,10 +87,10 @@
                             <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">No Telp Ibu
                                 (opsional)</label>
                             <div class="col-sm-9">
-                                <input type="number" name="prn_mother_phone" class="form-control"
+                                <input type="number" name="prn_mother_phone" min="0" class="form-control"
                                     value="{{ $parent->prn_mother_phone ?? '' }}" id="exampleInputText2" placeholder=""
-                                    oninvalid="this.setCustomValidity('Format Pengisisan Salah')"
-                                    onchange="this.setCustomValidity('')">
+                                    oninput="validatePhoneNumber(this)">
+
                             </div>
 
                             @error('prn_mother_phone')
@@ -177,15 +177,15 @@
                                     onchange="this.setCustomValidity('')" required>
                                     <option value="">Pilih...</option>
                                     <option value="1"
-                                        {{ optional($parent)->prn_family_income_level == 1 ? 'selected' : '' }}>1</option>
+                                        {{ optional($parent)->prn_family_income_level == 1 ? 'selected' : '' }}>< 1.000.000</option>
                                     <option
                                         value="2"{{ optional($parent)->prn_family_income_level == 2 ? 'selected' : '' }}>
-                                        2</option>
+                                        1.000.000 - 3.000.000</option>
                                     <option value="3"
-                                        {{ optional($parent)->prn_family_income_level == 3 ? 'selected' : '' }}>3</option>
+                                        {{ optional($parent)->prn_family_income_level == 3 ? 'selected' : '' }}>3.000.000 - 7.000.000</option>
                                     <option
-                                        value="4"{{ optional($parent)->prn_family_income_level == 4 ? 'selected' : '' }}>
-                                        4</option>
+                                        value="4"{{ optional($parent)->prn_family_income_level == 4 ? 'selected' : '' }}>>7.000.000
+                                        </option>
 
 
                                     {{-- @foreach ($religion as $religion)
@@ -215,4 +215,14 @@
 
 
 @push('script')
+<script>
+function validatePhoneNumber(input) {
+    if (input.value && parseInt(input.value) < 0) {
+        input.setCustomValidity('Nomor HP tidak boleh negatif');
+    } else {
+        input.setCustomValidity('');
+    }
+}
+</script>
+
 @endpush

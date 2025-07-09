@@ -25,8 +25,8 @@
                             </div>
                             <!-- Column -->
                             <div class="col d-flex align-items-center justify-content-end">
-                                <div data-label="40%" class="css-bar mb-0 css-bar-warning css-bar-40">
-                                    <i class="ti ti-user-circle"></i>
+                                <div data-label="{{$major->accepted_registrations_count}}" class="css-bar mb-0 css-bar-warning ">
+                                    
                                 </div>
                             </div>
                         </div>

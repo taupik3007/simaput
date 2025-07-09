@@ -19,5 +19,20 @@ class StudentAdmission extends Model
     {
         return $this->BelongsTo(AcademicYear::class,'sta_academicy_id');
     }
+    public function student_admission_registration()
+{
+    return $this->hasMany(Sta::class, 'sar_admission_id', 'sta_id');
+}
+public function studentAdmissions()
+{
+    return $this->hasMany(StudentAdmission::class, 'sta_academicy_id', 'acy_id');
+}
+public function academicYear()
+{
+    return $this->belongsTo(\App\Models\AcademicYear::class, 'sta_academicy_id', 'acy_id');
+}
+
+
+
    
 }

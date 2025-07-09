@@ -37,7 +37,7 @@
                             <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">NPSN Sekolah
                                 Asal</label>
                             <div class="col-sm-9">
-                                <input type="number" name="ors_npsn" class="form-control"
+                                <input type="number" name="ors_npsn" min="0" class="form-control"
                                     value="{{ $originSchool->ors_npsn ?? '' }}" id="exampleInputText2" placeholder=""
                                     required oninvalid="this.setCustomValidity('Format Pengisian Salah atau Belum Diisi')"
                                     onchange="this.setCustomValidity('')">

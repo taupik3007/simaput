@@ -17,5 +17,10 @@ class AcademicYear extends Model
 {
     return $this->hasOne(StudentAdmission::class, 'sta_academicy_id', 'acy_id');
 }
+public function studentAdmissions()
+{
+    return $this->hasMany(StudentAdmission::class, 'sta_academicy_id', 'acy_id');
+}
+
     
 }

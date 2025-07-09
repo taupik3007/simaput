@@ -19,7 +19,7 @@ class FullStudentSeeder extends Seeder
         DB::table('academic_years')->insert([
             'acy_starting_year' => 2025,
             'acy_year_over'     => 2026,
-            'acy_status'        => 2,
+            'acy_status'        => 1,
             'acy_created_by'    => 1,
             'acy_created_at'    => now(),
             'acy_updated_at'    => now(),

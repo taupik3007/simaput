@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('prn_father_phone');
             $table->string('prn_mother_name');
             $table->string('prn_mother_occupation');
-            $table->string('prn_mother_phone');
+            $table->string('prn_mother_phone')->nullable();
             $table->string('prn_guardian_name')->nullable();
             $table->string('prn_guardian_occupation')->nullable();
             $table->string('prn_guardian_phone')->nullable();

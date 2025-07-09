@@ -76,7 +76,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Tinggi badan</label>
                   <div class="col-sm-8">
-                    <input type="text" name="bio_height" class="form-control" id="exampleInputText2" value="{{$biodata->bio_height ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Tinggi Badan Wajib Diisi')" 
+                    <input type="number" min="0" name="bio_height" class="form-control" id="exampleInputText2" value="{{$biodata->bio_height ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Tinggi Badan wajib diisi dengan benar')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   <div class="col-sm-1">cm</div>
@@ -87,7 +87,7 @@
                 <div class="mb-4 row align-items-center">
                   <label for="exampleInputText2" class="form-label col-sm-3 col-form-label">Berat Badan</label>
                   <div class="col-sm-8">
-                    <input type="text" name="bio_weight" class="form-control" id="exampleInputText2" value="{{$biodata->bio_weight ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Berat Badan Wajib Diisi')" 
+                    <input type="number" name="bio_weight" min="0" class="form-control" id="exampleInputText2" value="{{$biodata->bio_weight ?? ''}}" placeholder="" required oninvalid="this.setCustomValidity('Berat Badan wajib diisi dengan benar')" 
                     onchange="this.setCustomValidity('')">
                   </div>
                   <div class="col-sm-1">Kg</div>

@@ -37,8 +37,8 @@
           <div class="col-xl-5 col-xxl-4">
             <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
               <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
-                <h2 class="mb-1 fs-7 fw-bolder">Welcome to Modernize</h2>
-                <p class="mb-7">Your Admin Dashboard</p>
+                <h2 class="mb-1 fs-7 fw-bolder">Selamat Datang di SIMaput</h2>
+                {{-- <p class="mb-7">fsdaf</p> --}}
                 
                 <div class="position-relative text-center my-4">
                   <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">Log in</p>
@@ -62,20 +62,20 @@
                   <input type="password" id="password" class="form-control" name="password" required autocomplete="current-password" />
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                  <div class="form-check">
+                  {{-- <div class="form-check">
                     <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
                     <label class="form-check-label text-dark" for="flexCheckChecked">
                       {{ __('Remember me') }}
                     </label>
-                  </div>
-                  <a class="text-primary fw-medium" href="../main/authentication-forgot-password.html">Forgot
-                    Password ?</a>
+                  </div> --}}
+                  {{-- <a class="text-primary fw-medium" href="../main/authentication-forgot-password.html">Forgot
+                    Password ?</a> --}}
                 </div>
                 
                 <input type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2" value="{{ __('Log in') }}">
                 <div class="d-flex align-items-center justify-content-center">
-                  <p class="fs-4 mb-0 fw-medium">New to Modernize?</p>
-                  <a class="text-primary fw-medium ms-2" href="/register-staff">Create an
+                  <p class="fs-4 mb-0 fw-medium">Buat Akun Baru?</p>
+                  <a class="text-primary fw-medium ms-2" href="/register-student">Create an
                     account</a>
                 </div>
               </form>

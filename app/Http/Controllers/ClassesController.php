@@ -119,7 +119,14 @@ class ClassesController extends Controller
      */
     public function destroy(Classes $classes,$id)
     {
+        $student = Student::where('std_class_id',$id)->count();
+        // dd($student);
+        if($student != 0){
+             Alert::error('Gagal Menghapus Kelas', 'Masih Ada siswa Yang Terkait Ke Kelas');
+            return redirect('/staff/classes');
+        }
         $destroyClasses = Classes::findOrFail($id);
+
         // dd($destroyClasses);
         $majorUpdate = Classes::findOrFail($id)->update([
            
@@ -155,14 +162,41 @@ class ClassesController extends Controller
     }
 
     public function partitionClassroom(){
-
-       $majors = Major::withCount(['registrations' => function ($query) {
-        $query->where('sar_status', 2);
-        }])->get();
+        $academicYear= AcademicYear::where('acy_status',2)->count();
+        if($academicYear == 0){
+            return(view('staff.master'));
+        }
+       $majors = Major::withCount([
+    'registrations as accepted_registrations_count' => function ($query) {
+        $query->where('sar_status', 2)
+              ->whereHas('studentAdmission.academicYear', function ($q) {
+                  $q->where('acy_status', 2);
+              });
+    }
+])->get();
+// dd($majors);
         return view('staff.classes.partition_classroom',compact(['majors']));
     }
      public function partitionClassroomStore(request $request){
         
+        // Naikkan kelas XI jadi XII
+$updateClassesXI = Classes::where('cls_level', 'XI')->get();
+foreach ($updateClassesXI as $class) {
+    $class->update(['cls_level' => 'XII']);
+}
+
+// dd($updateClassesXI);
+
+// Naikkan kelas X jadi XI
+$updateClassesX = Classes::where('cls_level', 'X')->get();
+foreach ($updateClassesX as $class) {
+    $class->update(['cls_level' => 'XI']);
+}
+// dd($updateClassesX);
+
+
+
+
        $request->validate([
     'classes' => 'required|array',
     'classes.*' => 'required|integer|min:1',
@@ -171,6 +205,9 @@ class ClassesController extends Controller
 
         // 1. Ambil tahun akademik & pendaftaran aktif
         $academicYear = AcademicYear::where('acy_status', 2)->firstOrFail();
+        $academicYear->update([
+            'acy_status'=> 1
+        ]);
         $studentAdmission = StudentAdmission::where('sta_academicy_id', $academicYear->acy_id)->firstOrFail();
 
         // 2. Buat semua kelas berdasarkan jurusan
@@ -235,6 +272,8 @@ class ClassesController extends Controller
                 $classPointer[$majorId]++;
             }
         }
+
+        
 
         DB::commit();
 
