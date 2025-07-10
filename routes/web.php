@@ -28,6 +28,8 @@ use App\Http\Controllers\Student\StudentScheduleController;
 use App\Http\Controllers\Teacher\TeacherSubjectController;
 use App\Http\Controllers\Teacher\TeacherHomeroomController;
 use App\Http\Controllers\Teacher\TeacherScheduleController;
+use App\Http\Controllers\Teacher\TeacherAssignmentController;
+
 
 
 
@@ -240,7 +242,15 @@ Route::group(['middleware' => ['auth','role:teacher']], function () {
     Route::put('/teacher/administration/{id}/edit', [TeacherSubjectController::class, 'updateAdministration'])->name('teacher.subject.updateadministration');
     Route::delete('/teacher/administration/{id}/destroy', [TeacherSubjectController::class, 'destroyAdministration'])->name('teacher.subject.destroyadministration');
     Route::get('/teacher/schedule', [TeacherScheduleController::class, 'index'])->name('teacher.schedule');
-    
+    Route::get('/teacher/subject/{id}/assignment', [TeacherAssignmentController::class, 'index'])->name('teacher.subject.assignment');
+    Route::get('/teacher/subject/{id}/assignment/create', [TeacherAssignmentController::class, 'create'])->name('teacher.subject.assignment.create');
+    Route::post('/teacher/subject/{id}/assignment/create', [TeacherAssignmentController::class, 'store'])->name('teacher.subject.assignment.store');
+    Route::get('/teacher/assignment/{filename}/download', [TeacherAssignmentController::class, 'download'])->name('teacher.assignment.download');
+    Route::get('/teacher/assignments/{id}/edit', [TeacherAssignmentController::class, 'edit'])
+    ->name('teacher.assignments.edit');
+// Simpan hasil edit
+Route::put('/teacher/assignments/{id}', [TeacherAssignmentController::class, 'update'])
+    ->name('teacher.assignments.update');
 Route::group(['middleware' => ['permission:homeroom']], function () {
 
    

@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput |  Mata Pelajaran
+    SiMaput | Mata Pelajaran
 @endsection
 
 @section('content')
@@ -14,10 +14,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar mata Pelajaran
-                        
+                    {{-- <h4 class="card-title mb-0">Daftar Module {{ $assignment->subject->subj_name }} --}}
+                        <a href="/teacher/subject/{{ $id }}/assignment/create"
+                            class="btn btn-primary position-absolute top-0 end-0">Tambah Module</a>
+
                 </div>
-               
+
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
@@ -25,8 +27,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>Kelas</th>
+                                <th>Nama Tugas</th>
+                                <th>Tanggal pengumpulan</th>
                                 <th>Aksi</th>
 
 
@@ -36,15 +38,24 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($subject as $no => $subject)
+                            @foreach ($assignment as $no => $assignment)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $subject->subject->subj_name }}</td>
-                                    <td>{{ $subject->class->cls_level }} {{ $subject->class->cls_major->mjr_prefix }} {{ $subject->class->cls_number }}</td>
+                                    <td>{{ $assignment->asg_title }}</td>
+                                    <td> {{ \Carbon\Carbon::parse($assignment->asg_due_date)->translatedFormat('l, d F Y H:i') }}</td>
                                     <td>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/assignment" class="btn btn-primary">Tugas</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/administration" class="btn btn-info">Administrasi</a>
+                                        <a href="{{ route('teacher.assignment.download', ['filename' => basename($assignment->asg_file)]) }}"
+                                            class="btn btn-outline-primary">
+                                            <i class="ti ti-download me-1"></i> Download soal
+                                        </a>
+                                        <a href="/teacher/assignments/{{$assignment->asg_id}}/edit"
+                                            class="btn btn-primary">
+                                             edit Soal
+                                        </a>
+                                        
+                                     <a href="" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+
+
 
                                     </td>
 
@@ -60,8 +71,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>kelas</th>
+                                <th>Nama Tugas</th>
+                                <th>Tanggal pengumpulan</th>
                                 <th>Aksi</th>
 
 
