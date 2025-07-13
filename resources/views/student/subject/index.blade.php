@@ -43,6 +43,7 @@
                                     <td>{{ $subject->teacher->name }}</td>
                                     <td>
                                         <a href="/student/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
+                                        <a href="/student/subject/{{$subject->teach_id}}/assignment" class="btn btn-primary">Tugas</a>
 
                                     </td>
 

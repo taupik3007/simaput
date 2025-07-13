@@ -131,4 +131,33 @@ class TeacherAssignmentController extends Controller
     {
         //
     }
+    public function submission($id)
+    {
+        $submission = AssignmentSubmission::where('asb_assignment_id',$id)->get();
+        // dd($sumbission);
+        return view('teacher.assignment.submission',compact(['submission']));
+    }
+    public function submissionCorrection($id)
+    {
+        $submission = AssignmentSubmission::where('asb_id',$id)->first();
+        // dd($sumbission);
+        return view('teacher.assignment.correction',compact(['submission']));
+    }
+    public function grading($id, request $request)
+    {
+         $submission = AssignmentSubmission::findOrFail($id);
+
+    $request->validate([
+        'asb_score' => 'nullable|integer|min:0|max:100',
+        'asb_feedback' => 'nullable|string|max:1000',
+    ]);
+
+    $submission->update([
+        'asb_score' => $request->asb_score,
+        'asb_feedback' => $request->asb_feedback,
+        'asb_updated_by' => auth()->id(),
+    ]);
+    Alert::success('Berhasil Melakukan koreksi', 'Tugas Berhasil Dikoreksi');
+        return redirect('/teacher/subject/'.$request->asg_teaching_id."/assignment");
+    }
 }

@@ -15,8 +15,8 @@
             <div class="card-body">
                 <div class="mb-5 position-relative">
                     {{-- <h4 class="card-title mb-0">Daftar Module {{ $assignment->subject->subj_name }} --}}
-                        <a href="/teacher/subject/{{ $id }}/assignment/create"
-                            class="btn btn-primary position-absolute top-0 end-0">Tambah Module</a>
+                    {{-- <a href="/teacher/subject/{{ $id }}/assignment/create"
+                            class="btn btn-primary position-absolute top-0 end-0">Tambah Module</a> --}}
 
                 </div>
 
@@ -26,9 +26,10 @@
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
-
-                                <th>Nama Tugas</th>
-                                <th>Tanggal pengumpulan</th>
+                                <th>NIS</th>
+                                <th>Nama </th>
+                                <th>Tanggal dikumpulkan</th>
+                                <th>Status Koreksi</th>
                                 <th>Aksi</th>
 
 
@@ -38,26 +39,31 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($assignment as $no => $assignment)
+                            @foreach ($submission as $no => $submission)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $assignment->asg_title }}</td>
-                                    <td> {{ \Carbon\Carbon::parse($assignment->asg_due_date)->translatedFormat('l, d F Y H:i') }}</td>
+                                    <td>{{ $submission->student->student->std_nis }}</td>
+                                    <td>{{ $submission->student->name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($submission->asb_submitted_at)->translatedFormat('l, d F Y H:i') }}
+                                    </td>
+                                    {{-- <td> {{ \Carbon\Carbon::parse($assignment->asg_due_date)->translatedFormat('l, d F Y H:i') }}</td> --}}
                                     <td>
-                                        <a href="{{ route('teacher.assignment.download', ['filename' => basename($assignment->asg_file)]) }}"
-                                            class="btn btn-outline-primary">
-                                            <i class="ti ti-download me-1"></i> Download soal
-                                        </a>
-                                        <a href="/teacher/assignments/{{$assignment->asg_id}}/submission"
+                                        @if (is_null($submission->asb_score))
+                                            <span class="badge bg-danger">Belum Dikoreksi</span>
+                                        @else
+                                            <span class="badge bg-success">Sudah Dikoreksi</span>
+                                        @endif
+                                    </td>
+                                    <td>
+
+
+                                        <a href="/teacher/submission/{{ $submission->asb_id }}/correction"
                                             class="btn btn-primary">
-                                             Jawaban
+                                            Koreksi
                                         </a>
-                                        <a href="/teacher/assignments/{{$assignment->asg_id}}/edit"
-                                            class="btn btn-primary">
-                                             edit Soal
-                                        </a>
-                                        
-                                     <a href="" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+
+
+
 
 
 
@@ -74,10 +80,12 @@
 
                             <tr>
                                 <th width="10%">No</th>
-
-                                <th>Nama Tugas</th>
-                                <th>Tanggal pengumpulan</th>
+                                <th>NIS</th>
+                                <th>Nama </th>
+                                <th>Tanggal dikumpulkan</th>
+                                <th>Status Koreksi</th>
                                 <th>Aksi</th>
+
 
 
 

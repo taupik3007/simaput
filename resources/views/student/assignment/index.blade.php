@@ -44,20 +44,13 @@
                                     <td>{{ $assignment->asg_title }}</td>
                                     <td> {{ \Carbon\Carbon::parse($assignment->asg_due_date)->translatedFormat('l, d F Y H:i') }}</td>
                                     <td>
-                                        <a href="{{ route('teacher.assignment.download', ['filename' => basename($assignment->asg_file)]) }}"
-                                            class="btn btn-outline-primary">
-                                            <i class="ti ti-download me-1"></i> Download soal
-                                        </a>
-                                        <a href="/teacher/assignments/{{$assignment->asg_id}}/submission"
+                                       
+                                        <a href="/student/assignments/{{$assignment->asg_id}}/submit"
                                             class="btn btn-primary">
-                                             Jawaban
-                                        </a>
-                                        <a href="/teacher/assignments/{{$assignment->asg_id}}/edit"
-                                            class="btn btn-primary">
-                                             edit Soal
+                                             Jawab
                                         </a>
                                         
-                                     <a href="" class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                     
 
 
 

@@ -22,6 +22,8 @@ use App\Http\Controllers\Student\StudentDashboardController;
 use App\Http\Controllers\Student\StudentClassesController;
 use App\Http\Controllers\Student\StudentSubjectController;
 use App\Http\Controllers\Student\StudentScheduleController;
+use App\Http\Controllers\Student\StudentAssignmentController;
+
 
 
 
@@ -248,6 +250,10 @@ Route::group(['middleware' => ['auth','role:teacher']], function () {
     Route::get('/teacher/assignment/{filename}/download', [TeacherAssignmentController::class, 'download'])->name('teacher.assignment.download');
     Route::get('/teacher/assignments/{id}/edit', [TeacherAssignmentController::class, 'edit'])
     ->name('teacher.assignments.edit');
+    Route::get('/teacher/assignments/{id}/submission', [TeacherAssignmentController::class, 'submission'])->name('teacher.assignment.submission');
+    Route::get('/teacher/submission/{id}/correction', [TeacherAssignmentController::class, 'submissionCorrection'])->name('teacher.assignment.submissionCorrection');
+    Route::post('/teacher/submission/{id}/correction', [TeacherAssignmentController::class, 'grading'])->name('teacher.assignment.grading');
+
 // Simpan hasil edit
 Route::put('/teacher/assignments/{id}', [TeacherAssignmentController::class, 'update'])
     ->name('teacher.assignments.update');
@@ -267,11 +273,15 @@ Route::group(['middleware' => ['auth','role:student']], function () {
     Route::get('/student/classes', [StudentClassesController::class, 'index'])->name('student.classes');
     Route::get('/student/subject', [StudentSubjectController::class, 'index'])->name('student.subject');
     Route::get('/student/subject/{id}/module', [StudentSubjectController::class, 'module'])->name('student.subject.module');
-
-
+    Route::get('/student/subject/{id}/assignment', [StudentAssignmentController::class, 'index'])->name('student.subject.assignment');
+    Route::get('/student/assignments/{id}/submit', [StudentAssignmentController::class, 'create'])
+    ->name('student.assignments.submit');
+Route::post('/student/assignments/{id}/submit', [StudentAssignmentController::class, 'store'])
+    ->name('student.assignments.store');
 
 
     Route::get('/student/schedule', [StudentScheduleController::class, 'index'])->name('student.schedule');
+    Route::get('/student/assignment/{filename}/download', [TeacherAssignmentController::class, 'download'])->name('student.assignment.download');
     
 
 
