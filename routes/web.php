@@ -27,10 +27,12 @@ use App\Http\Controllers\Student\StudentAssignmentController;
 
 
 
+
 use App\Http\Controllers\Teacher\TeacherSubjectController;
 use App\Http\Controllers\Teacher\TeacherHomeroomController;
 use App\Http\Controllers\Teacher\TeacherScheduleController;
 use App\Http\Controllers\Teacher\TeacherAssignmentController;
+use App\Http\Controllers\Teacher\TeacherPresenceController;
 
 
 
@@ -253,6 +255,12 @@ Route::group(['middleware' => ['auth','role:teacher']], function () {
     Route::get('/teacher/assignments/{id}/submission', [TeacherAssignmentController::class, 'submission'])->name('teacher.assignment.submission');
     Route::get('/teacher/submission/{id}/correction', [TeacherAssignmentController::class, 'submissionCorrection'])->name('teacher.assignment.submissionCorrection');
     Route::post('/teacher/submission/{id}/correction', [TeacherAssignmentController::class, 'grading'])->name('teacher.assignment.grading');
+   
+    Route::get('/teacher/subject/{id}/presence', [TeacherPresenceController::class, 'index'])->name('teacher.subject.presence');
+    Route::get('/teacher/subject/{id}/presence/create', [TeacherPresenceController::class, 'create'])->name('teacher.subject.presence.create');
+    Route::post('/teacher/subject/{id}/presence/create', [TeacherPresenceController::class, 'store'])->name('teacher.subject.presence.store');
+    Route::get('/teacher/subject/{id}/presence/edit', [TeacherPresenceController::class, 'edit'])->name('teacher.subject.presence.edit');
+    Route::put('/teacher/subject/{id}/presence/edit', [TeacherPresenceController::class, 'update'])->name('teacher.subject.presence.update');
 
 // Simpan hasil edit
 Route::put('/teacher/assignments/{id}', [TeacherAssignmentController::class, 'update'])

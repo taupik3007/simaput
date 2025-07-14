@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput |  Mata Pelajaran
+    SiMaput | Mata Pelajaran
 @endsection
 
 @section('content')
@@ -14,10 +14,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar mata Pelajaran
-                        
+                    {{-- <h4 class="card-title mb-0">Daftar Module {{ $assignment->subject->subj_name }} --}}
+                        <a href="/teacher/subject/{{ $id }}/presence/create"
+                            class="btn btn-primary position-absolute top-0 end-0">Tambah Presensi</a>
+
                 </div>
-               
+
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
@@ -25,8 +27,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>Kelas</th>
+                               
+                                <th>Tanggal Presensi</th>
                                 <th>Aksi</th>
 
 
@@ -36,16 +38,19 @@
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($subject as $no => $subject)
+                            @foreach ($presence as $no => $presence)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $subject->subject->subj_name }}</td>
-                                    <td>{{ $subject->class->cls_level }} {{ $subject->class->cls_major->mjr_prefix }} {{ $subject->class->cls_number }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($presence->satd_date)->translatedFormat('l, d F Y ') }}</td>
+                                    {{-- <td> {{ \Carbon\Carbon::parse($assignment->asg_due_date)->translatedFormat('l, d F Y H:i') }}</td> --}}
                                     <td>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/presence" class="btn btn-primary">Presensi</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/assignment" class="btn btn-primary">Tugas</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>
-                                        <a href="/teacher/subject/{{$subject->teach_id}}/administration" class="btn btn-info">Administrasi</a>
+                                        <a href="/teacher/subject/{{$presence->satd_id}}/presence/edit"
+                                            class="btn btn-primary">
+                                             Detail presensi
+                                        </a>
+                                        
+
+
 
                                     </td>
 
@@ -61,8 +66,8 @@
                             <tr>
                                 <th width="10%">No</th>
 
-                                <th>Mata Pelajaran</th>
-                                <th>kelas</th>
+                                
+                                <th>Tanggal Presensi</th>
                                 <th>Aksi</th>
 
 
