@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\StudentAdmission;
 use App\Models\Academicyear;
 use App\Models\User;
+use App\Models\Semester;
+
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -80,6 +82,14 @@ class StudentAdmissionController extends Controller
             'sta_start' => $request->sta_start,
             'sta_ended' => $request->sta_ended,
             'sta_created_by' => Auth::user()->usr_id
+        ]);
+        $createSemester1 = Semester::create([
+            'smt_academic_year_id' => $createAcademicYear->acy_id,
+            'smt_name' => "ganjil",
+        ]);
+        $createSemester1 = Semester::create([
+            'smt_academic_year_id' => $createAcademicYear->acy_id,
+            'smt_name' => "genap",
         ]);
 
 

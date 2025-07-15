@@ -6,6 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Classes;
+use App\Models\Student;
+use App\Models\Semester;
+use PDF;
+use App\Models\ReportCard;
+use App\Models\Assignment;
+use App\Models\AssignmentSubmission;
+
+use App\Models\ReportCardDetail;
+
 
 
 class TeacherHomeroomController extends Controller
@@ -15,4 +24,36 @@ class TeacherHomeroomController extends Controller
         // dd($classes);
         return view('teacher.homeroom.index',compact('classes'));
     }
+    
+public function showReportForm($student_id)
+{
+    $student = Student::with('user', 'class')->findOrFail($student_id);
+
+    $semesters = Semester::whereHas('reportCards', function ($query) use ($student_id) {
+        $query->where('rpc_student_id', $student_id);
+    })->orderBy('smt_created_at', 'desc')->get();
+
+    return view('teacher.report.select_semester', compact('student', 'semesters'));
+}
+public function downloadReport(Request $request, $student_id)
+{
+    $request->validate([
+        'semester' => 'required|exists:semesters,smt_id',
+    ]);
+
+    $student = Student::with(['user', 'class'])->findOrFail($student_id);
+    $semester = Semester::findOrFail($request->semester);
+    $reportCard = ReportCard::where('rpc_student_id', $student_id)
+        ->where('rpc_semester_id', $semester->smt_id)
+        ->firstOrFail();
+
+    $details = ReportCardDetail::with('teaching.subject')
+        ->where('rcd_report_card_id', $reportCard->rpc_id)
+        ->get();
+
+    $pdf = PDF::loadView('teacher.report.pdf', compact('student', 'semester', 'reportCard', 'details'));
+    return $pdf->download("Rapor_{$student->user->name}_{$semester->smt_name}.pdf");
+}
+
+
 }

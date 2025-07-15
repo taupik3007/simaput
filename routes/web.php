@@ -13,6 +13,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PrecenseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\SemesterController;
+
 
 use App\Http\Controllers\LearningModuleController;
 
@@ -33,6 +35,7 @@ use App\Http\Controllers\Teacher\TeacherHomeroomController;
 use App\Http\Controllers\Teacher\TeacherScheduleController;
 use App\Http\Controllers\Teacher\TeacherAssignmentController;
 use App\Http\Controllers\Teacher\TeacherPresenceController;
+use App\Http\Controllers\Teacher\TeacherReportController;
 
 
 
@@ -212,9 +215,12 @@ Route::group(['middleware' => ['auth','role:staff'] ], function () {
     Route::post('/staff/staff/{id}/edit', [StaffController::class, 'update'])->name('staff.staff.update');
     Route::get('/staff/staff/{id}/edit-password', [StaffController::class, 'editPassword'])->name('staff.staff.editpassword');
     Route::put('/staff/staff/{id}/edit-password', [StaffController::class, 'updatePassword'])->name('staff.staff.updatepassword');
-
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
-    
+
+    Route::get('/staff/rapor-access', [SemesterController::class, 'raporAccess'])->name('staff.rapor.access');
+Route::put('/staff/semester/{id}/toggle-rapor', [SemesterController::class, 'toggleRapor'])->name('staff.semester.toggle-rapor');
+
+
 
 
 
@@ -262,6 +268,8 @@ Route::group(['middleware' => ['auth','role:teacher']], function () {
     Route::get('/teacher/subject/{id}/presence/edit', [TeacherPresenceController::class, 'edit'])->name('teacher.subject.presence.edit');
     Route::put('/teacher/subject/{id}/presence/edit', [TeacherPresenceController::class, 'update'])->name('teacher.subject.presence.update');
 
+    Route::get('/teacher/report/{teaching_id}/input', [TeacherReportController::class, 'inputForm'])->name('teacher.report.input');
+Route::post('/teacher/report/{teaching_id}/input', [TeacherReportController::class, 'store'])->name('teacher.report.store');
 // Simpan hasil edit
 Route::put('/teacher/assignments/{id}', [TeacherAssignmentController::class, 'update'])
     ->name('teacher.assignments.update');
@@ -270,6 +278,9 @@ Route::group(['middleware' => ['permission:homeroom']], function () {
    
     Route::get('/teacher/homeroom', [TeacherHomeroomController::class, 'index'])->name('teacher.homeroom');
     Route::get('/teacher/homeroom/{id}/rapor', [TeacherHomeroomController::class, 'index'])->name('teacher.homeroom');
+Route::get('/teacher/student/{id}/report', [TeacherHomeroomController::class, 'showReportForm']);
+    Route::get('/teacher/student/{id}/report/download', [TeacherHomeroomController::class, 'downloadReport']);
+
 });
 
 });

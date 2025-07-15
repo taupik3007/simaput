@@ -45,7 +45,7 @@
                                     <td>{{ $student->std_nis }}</td>
                                     <td>{{ $student->user->name }}</td>
                                     <td>
-                                        <a href="/teacher/homeroom/{id}/rapor" class="btn btn-primary">Rapor</a>
+                                        <a href="/teacher/student/{{$student->std_id}}/report" class="btn btn-primary">Rapor</a>
                                     </td>
 
                                 </tr>

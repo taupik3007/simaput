@@ -100,6 +100,14 @@
                 <span class="hide-menu">Kelola Jadwal Pelajaran</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('staff.rapor.access')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-book"></i>
+                </span>
+                <span class="hide-menu">Kelola Semester</span>
+              </a>
+            </li>
             
             
             <!-- ---------------------------------- -->

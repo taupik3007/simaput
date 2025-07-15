@@ -42,6 +42,10 @@
                                     <td>{{ $subject->subject->subj_name }}</td>
                                     <td>{{ $subject->class->cls_level }} {{ $subject->class->cls_major->mjr_prefix }} {{ $subject->class->cls_number }}</td>
                                     <td>
+                                        @if($semester != null)
+                                        <a href="/teacher/report/{{$subject->teach_id}}/input" class="btn btn-primary">Rapor</a>
+
+                                        @endif
                                         <a href="/teacher/subject/{{$subject->teach_id}}/presence" class="btn btn-primary">Presensi</a>
                                         <a href="/teacher/subject/{{$subject->teach_id}}/assignment" class="btn btn-primary">Tugas</a>
                                         <a href="/teacher/subject/{{$subject->teach_id}}/module" class="btn btn-primary">Modul</a>

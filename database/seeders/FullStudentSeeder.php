@@ -27,12 +27,21 @@ class FullStudentSeeder extends Seeder
 
         // Insert Jalur Penerimaan
         DB::table('student_admissions')->insert([
-            'sta_academicy_id' => 1,
-            'sta_start'        => now()->subMonths(2),
-            'sta_ended'        => now()->addMonth(),
-            'sta_created_by'   => 1,
-            'sta_created_at'   => now(),
-            'sta_updated_at'   => now(),
+    'sta_academicy_id' => 1,
+    'sta_start'        => now()->subMonths(2)->startOfMonth(),   // contoh: 1 Mei 2025
+    'sta_ended'        => now()->subMonth()->endOfMonth(),       // contoh: 30 Juni 2025
+    'sta_created_by'   => 1,
+    'sta_created_at'   => now(),
+    'sta_updated_at'   => now(),
+]);
+        DB::table('semesters')->insert([
+            'smt_academic_year_id' => 1,
+            'smt_name' => "ganjil",
+            'smt_status' => 1
+        ]);
+        DB::table('semesters')->insert([
+            'smt_academic_year_id' => 1,
+            'smt_name' => "genap"
         ]);
 
         // Insert Jurusan

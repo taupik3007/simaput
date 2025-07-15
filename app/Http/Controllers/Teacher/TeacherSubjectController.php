@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Alert;
 use App\Models\TeachingAssignment;
 use App\Models\LearningModule;
+use App\Models\Semester;
+
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +16,10 @@ class TeacherSubjectController extends Controller
 {
     public function index(){
     $subject = TeachingAssignment::where('teach_teacher_id',Auth::user()->usr_id)->get();
+    $semester = Semester::where('smt_status',1)->where('smt_report_status',1)->first();
+    // dd($semester);
     // dd($subject);
-    return view('teacher.subject.index',compact(['subject']));
+    return view('teacher.subject.index',compact(['subject','semester']));
         
     }
     public function module($id){

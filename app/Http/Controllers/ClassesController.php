@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\ScheduleSlot;
 use App\Models\Schedule;
+use App\Models\Semester;
+
 use App\Models\TeachingAssignment;
 
 
@@ -207,6 +209,10 @@ foreach ($updateClassesX as $class) {
         $academicYear = AcademicYear::where('acy_status', 2)->firstOrFail();
         $academicYear->update([
             'acy_status'=> 1
+        ]);
+        $inActiveSemester = Semester::where('smt_status', 1)->update(['smt_status' => 0]);
+        $activateSemester = Semester::where('smt_name',"ganjil")->where('smt_academic_year_id',$academicYear->acy_id)->update([
+            'smt_status'=> 1
         ]);
         $studentAdmission = StudentAdmission::where('sta_academicy_id', $academicYear->acy_id)->firstOrFail();
 
