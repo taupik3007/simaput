@@ -11,7 +11,7 @@
 <body>
     <h2>Rapor Siswa</h2>
     <p><strong>Nama:</strong> {{ $student->user->name }}</p>
-    <p><strong>Kelas:</strong> {{ $student->class->cls_name }}</p>
+    <p><strong>Kelas:</strong> {{ $reportCard->rpc_level }}</p>
     <p><strong>Semester:</strong> {{ $semester->smt_name }}</p>
 
     <table>
@@ -33,6 +33,5 @@
         </tbody>
     </table>
 
-    <p style="margin-top: 30px;"><strong>Catatan Wali Kelas:</strong><br>{{ $reportCard->rpc_level }}</p>
 </body>
 </html>

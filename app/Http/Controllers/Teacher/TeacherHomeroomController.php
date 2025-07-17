@@ -29,10 +29,15 @@ public function showReportForm($student_id)
 {
     $student = Student::with('user', 'class')->findOrFail($student_id);
 
-    $semesters = Semester::whereHas('reportCards', function ($query) use ($student_id) {
-        $query->where('rpc_student_id', $student_id);
-    })->orderBy('smt_created_at', 'desc')->get();
+    $semesters = ReportCard::where('rpc_student_id', $student_id)
+    ->with('semesters') // pastikan ada relasi 'semester' di model ReportCard
+     // ambil semester dari relasi
+     // urutkan dari yang terbaru
+    ->get();
+    // ->unique('smt_id') // hilangkan duplikat berdasarkan ID semester
+    // ->values(); // reset index biar rapi
 
+    // dd($semesters);
     return view('teacher.report.select_semester', compact('student', 'semesters'));
 }
 public function downloadReport(Request $request, $student_id)

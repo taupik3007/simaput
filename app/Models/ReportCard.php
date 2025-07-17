@@ -27,7 +27,10 @@ class ReportCard extends Model
     {
         return $this->belongsTo(AcademicYear::class, 'rpc_semester_id', 'acy_id');
     }
-
+public function semesters()
+{
+    return $this->belongsTo(Semester::class, 'rpc_semester_id');
+}
     // Relasi ke detail rapor
     public function details()
     {

@@ -218,6 +218,8 @@ Route::group(['middleware' => ['auth','role:staff'] ], function () {
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
 
     Route::get('/staff/rapor-access', [SemesterController::class, 'raporAccess'])->name('staff.rapor.access');
+    Route::post('/staff/rapor-access/activate-semester', [SemesterController::class, 'activateSemester'])->name('staff.rapor.access.activate');
+
 Route::put('/staff/semester/{id}/toggle-rapor', [SemesterController::class, 'toggleRapor'])->name('staff.semester.toggle-rapor');
 
 

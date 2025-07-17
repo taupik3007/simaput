@@ -8,7 +8,7 @@
         <select name="semester" id="semester" class="form-control" required>
             <option value="">-- Pilih Semester --</option>
             @foreach ($semesters as $semester)
-                <option value="{{ $semester->smt_id }}">{{ $semester->smt_name }}</option>
+                <option value="{{ $semester->semesters->smt_id }}">kelas {{ $semester->rpc_level }}  semester {{ $semester->semesters->smt_name }}</option>
             @endforeach
         </select>
     </div>

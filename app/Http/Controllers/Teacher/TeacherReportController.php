@@ -17,6 +17,7 @@ use Alert;
 
 
 
+
 class TeacherReportController extends Controller
 {
    public function inputForm($teaching_id)
@@ -46,7 +47,7 @@ class TeacherReportController extends Controller
             'rpc_student_id' => $student->std_id,
             'rpc_semester_id' => $semester->smt_id,
         ], [
-            'rpc_level' => '',
+            'rpc_level' => $student->class->cls_level ,
             'rpc_created_by' => auth()->id(),
             'rpc_created_at' => now(),
             'rpc_updated_at' => now(),
