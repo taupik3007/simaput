@@ -28,6 +28,7 @@
                                 <th width="10%">No</th>
                                 <th>Guru Pengampu</th>
                                 <th>kelas</th>
+                                <th>Aksi</th>
                                 
                                 
                             </tr>
@@ -41,7 +42,12 @@
                                 <td>{{$no+1}}</td>
                                 <td>{{$teach->teacher->name}}</td>
                                 <td>{{$teach->class->cls_level." ".$teach->class->cls_major->mjr_name." ".$teach->class->cls_number}}</td>
-                               
+                               <td>
+                                    <a href="/curriculum/{{$teach->teach_id}}/module" class="btn btn-primary">Modul</a>
+                                    <a href="/curriculum/{{$teach->teach_id}}/administration" class="btn btn-primary">Administrasi</a>
+
+
+                               </td>
                                 
 
                                 
@@ -70,6 +76,8 @@
                                 <th width="10%">No</th>
                                 <th>Guru Pengampu</th>
                                 <th>kelas</th>
+                                <th>Aksi</th>
+
                             </tr>
                             <!-- end row -->
                         </tfoot>

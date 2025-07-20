@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Staff
+    SiMaput | Administrasi pembelajaran
 @endsection
 
 @section('content')
@@ -14,41 +14,42 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Staff</h4>
-                    <a href="/staff/staff/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Staff</a>
-                </div>
-                <p class="card-subtitle mb-3">
+                    <h4 class="card-title mb-0">Daftar Administrasi {{ $module->subject->subj_name }}
+                       
 
-                </p>
+                </div>
+
                 <div class="table-responsive">
                     <table id="file_export" class="table w-100 table-striped table-bordered display text-nowrap">
                         <thead>
                             <!-- start row -->
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama</th>
-                                <th>Email</th>
+
+                                <th>Nama Administrasi</th>
+                                
                                 <th>Aksi</th>
+
+
 
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
                             <!-- start row -->
-                            @foreach ($teacher as $no => $teacher)
+                            @foreach ($module->learningModules as $no => $learnModule)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $teacher->name }}</td>
-                                    <td>{{ $teacher->email }}</td>
+                                    <td>{{ $learnModule->mod_name }}</td>
+                                    
                                     <td>
-                                        <a href="/staff/staff/{{$teacher->usr_id}}/edit" class="btn btn-primary">Edit</a>
-                                        <a href="/staff/staff/{{$teacher->usr_id}}/edit-password" class="btn btn-success">Ubah Password</a>
-                                        @if(!$teacher->hasPermissionTo('curriculum'))
-                                        <a href="/staff/staff/{{$teacher->usr_id}}/curriculum" class="btn btn-info">atur sebagai kurikulum</a>
-                                        @else
-                                        <a href="/staff/staff/{{$teacher->usr_id}}/inactiveCurriculum" class="btn btn-danger">hapus akses kurikulum</a>
-
+                                        @if(auth()->user()->can('curriculum'))
+                                        <a href="{{ route('curriculum.module.download', $learnModule->mod_id) }}"
+                                            class="btn btn-outline-primary">
+                                            <i class="ti ti-download me-1"></i> Download
+                                        </a>
                                         @endif
+                                   
 
                                     </td>
 
@@ -63,9 +64,14 @@
 
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama</th>
-                                <th>Email</th>
+
+                                <th>Nama Module</th>
+                               
                                 <th>Aksi</th>
+
+
+
+
                             </tr>
                             <!-- end row -->
                         </tfoot>
@@ -81,10 +87,10 @@
 @push('script')
     <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script> --}}
 
     <script src="{{ asset('assets/js/datatable/datatable-advanced.init.js') }}"></script>

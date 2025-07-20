@@ -218,6 +218,15 @@
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Fitur Kurikulum </span>
             </li>
+
+            {{-- <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('.subject')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-book"></i>
+                </span>
+                <span class="hide-menu">Kelola Mata Pelajaran</span>
+              </a>
+            </li> --}}
             {{-- <li class="sidebar-item">
               <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">

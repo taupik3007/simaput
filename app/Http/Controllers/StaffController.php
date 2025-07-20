@@ -98,4 +98,26 @@ class StaffController extends Controller
             return redirect('/staff/staff');
 
     }
+
+    public function activateCurriculum($id){
+        $staff = User::where('usr_id',$id)->first();
+        $staff->givePermissionTo('curriculum');
+    Alert::success('Berhasil Update', 'staff Berhasil menjadi kurikulum');
+    return redirect()->back();
+
+    }
+public function inactivateCurriculum($id){
+        $staff = User::findOrFail($id); // lebih aman pakai findOrFail
+
+    if ($staff->hasPermissionTo('curriculum')) {
+        $staff->revokePermissionTo('curriculum');
+        Alert::success('Berhasil Update', 'Akses kurikulum telah dihapus');
+    } else {
+        Alert::info('Info', 'User ini tidak memiliki akses kurikulum');
+    }
+
+    return redirect()->back();
+
+    }
+
 }

@@ -14,6 +14,8 @@ use App\Http\Controllers\PrecenseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\CurriculumController;
+
 
 
 use App\Http\Controllers\LearningModuleController;
@@ -216,6 +218,8 @@ Route::group(['middleware' => ['auth','role:staff'] ], function () {
     Route::get('/staff/staff/{id}/edit-password', [StaffController::class, 'editPassword'])->name('staff.staff.editpassword');
     Route::put('/staff/staff/{id}/edit-password', [StaffController::class, 'updatePassword'])->name('staff.staff.updatepassword');
     Route::get('/staff/schedule', [ScheduleController::class, 'index'])->name('staff.schedule');
+     Route::get('/staff/staff/{id}/curriculum', [StaffController::class, 'activateCurriculum'])->name('staff.staff.activate-curriculum');
+     Route::get('/staff/staff/{id}/inactiveCurriculum', [StaffController::class, 'inactivateCurriculum'])->name('staff.staff.inactivate-curriculum');
 
     Route::get('/staff/rapor-access', [SemesterController::class, 'raporAccess'])->name('staff.rapor.access');
     Route::post('/staff/rapor-access/activate-semester', [SemesterController::class, 'activateSemester'])->name('staff.rapor.access.activate');
@@ -223,6 +227,17 @@ Route::group(['middleware' => ['auth','role:staff'] ], function () {
 Route::put('/staff/semester/{id}/toggle-rapor', [SemesterController::class, 'toggleRapor'])->name('staff.semester.toggle-rapor');
 
 
+    Route::get('/curriculum/{id}/module', [CurriculumController::class, 'module'])->name('curriculum.module');
+    Route::get('/curriculum/{id}/administration', [CurriculumController::class, 'administration'])->name('curriculum.administration');
+    Route::get('/curriculum/module/{id}/download', [LearningModuleController::class, 'download'])->name('curriculum.module.download');
+
+
+Route::group(['middleware' => ['permission:curriculum']], function () {
+    // Route::get('/curriculum/subject', [CurriculumController::class, 'index'])->name('curriculum.subject');
+   
+    
+
+});
 
 
 
