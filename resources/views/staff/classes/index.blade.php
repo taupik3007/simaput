@@ -54,7 +54,7 @@
                                     @if(auth()->user()->can('curriculum'))
                                      <a href="/staff/classes/{{$classes->cls_id}}/schedule" class="btn btn-success">Penjadwalan Mapel </a>
                                     @endif
-                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">homeroom</a><br>
+                                    <a href="/staff/classes/{{$classes->cls_id}}/homeroom/edit" class="btn btn-primary">Wali kelas</a><br>
                                     <a href="/staff/classes/{{$classes->cls_id}}/student" class="btn btn-info">Daftar Siswa</a> 
                                      {{-- <a href="/staff/classes/{{$classes->cls_id}}/edit" class="btn btn-primary">Edit</a> --}}
                                      <a href="/staff/classes/{{$classes->cls_id}}/destroy" class="btn btn-danger" data-confirm-delete="true">Delete</a>

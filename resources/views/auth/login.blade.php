@@ -26,12 +26,12 @@
       <div class="position-relative z-index-5">
         <div class="row">
           <div class="col-xl-7 col-xxl-8">
-            <a href="/" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+            {{-- <a href="/" class="text-nowrap logo-img d-block px-4 py-9 w-100">
               <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
               <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
-            </a>
+            </a> --}}
             <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
-              <img src="../assets/images/backgrounds/login-security.svg" alt="modernize-img" class="img-fluid" width="500">
+              <img src="https://i.ytimg.com/vi/9ALpIk7HmTM/maxresdefault.jpg" alt="modernize-img" class="img-fluid" width="1000">
             </div>
           </div>
           <div class="col-xl-5 col-xxl-4">

@@ -30,7 +30,7 @@
                     <span class="d-none d-md-block">Data Orang Tua</span>
                 </button>
             </li>
-            <li class="nav-item" role="presentation">
+            {{-- <li class="nav-item" role="presentation">
                 <button
                     class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-3"
                     id="pills-bills-tab" data-bs-toggle="pill" data-bs-target="#pills-bills" type="button" role="tab"
@@ -38,7 +38,7 @@
                     <i class="ti ti-map-pin me-2 fs-6"></i>
                     <span class="d-none d-md-block">Alamat</span>
                 </button>
-            </li>
+            </li> --}}
             <li class="nav-item" role="presentation">
                 <button
                     class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-3"
@@ -207,7 +207,7 @@
                                                     Ibu</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $user->parent->prn_mother_phone }}" readonly
-                                                    id="exampleInputtext2" placeholder="Maxima Studio">
+                                                    id="exampleInputtext2" >
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -217,21 +217,21 @@
                                                 <label for="exampleInputtext3" class="form-label">Nama Wali</label>
                                                 <input type="email" class="form-control"
                                                     value="{{ $user->parent->prn_guardian_name }}" readonly
-                                                    id="exampleInputtext1" placeholder="info@modernize.com">
+                                                    id="exampleInputtext1" >
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="exampleInputtext3" class="form-label">Pekerjaan wali</label>
                                                 <input type="email" class="form-control"
                                                     value="{{ $user->parent->prn_guardian_occupation }} " readonly
-                                                    id="exampleInputtext1" placeholder="info@modernize.com">
+                                                    id="exampleInputtext1" >
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputtext3" class="form-label">Nomor Telepon
                                                     wali</label>
                                                 <input type="email" class="form-control"
                                                     value="{{ $user->parent->prn_guardian_phone }} " readonly
-                                                    id="exampleInputtext1" placeholder="info@modernize.com">
+                                                    id="exampleInputtext1" >
                                             </div>
                                             <div class="mb-3">
                                                 @php
@@ -250,7 +250,7 @@
                                                 <label for="exampleInputtext3" class="form-label">Status Orang Tua</label>
                                                 <input type="email" class="form-control"
                                                     value="{{ $parentStatusValue }} " readonly id="exampleInputtext1"
-                                                    placeholder="info@modernize.com">
+                                                    >
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputtext3" class="form-label">Penghasilan Orang
@@ -365,7 +365,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Nomor UN SMP </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $user->originSchool->un_participant_number }}" readonly
+                                                        value="{{ $user->originSchool->ors_un_participant_number }}" readonly
                                                         id="exampleInputtext">
 
                                                 </div>

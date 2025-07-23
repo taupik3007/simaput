@@ -147,6 +147,12 @@ class ClassesController extends Controller
     }
 
     public function homeroomUpdate($id, Request $request){
+         $classes = Classes::findOrFail($id);
+        //  dd($classesUpdate);
+        if($classes->cls_homeroom_id != null){
+            $user = User::where('usr_id',$classes->cls_homeroom_id)->first();
+            $user->revokePermissionTo('homeroom');
+        }
         $classesUpdate = Classes::findOrFail($id)->update([
             'cls_homeroom_id' => $request->cls_homeroom_id
         ]);

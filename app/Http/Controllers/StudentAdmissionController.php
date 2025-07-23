@@ -134,9 +134,13 @@ class StudentAdmissionController extends Controller
             return redirect('/staff/student-admission');
 
         }
+        if($request->sta_start>=$request->sta_ended){
+            Alert::error('Tidak Bisa Mengedit Penyelenggaraan', 'tanggal ridak valid');
+            return redirect('/staff/student-admission');
+        }
 
         $studentAdmissionUpdate = Studentadmission::findOrFail($id)->update([
-            'sta_year'      => $request->sta_year,
+           
             'sta_start'     => $request->sta_start,
             'sta_ended'     => $request->sta_ended,
             'sta_updated_by'=> Auth::user()->usr_id
