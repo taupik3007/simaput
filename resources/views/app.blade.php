@@ -63,7 +63,7 @@
                     {{-- <li><a class="nav-link scrollto" href="/news/">Berita</a></li> --}}
                     <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
                     <li><a class="getstarted scrollto" href="/login">Login</a></li>
-                    <li><a class="getstarted scrollto" href="/register-student">Register</a></li>
+                    <li><a class="getstarted scrollto" href="/register-student">Pendaftaran</a></li>
 
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>

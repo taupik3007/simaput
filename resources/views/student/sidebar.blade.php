@@ -67,6 +67,14 @@
                 <span class="hide-menu"> Jadwal Pelajaran</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/student/report" id="get-url" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu"> Rapor</span>
+              </a>
+            </li>
 
 
 

@@ -27,6 +27,8 @@ use App\Http\Controllers\Student\StudentClassesController;
 use App\Http\Controllers\Student\StudentSubjectController;
 use App\Http\Controllers\Student\StudentScheduleController;
 use App\Http\Controllers\Student\StudentAssignmentController;
+use App\Http\Controllers\Student\StudentReportController;
+
 
 
 
@@ -297,6 +299,8 @@ Route::group(['middleware' => ['permission:homeroom']], function () {
     Route::get('/teacher/homeroom/{id}/rapor', [TeacherHomeroomController::class, 'index'])->name('teacher.homeroom');
 Route::get('/teacher/student/{id}/report', [TeacherHomeroomController::class, 'showReportForm']);
     Route::get('/teacher/student/{id}/report/download', [TeacherHomeroomController::class, 'downloadReport']);
+    Route::get('/teacher/student/{id}/report/detail', [TeacherHomeroomController::class, 'detailReport']);
+
 
 });
 
@@ -308,6 +312,10 @@ Route::group(['middleware' => ['auth','role:student']], function () {
 
     Route::get('/student/classes', [StudentClassesController::class, 'index'])->name('student.classes');
     Route::get('/student/subject', [StudentSubjectController::class, 'index'])->name('student.subject');
+    Route::get('/student/report', [StudentReportController::class, 'index'])->name('student.report');
+     Route::get('/student/{id}/report/download', [StudentReportController::class, 'downloadReport']);
+    Route::get('/student/{id}/report/detail', [StudentReportController::class, 'detailReport']);
+
     Route::get('/student/subject/{id}/module', [StudentSubjectController::class, 'module'])->name('student.subject.module');
     Route::get('/student/subject/{id}/assignment', [StudentAssignmentController::class, 'index'])->name('student.subject.assignment');
     Route::get('/student/assignments/{id}/submit', [StudentAssignmentController::class, 'create'])
