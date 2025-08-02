@@ -15,9 +15,14 @@ return new class extends Migration
             $table->bigIncrements('adr_id');
             $table->unsignedBiginteger('adr_user_id');
             $table->string('adr_province');
+            $table->string('adr_province_name');
             $table->string('adr_regency');
+            $table->string('adr_regency_name');
             $table->string('adr_district');
+            $table->string('adr_district_name');
             $table->string('adr_village');
+            $table->string('adr_village_name');
+
             // $table->string('adr_postal_code');
             $table->string('adr_detail');
             $table->timestamps();

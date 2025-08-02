@@ -55,6 +55,7 @@
                                     <td>
                                         <a href="/staff/student/{{ $student->std_id }}/tap-card"
                                             class="btn btn-primary">Ganti Kartu</a>
+                                            {{-- <a href="/staff/student-admission-collection/{{$student->user->usr_id}}/submission/detail" class="btn btn-info">Detail</a> --}}
                                     </td>
 
                                 </tr>

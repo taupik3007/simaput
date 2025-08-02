@@ -30,7 +30,7 @@
                     <span class="d-none d-md-block">Data Orang Tua</span>
                 </button>
             </li>
-            {{-- <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation">
                 <button
                     class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-3"
                     id="pills-bills-tab" data-bs-toggle="pill" data-bs-target="#pills-bills" type="button" role="tab"
@@ -38,7 +38,7 @@
                     <i class="ti ti-map-pin me-2 fs-6"></i>
                     <span class="d-none d-md-block">Alamat</span>
                 </button>
-            </li> --}}
+            </li>
             <li class="nav-item" role="presentation">
                 <button
                     class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-3"
@@ -84,7 +84,7 @@
                             <div class="card w-100 border position-relative overflow-hidden mb-0">
                                 <div class="card-body p-4">
                                     <h4 class="card-title">Biodata</h4>
-                                    <p class="card-subtitle mb-4">To change your personal detail , edit and save from here
+                                    <p class="card-subtitle mb-4">
                                     </p>
                                     <form>
                                         <div class="row">
@@ -164,8 +164,8 @@
                     <div class="col-12">
                         <div class="card w-100 border position-relative overflow-hidden mb-0">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Biodata</h4>
-                                <p class="card-subtitle mb-4">To change your personal detail , edit and save from here
+                                <h4 class="card-title">Data Orang Tua</h4>
+                                <p class="card-subtitle mb-4">
                                 </p>
                                 <form>
                                     <div class="row">
@@ -275,8 +275,8 @@
                         <div class="col-9">
                             <div class="card w-100 border position-relative overflow-hidden mb-0">
                                 <div class="card-body p-4">
-                                    <h4 class="card-title">Biodata</h4>
-                                    <p class="card-subtitle mb-4">To change your personal detail , edit and save from here
+                                    <h4 class="card-title">Alamat</h4>
+                                    <p class="card-subtitle mb-4">
                                     </p>
                                     <form>
                                         <div class="row">
@@ -284,13 +284,13 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputtext" class="form-label">Provinsi</label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $user->parent->prn_father_name }}" readonly
+                                                        value="{{ $user->address->adr_province_name }}" readonly
                                                         id="exampleInputtext">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Kabupaten</label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $user->parent->prn_father_occupation }}" readonly
+                                                        value="{{ $user->address->adr_regency_name }}" readonly
                                                         id="exampleInputtext">
 
                                                 </div>
@@ -302,13 +302,13 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputtext1" class="form-label">Kecamatan</label>
                                                     <input type="email" class="form-control"
-                                                        value="{{ $user->parent->prn_father_phone }}" readonly
+                                                        value="{{ $user->address->adr_district_name }}" readonly
                                                         id="exampleInputtext1" placeholder="info@modernize.com">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputtext3" class="form-label">Desa</label>
                                                     <input type="email" class="form-control"
-                                                        value="{{ $user->parent->prn_mother_name }}" readonly
+                                                        value="{{ $user->address->adr_village_name }}" readonly
                                                         id="exampleInputtext1" placeholder="info@modernize.com">
                                                 </div>
 
@@ -343,8 +343,8 @@
                         <div class="col-9">
                             <div class="card w-100 border position-relative overflow-hidden mb-0">
                                 <div class="card-body p-4">
-                                    <h4 class="card-title">Biodata</h4>
-                                    <p class="card-subtitle mb-4">To change your personal detail , edit and save from here
+                                    <h4 class="card-title">Asal Sekolah</h4>
+                                    <p class="card-subtitle mb-4">
                                     </p>
                                     <form>
                                         <div class="row">
@@ -391,8 +391,8 @@
                         <div class="col-9">
                             <div class="card w-100 border position-relative overflow-hidden mb-0">
                                 <div class="card-body p-4">
-                                    <h4 class="card-title">Biodata</h4>
-                                    <p class="card-subtitle mb-4">To change your personal detail , edit and save from here
+                                    <h4 class="card-title">Persyaratan PPDb</h4>
+                                    <p class="card-subtitle mb-4">
                                     </p>
                                     <form>
                                         <div class="row">

@@ -174,29 +174,45 @@ class StudentAdmissionCollectionController extends Controller
    }
     public function addressUpdate(request $request){
         // dd($request);
-        $addresCount = Address::where('adr_user_id',Auth::user()->usr_id)->count();
-        if($addresCount >= 1){
-            $createAddress = Address::where('adr_user_id',Auth::user()->usr_id)->first()->update([
-            'adr_user_id'   => Auth::user()->usr_id,
-            'adr_province'  => $request->adr_province,
-            'adr_regency'   => $request->adr_regency,
-            'adr_district'  => $request->adr_district,
-            'adr_village'   => $request->adr_village,
-            'adr_detail'    => $request->adr_detail        
-        ]);
-        }else{
-           $createAddress = Address::create([
-            'adr_user_id'   => Auth::user()->usr_id,
-            'adr_province'  => $request->adr_province,
-            'adr_regency'   => $request->adr_regency,
-            'adr_district'  => $request->adr_district,
-            'adr_village'   => $request->adr_village,
-            'adr_detail'    => $request->adr_detail        
-        ]); 
+     $userId = Auth::user()->usr_id;
 
-        }
+    // Ambil list dari key data
+    $provincesResponse = Http::get("https://wilayah.id/api/provinces.json")->json();
+    $regenciesResponse = Http::get("https://wilayah.id/api/regencies/{$request->adr_province}.json")->json();
+    $districtsResponse = Http::get("https://wilayah.id/api/districts/{$request->adr_regency}.json")->json();
+    $villagesResponse  = Http::get("https://wilayah.id/api/villages/{$request->adr_district}.json")->json();
+    $provinces = $provincesResponse['data'] ?? [];
+    $regencies = $regenciesResponse['data'] ?? [];
+    $districts = $districtsResponse['data'] ?? [];
+    $villages  = $villagesResponse['data'] ?? [];
 
 
+    // Filter berdasarkan code
+    $provinceItem = collect($provinces)->firstWhere('code', $request->adr_province);
+    $regencyItem  = collect($regencies)->firstWhere('code', $request->adr_regency);
+    $districtItem = collect($districts)->firstWhere('code', $request->adr_district);
+    $villageItem  = collect($villages)->firstWhere('code', $request->adr_village);
+    $provinceName = $provinceItem['name'] ?? '-';
+    $regencyName  = $regencyItem['name'] ?? '-';
+    $districtName = $districtItem['name'] ?? '-';
+    $villageName  = $villageItem['name'] ?? '-';
+// dd($provinceItem['name']);
+
+    $data = [
+        'adr_user_id'        => $userId,
+        'adr_province'       => $request->adr_province,
+        'adr_province_name'  => $provinceName,
+        'adr_regency'        => $request->adr_regency,
+        'adr_regency_name'   => $regencyName,
+        'adr_district'       => $request->adr_district,
+        'adr_district_name'  => $districtName,
+        'adr_village'        => $request->adr_village,
+        'adr_village_name'   => $villageName,
+        'adr_detail'         => $request->adr_detail
+    ];
+
+    $address = Address::where('adr_user_id', $userId)->first();
+    $address ? $address->update($data) : Address::create($data);
         
         Alert::success('Berhasil Mengedit Alamat', 'Alamat Berhasil Diedit');
             return redirect('/prospective-student/address');
