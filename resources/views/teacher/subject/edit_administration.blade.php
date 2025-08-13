@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h4 class="mb-4">Tambah Adminsitrasi Pembelajaran</h4>
+            <h4 class="mb-4">Edit Adminsitrasi Pembelajaran</h4>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf

@@ -16,7 +16,7 @@
                 <div class="mb-5 position-relative">
                     <h4 class="card-title mb-0">Daftar Module {{ $module->subject->subj_name }}
                         <a href="/teacher/subject/{{ $module->teach_id }}/module/create"
-                            class="btn btn-primary position-absolute top-0 end-0">Tambah Module</a>
+                            class="btn btn-primary position-absolute top-0 end-0">Tambah Modul</a>
 
                 </div>
 

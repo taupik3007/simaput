@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Daftar Jurusan
+    SiMaput | Daftar Diterima
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    <h4 class="card-title mb-0">Daftar Penyelenggaraan PPDB </h4>
+                    <h4 class="card-title mb-0">Daftar Diterima </h4>
                     <a href="/staff/student-admission/create" class="btn btn-primary position-absolute top-0 end-0">Tambah Persayratan</a>
                 </div>
                 <p class="card-subtitle mb-3 col-sm-5">

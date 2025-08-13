@@ -117,9 +117,13 @@ Route::middleware([
 //     return view('auth.login2');
 // });
 
-// Route::get('/register2', function () {
-//     return view('profile.layout.master');
+// Route::get('/profile-image', function () {
+//     return view('profile-image');
 // });
+Route::get('/profile-image', [ProfileController::class, 'editPhoto'])->name('profile.photo.edit');
+Route::put('/profile-image', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
+
+
 
     // Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
 

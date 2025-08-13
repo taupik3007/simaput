@@ -5,7 +5,7 @@
 @endpush
 
 @section('title')
-    SiMaput | Tambah Jurusan
+    SiMaput | Tambah Mata Pelajaran
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="card">
           <div class="px-4 py-3 border-bottom">
-            <h4 class="card-title mb-0">Tambah Jurusan</h4>
+            <h4 class="card-title mb-0">Tambah Mata Pelajaran</h4>
           </div>
           <form action="" method="post">
             @csrf

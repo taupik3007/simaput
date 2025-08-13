@@ -14,9 +14,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-5 position-relative">
-                    {{-- <h4 class="card-title mb-0">Daftar Module {{ $assignment->subject->subj_name }} --}}
+                    <h4 class="card-title mb-0">Daftar Tugas 
                         <a href="/teacher/subject/{{ $id }}/assignment/create"
-                            class="btn btn-primary position-absolute top-0 end-0">Tambah Module</a>
+                            class="btn btn-primary position-absolute top-0 end-0">Tambah Tugas</a>
 
                 </div>
 
