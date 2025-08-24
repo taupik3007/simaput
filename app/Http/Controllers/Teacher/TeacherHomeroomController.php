@@ -43,40 +43,75 @@ public function showReportForm($student_id)
 public function downloadReport(Request $request, $student_id)
 {
     $request->validate([
-        'semester' => 'required|exists:semesters,smt_id',
-    ]);
+            'semester' => 'required|exists:semesters,smt_id',
+        ]);
 
-    $student = Student::with(['user', 'class'])->findOrFail($student_id);
-    $semester = Semester::findOrFail($request->semester);
-    $reportCard = ReportCard::where('rpc_student_id', $student_id)
-        ->where('rpc_semester_id', $semester->smt_id)
-        ->firstOrFail();
+        $student = Student::with(['user', 'class'])->findOrFail($student_id);
+        $semester = Semester::findOrFail($request->semester);
 
-    $details = ReportCardDetail::with('teaching.subject')
-        ->where('rcd_report_card_id', $reportCard->rpc_id)
-        ->get();
+        $reportCard = ReportCard::where('rpc_student_id', $student_id)
+            ->where('rpc_semester_id', $semester->smt_id)
+            ->firstOrFail();
 
-    $pdf = PDF::loadView('teacher.report.pdf', compact('student', 'semester', 'reportCard', 'details'));
-    return $pdf->download("Rapor_{$student->user->name}_{$semester->smt_name}.pdf");
+        $details = ReportCardDetail::with('teaching.subject')
+            ->where('rcd_report_card_id', $reportCard->rpc_id)
+            ->get();
+
+        // pisahkan mapel umum & jurusan
+        $umum = $details->filter(fn($d) => is_null($d->teaching->subject->subj_major_id));
+        $jurusan = $details->filter(fn($d) => !is_null($d->teaching->subject->subj_major_id));
+
+        // default: jurusan tampil per mapel
+        $jurusanGabung = null;
+
+        // kalau kelas XII & semester Genap → gabung jurusan
+        if ($student->class->cls_level == 'XII' && strtolower($semester->smt_name) === 'genap') {
+            $jurusanGabung = [
+                'nama' => 'Mata Pelajaran Jurusan (Gabungan)',
+                'nilai' => round($jurusan->avg('rcd_score'), 2),
+            ];
+        }
+
+        $pdf = PDF::loadView('teacher.report.pdf', compact('student', 'semester', 'reportCard', 'umum', 'jurusan', 'jurusanGabung'))
+            ->setPaper('A4', 'portrait');
+
+        return $pdf->download("Rapor_{$student->user->name}_{$semester->smt_name}.pdf");
+
 }
 public function detailReport(Request $request, $student_id)
 {
     $request->validate([
-        'semester' => 'required|exists:semesters,smt_id',
-    ]);
+            'semester' => 'required|exists:semesters,smt_id',
+        ]);
 
-    $student = Student::with(['user', 'class'])->findOrFail($student_id);
-    $semester = Semester::findOrFail($request->semester);
-    $reportCard = ReportCard::where('rpc_student_id', $student_id)
-        ->where('rpc_semester_id', $semester->smt_id)
-        ->firstOrFail();
+        $student = Student::with(['user', 'class'])->findOrFail($student_id);
+        $semester = Semester::findOrFail($request->semester);
 
-    $details = ReportCardDetail::with('teaching.subject')
-        ->where('rcd_report_card_id', $reportCard->rpc_id)
-        ->get();
+        $reportCard = ReportCard::where('rpc_student_id', $student_id)
+            ->where('rpc_semester_id', $semester->smt_id)
+            ->firstOrFail();
 
-    return view('teacher.report.pdf', compact('student', 'semester', 'reportCard', 'details'));
-    ;
+        $details = ReportCardDetail::with('teaching.subject')
+            ->where('rcd_report_card_id', $reportCard->rpc_id)
+            ->get();
+
+        // pisahkan mapel umum & jurusan
+        $umum = $details->filter(fn($d) => is_null($d->teaching->subject->subj_major_id));
+        $jurusan = $details->filter(fn($d) => !is_null($d->teaching->subject->subj_major_id));
+
+        // default: jurusan tampil per mapel
+        $jurusanGabung = null;
+
+        // kalau kelas XII & semester Genap → gabung jurusan
+        if ($student->class->cls_level == 'XII' && strtolower($semester->smt_name) === 'genap') {
+            $jurusanGabung = [
+                'nama' => 'Mata Pelajaran Jurusan (Gabungan)',
+                'nilai' => round($jurusan->avg('rcd_score'), 2),
+            ];
+        }
+
+        return view('teacher.report.pdf', compact('student', 'semester', 'reportCard', 'umum', 'jurusan', 'jurusanGabung'))
+            ;
 }
 
 
